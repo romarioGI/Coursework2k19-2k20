@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace MathLib
 {
-    public struct RationalNumber
+    public struct RationalNumber : IComparable<RationalNumber>
     {
         private readonly BigInteger _numerator;
         private readonly BigInteger _denominator;
@@ -115,6 +115,25 @@ namespace MathLib
         public (BigInteger, BigInteger) GetNumeratorAndDenominator()
         {
             return (_numerator, _denominator);
+        }
+
+        public static implicit operator RationalNumber(BigInteger num)
+        {
+            return new RationalNumber(num, 1);
+        }
+
+        public static implicit operator RationalNumber(int num)
+        {
+            return new RationalNumber(num, 1);
+        }
+
+        public int CompareTo(RationalNumber other)
+        {
+            var numeratorComparison = _numerator.CompareTo(other._numerator);
+            if (numeratorComparison != 0)
+                return numeratorComparison;
+
+            return _denominator.CompareTo(other._denominator);
         }
     }
 }
