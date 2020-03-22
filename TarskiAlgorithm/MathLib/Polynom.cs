@@ -3,19 +3,19 @@
 namespace MathLib
 {
     //TODO написать тесты
-    public class Polynom : IEquatable<Polynom>, IComparable<Polynom>
+    public class Polynom<T> : IEquatable<Polynom<T>> where T:INumber
     {
-        private readonly RationalNumber[] _coefficients;
+        private readonly Arithmetic<T>[] _coefficients;
         private readonly int _hashCode;
 
         //TODO test Zero Polynom
-        public Polynom(RationalNumber[] coefficients)
+        public Polynom(T[] coefficients)
         {
             var degree = coefficients.Length - 1;
-            while (degree >= 0 && _coefficients[degree].IsZero())
+            while (degree >= 0 && coefficients[degree].IsZero)
                 --degree;
 
-            _coefficients = new RationalNumber[degree + 1];
+            _coefficients = new Arithmetic<T>[degree + 1];
             for (var i = 0; i <= degree; ++i)
                 _coefficients[i] = coefficients[i];
 
@@ -23,50 +23,55 @@ namespace MathLib
             _hashCode = CalcHashCode();
         }
 
+        private Polynom(Arithmetic<T>[] coefficients)
+        {
+            throw new NotImplementedException();
+        }
+
         public readonly int Degree;
 
         public bool IsZero => Degree == -1;
 
-        public RationalNumber this[int degree]
+        public Arithmetic<T> this[int degree]
         {
             get
             {
                 if (degree < 0)
                     throw new ArgumentOutOfRangeException();
 
-                return degree < _coefficients.Length ? _coefficients[degree] : 0;
+                return degree < _coefficients.Length ? _coefficients[degree] : Arithmetic<T>.Zero;
             }
         }
 
-        public static Polynom operator +(Polynom f, Polynom g)
+        public static Polynom<T> operator +(Polynom<T> f, Polynom<T> g)
         {
-            var result = new RationalNumber[Math.Max(f.Degree, g.Degree) + 1];
+            var result = new Arithmetic<T>[Math.Max(f.Degree, g.Degree) + 1];
             for (var d = 0; d < result.Length; ++d)
                 result[d] = f[d] + g[d];
 
-            return new Polynom(result);
+            return new Polynom<T>(result);
         }
 
-        public static Polynom operator -(Polynom f, Polynom g)
+        public static Polynom<T> operator -(Polynom<T> f, Polynom<T> g)
         {
-            var result = new RationalNumber[Math.Max(f.Degree, g.Degree) + 1];
+            var result = new Arithmetic<T>[Math.Max(f.Degree, g.Degree) + 1];
             for (var d = 0; d < result.Length; ++d)
                 result[d] = f[d] - g[d];
 
-            return new Polynom(result);
+            return new Polynom<T>(result);
         }
 
-        public static Polynom operator *(Polynom f, Polynom g)
+        public static Polynom<T> operator *(Polynom<T> f, Polynom<T> g)
         {
-            var result = new RationalNumber[f.Degree + g.Degree + 1];
+            var result = new Arithmetic<T>[f.Degree + g.Degree + 1];
             for (var d1 = 0; d1 < result.Length; ++d1)
             for (var d2 = 0; d2 < result.Length; ++d2)
                 result[d1 + d2] += f[d1] * g[d2];
 
-            return new Polynom(result);
+            return new Polynom<T>(result);
         }
 
-        public static Polynom operator /(Polynom f, Polynom g)
+        public static Polynom<T> operator /(Polynom<T> f, Polynom<T> g)
         {
             if (g.IsZero)
                 throw new DivideByZeroException();
@@ -74,7 +79,7 @@ namespace MathLib
             return DivisionWithRemainder(f, g).Item1;
         }
 
-        public static Polynom operator %(Polynom f, Polynom g)
+        public static Polynom<T> operator %(Polynom<T> f, Polynom<T> g)
         {
             if (g.IsZero)
                 throw new DivideByZeroException();
@@ -82,15 +87,20 @@ namespace MathLib
             return DivisionWithRemainder(f, g).Item2;
         }
 
-        private static (Polynom, Polynom) DivisionWithRemainder(Polynom f, Polynom g)
+        public (Polynom<T>, Polynom<T>) DivisionWithRemainder(Polynom<T> g)
         {
-            var result = new RationalNumber[f.Degree - g.Degree + 1];
-            var fCoefficients = (RationalNumber[]) f._coefficients.Clone();
+            return DivisionWithRemainder(this, g);
+        }
+
+        private static (Polynom<T>, Polynom<T>) DivisionWithRemainder(Polynom<T> f, Polynom<T> g)
+        {
+            var result = new Arithmetic<T>[f.Degree - g.Degree + 1];
+            var fCoefficients = (Arithmetic<T>[]) f._coefficients.Clone();
             var leadingG = g[g.Degree];
 
             for (var d1 = f.Degree; d1 >= g.Degree; --d1)
             {
-                if (fCoefficients[d1].IsZero())
+                if (fCoefficients[d1].IsZero)
                     continue;
 
                 var newCoefficient = fCoefficients[d1] / leadingG;
@@ -100,13 +110,13 @@ namespace MathLib
                 for (var d2 = 0; d2 < g.Degree; ++d2)
                     fCoefficients[monomDegree + d2] -= newCoefficient * g[d2];
 
-                fCoefficients[d1] = 0;
+                fCoefficients[d1] = Arithmetic<T>.Zero;
             }
 
-            return (new Polynom(result), new Polynom(fCoefficients));
+            return (new Polynom<T>(result), new Polynom<T>(fCoefficients));
         }
 
-        public static bool operator ==(Polynom f, Polynom g)
+        public static bool operator ==(Polynom<T> f, Polynom<T> g)
         {
             if (f is null || g is null)
                 throw new ArgumentNullException();
@@ -124,26 +134,26 @@ namespace MathLib
             return true;
         }
 
-        public static bool operator !=(Polynom f, Polynom g)
+        public static bool operator !=(Polynom<T> f, Polynom<T> g)
         {
             return !(f == g);
         }
 
-        public static implicit operator Polynom(RationalNumber num)
+        public static implicit operator Polynom<T>(Arithmetic<T> num)
         {
-            return new Polynom(new[] {num});
+            return new Polynom<T>(new[] {num});
         }
 
-        public Polynom GetDerivative()
+        public Polynom<T> GetDerivative()
         {
-            var result = new RationalNumber[Degree];
+            var result = new Arithmetic<T>[Degree];
             for (var d = 1; d <= Degree; d++)
                 result[d - 1] = this[d] * d;
 
-            return new Polynom(result);
+            return new Polynom<T>(result);
         }
 
-        public bool Equals(Polynom other)
+        public bool Equals(Polynom<T> other)
         {
             if (other is null)
                 return false;
@@ -151,40 +161,18 @@ namespace MathLib
             return this == other;
         }
 
-        public override bool Equals(object obj) => Equals(obj as Polynom);
+        public override bool Equals(object obj) => Equals(obj as Polynom<T>);
 
         public override int GetHashCode() => _hashCode;
 
+        //TODO
         private int CalcHashCode()
         {
-            const int p = 53;
-
-            var res = 0;
-            foreach (var x in _coefficients)
-                res = res * p + x.GetHashCode();
+            var res = HashCode.Combine(Degree);
+            foreach (var coefficient in _coefficients)
+                res = HashCode.Combine(coefficient, res);
 
             return res ^ Degree;
-        }
-
-        public int CompareTo(Polynom other)
-        {
-            if (other is null)
-                throw new ArgumentNullException();
-            if (ReferenceEquals(this, other))
-                return 0;
-
-            var cmpRes = Degree.CompareTo(other.Degree);
-            if (cmpRes != 0)
-                return cmpRes;
-
-            for (var d = Degree; d >= 0; --d)
-            {
-                cmpRes = this[d].CompareTo(other[d]);
-                if (cmpRes != 0)
-                    return cmpRes;
-            }
-
-            return 0;
         }
     }
 }
