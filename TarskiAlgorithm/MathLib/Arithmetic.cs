@@ -2,9 +2,9 @@
 
 namespace MathLib
 {
-    public class Arithmetic<T> : IEquatable<Arithmetic<T>>, IComparable<Arithmetic<T>> where T : INumber
+    public class Arithmetic<T> : IEquatable<Arithmetic<T>> where T : INumber
     {
-        public static Arithmetic<T> Zero => throw new NotImplementedException();
+        public static Arithmetic<T> Zero = new Arithmetic<T>(INumber.Zero);
 
         private readonly INumber _value;
 
@@ -12,8 +12,12 @@ namespace MathLib
 
         public bool IsZero => _value.IsZero;
 
+        public bool CanZero => _value.CanZero;
+
         public Arithmetic(T value)
         {
+            if (value is null)
+                throw new ArgumentNullException();
             _value = value;
         }
 
@@ -35,6 +39,16 @@ namespace MathLib
         public static Arithmetic<T> operator *(Arithmetic<T> first, Arithmetic<T> second)
         {
             return new Arithmetic<T>(first._value.Multiply(second._value));
+        }
+
+        public static Arithmetic<T> operator *(Arithmetic<T> first, int second)
+        {
+            return new Arithmetic<T>(first._value.Multiply(second));
+        }
+
+        public static Arithmetic<T> operator *(int first, Arithmetic<T> second)
+        {
+            return second * first;
         }
 
         public static Arithmetic<T> operator /(Arithmetic<T> first, Arithmetic<T> second)
@@ -77,16 +91,20 @@ namespace MathLib
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == GetType() && Equals((Arithmetic<T>)obj);
+            return obj.GetType() == GetType() && Equals((Arithmetic<T>) obj);
         }
 
         public static implicit operator Arithmetic<T>(T value)
         {
+            if (value is null)
+                throw new ArgumentNullException();
             return new Arithmetic<T>(value);
         }
 
         public static implicit operator T(Arithmetic<T> value)
         {
+            if(value is null)
+                throw new ArgumentNullException();
             return value.Value;
         }
     }

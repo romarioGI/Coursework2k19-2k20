@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace MathLib
 {
-    public struct RationalNumber : IComparable<RationalNumber>
+    public struct RationalNumber : IComparable<RationalNumber>, INumber
     {
         private readonly BigInteger _numerator;
         private readonly BigInteger _denominator;
@@ -22,6 +22,13 @@ namespace MathLib
                 _numerator *= -1;
                 _denominator *= -1;
             }
+
+            if (_numerator.IsZero)
+                Sign = Sign.Zero;
+            else if (_numerator > 0)
+                Sign = Sign.MoreZero;
+            else
+                Sign = Sign.LessZero;
         }
 
         public static RationalNumber operator +(RationalNumber first, RationalNumber second)
@@ -66,11 +73,6 @@ namespace MathLib
             return new RationalNumber(numerator, denominator);
         }
 
-        public bool IsZero()
-        {
-            return _numerator.IsZero;
-        }
-
         public static bool operator ==(RationalNumber first, RationalNumber second)
         {
             return first._numerator == second._numerator && first._denominator == second._denominator;
@@ -81,14 +83,9 @@ namespace MathLib
             return !(first == second);
         }
 
-        public bool LessZero()
-        {
-            return _numerator < 0;
-        }
-
         public static bool operator <(RationalNumber first, RationalNumber second)
         {
-            return (first - second).LessZero();
+            return (first - second).Sign == Sign.LessZero;
         }
 
         public static bool operator >(RationalNumber first, RationalNumber second)
@@ -98,7 +95,7 @@ namespace MathLib
 
         public override int GetHashCode()
         {
-            return (_numerator.GetHashCode() * 397) ^ _denominator.GetHashCode();
+            return HashCode.Combine(_numerator, _denominator);
         }
 
         public bool Equals(RationalNumber other)
@@ -125,6 +122,40 @@ namespace MathLib
         public static implicit operator RationalNumber(int num)
         {
             return new RationalNumber(num, 1);
+        }
+
+        public Sign Sign { get; private set; }
+
+        INumber INumber.AddNotZeroAndEqualTypes(INumber number)
+        {
+            return this + (RationalNumber)number;
+        }
+
+        INumber INumber.SubtractNotZeroAndEqualTypes(INumber number)
+        {
+            return this - (RationalNumber) number;
+        }
+
+        INumber INumber.MultiplyNotZeroAndEqualTypes(INumber number)
+        {
+            return this * (RationalNumber) number;
+        }
+
+        INumber INumber.DivideNotZeroAndEqualTypes(INumber number)
+        {
+            return this / (RationalNumber) number;
+        }
+
+        INumber INumber.GetRemainderNotZeroAndEqualTypes(INumber number)
+        {
+            return INumber.Zero;
+        }
+
+        public bool Equals(INumber other)
+        {
+            if (other is RationalNumber number)
+                return Equals(number);
+            return false;
         }
 
         public int CompareTo(RationalNumber other)
