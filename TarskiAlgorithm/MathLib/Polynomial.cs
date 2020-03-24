@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MathLib.Exceptions;
 
 namespace MathLib
 {
-    public class Polynomial<T> : IEquatable<Polynomial<T>>, INumber where T : INumber
+    public class Polynomial<T> : AbstractNumber  where T : AbstractNumber
     {
-        private readonly Arithmetic<T>[] _coefficients;
+        private readonly AbstractNumber[] _coefficients;
         private readonly int _hashCode;
 
         public readonly ObjectVariable ObjectVariable;
 
-        public Polynomial(IEnumerable<T> coefficients, ObjectVariable objectVariable) :
-            this(coefficients.Select(c => (Arithmetic<T>) c).ToArray(), objectVariable)
+        public Polynomial(IEnumerable<T> coefficients, ObjectVariable objectVariable): 
+            this(coefficients.Select(c => (AbstractNumber)c).ToArray(), objectVariable)
         {
+            
         }
 
-        private Polynomial(Arithmetic<T>[] coefficients, ObjectVariable objectVariable)
+        private Polynomial(AbstractNumber[] coefficients, ObjectVariable objectVariable)
         {
             ObjectVariable = objectVariable;
 
@@ -24,7 +26,7 @@ namespace MathLib
             while (degree >= 0 && coefficients[degree].IsZero)
                 --degree;
 
-            _coefficients = new Arithmetic<T>[degree + 1];
+            _coefficients = new AbstractNumber[degree + 1];
             for (var i = 0; i <= degree; ++i)
                 _coefficients[i] = coefficients[i];
 
@@ -36,16 +38,14 @@ namespace MathLib
 
         public readonly int Degree;
 
-        public bool IsZero => Sign == Sign.Zero;
-
-        public Arithmetic<T> this[int degree]
+        private AbstractNumber this[int degree]
         {
             get
             {
                 if (degree < 0)
                     throw new ArgumentOutOfRangeException();
 
-                return degree < _coefficients.Length ? _coefficients[degree] : Arithmetic<T>.Zero;
+                return degree < _coefficients.Length ? _coefficients[degree] : Zero;
             }
         }
 
@@ -54,7 +54,7 @@ namespace MathLib
             if (!f.ObjectVariable.Equals(g.ObjectVariable))
                 throw new PolynomialObjectVariableException<T>(f, g);
 
-            var result = new Arithmetic<T>[Math.Max(f.Degree, g.Degree) + 1];
+            var result = new AbstractNumber[Math.Max(f.Degree, g.Degree) + 1];
             for (var d = 0; d < result.Length; ++d)
                 result[d] = f[d] + g[d];
 
@@ -66,7 +66,7 @@ namespace MathLib
             if (!f.ObjectVariable.Equals(g.ObjectVariable))
                 throw new PolynomialObjectVariableException<T>(f, g);
 
-            var result = new Arithmetic<T>[Math.Max(f.Degree, g.Degree) + 1];
+            var result = new AbstractNumber[Math.Max(f.Degree, g.Degree) + 1];
             for (var d = 0; d < result.Length; ++d)
                 result[d] = f[d] - g[d];
 
@@ -78,7 +78,7 @@ namespace MathLib
             if (!f.ObjectVariable.Equals(g.ObjectVariable))
                 throw new PolynomialObjectVariableException<T>(f, g);
 
-            var result = new Arithmetic<T>[f.Degree + g.Degree + 1];
+            var result = new AbstractNumber[f.Degree + g.Degree + 1];
             for (var d1 = 0; d1 < result.Length; ++d1)
             for (var d2 = 0; d2 < result.Length; ++d2)
                 result[d1 + d2] += f[d1] * g[d2];
@@ -118,8 +118,8 @@ namespace MathLib
 
         private static (Polynomial<T>, Polynomial<T>) DivisionWithRemainder(Polynomial<T> f, Polynomial<T> g)
         {
-            var result = new Arithmetic<T>[f.Degree - g.Degree + 1];
-            var fCoefficients = (Arithmetic<T>[]) f._coefficients.Clone();
+            var result = new AbstractNumber[f.Degree - g.Degree + 1];
+            var fCoefficients = (AbstractNumber[]) f._coefficients.Clone();
             var leadingG = g[g.Degree];
 
             for (var d1 = f.Degree; d1 >= g.Degree; --d1)
@@ -134,7 +134,7 @@ namespace MathLib
                 for (var d2 = 0; d2 < g.Degree; ++d2)
                     fCoefficients[monomDegree + d2] -= newCoefficient * g[d2];
 
-                fCoefficients[d1] = Arithmetic<T>.Zero;
+                fCoefficients[d1] = Zero;
             }
 
             return (new Polynomial<T>(result, f.ObjectVariable), new Polynomial<T>(fCoefficients, f.ObjectVariable));
@@ -155,7 +155,7 @@ namespace MathLib
                 return false;
 
             for (var d = 0; d < f.Degree; d++)
-                if (f[d] != g[d])
+                if (!f[d].Equals(g[d]))
                     return false;
 
             return true;
@@ -168,7 +168,7 @@ namespace MathLib
 
         public Polynomial<T> GetDerivative()
         {
-            var result = new Arithmetic<T>[Degree];
+            var result = new AbstractNumber[Degree];
             for (var d = 1; d <= Degree; d++)
                 result[d - 1] = this[d] * d;
 
@@ -183,7 +183,10 @@ namespace MathLib
             return this == other;
         }
 
-        public override bool Equals(object obj) => Equals(obj as Polynomial<T>);
+        protected override bool EqualsNotZeroAndEqualType(AbstractNumber other)
+        {
+            return Equals((Polynomial<T>) other);
+        }
 
         public override int GetHashCode() => _hashCode;
 
@@ -196,38 +199,40 @@ namespace MathLib
             return res ^ Degree;
         }
 
-        public Sign Sign { get; }
+        public override Sign Sign { get; }
 
-        INumber INumber.AddNotZeroAndEqualTypes(INumber number)
+        protected override AbstractNumber AddNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
-            return this + (Polynomial<T>) number;
+            return this + (Polynomial<T>) abstractNumber;
         }
 
-        INumber INumber.SubtractNotZeroAndEqualTypes(INumber number)
+        protected override AbstractNumber SubtractNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
-            return this - (Polynomial<T>) number;
+            return this - (Polynomial<T>) abstractNumber;
         }
 
-        INumber INumber.MultiplyNotZeroAndEqualTypes(INumber number)
+        protected override AbstractNumber GetOpposite()
         {
-            return this * (Polynomial<T>) number;
+            var result = new AbstractNumber[Degree];
+            for (var d = 0; d <= Degree; d++)
+                result[d] = -this[d];
+
+            return new Polynomial<T>(result, ObjectVariable);
         }
 
-        INumber INumber.DivideNotZeroAndEqualTypes(INumber number)
+        protected override AbstractNumber MultiplyNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
-            return this / (Polynomial<T>) number;
+            return this * (Polynomial<T>) abstractNumber;
         }
 
-        INumber INumber.GetRemainderNotZeroAndEqualTypes(INumber number)
+        protected override AbstractNumber DivideNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
-            return this % (Polynomial<T>) number;
+            return this / (Polynomial<T>) abstractNumber;
         }
 
-        public bool Equals(INumber other)
+        protected override AbstractNumber GetRemainderNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
-            if (other is Polynomial<T> number)
-                return Equals(number);
-            return false;
+            return this % (Polynomial<T>) abstractNumber;
         }
     }
 }
