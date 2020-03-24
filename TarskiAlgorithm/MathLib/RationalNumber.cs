@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace MathLib
 {
-    public struct RationalNumber : IComparable<RationalNumber>, INumber
+    public class RationalNumber : AbstractNumber
     {
         private readonly BigInteger _numerator;
         private readonly BigInteger _denominator;
@@ -75,7 +75,7 @@ namespace MathLib
 
         public static bool operator ==(RationalNumber first, RationalNumber second)
         {
-            return first._numerator == second._numerator && first._denominator == second._denominator;
+            return first != null && first.Equals(second);
         }
 
         public static bool operator !=(RationalNumber first, RationalNumber second)
@@ -103,10 +103,41 @@ namespace MathLib
             return _numerator.Equals(other._numerator) && _denominator.Equals(other._denominator);
         }
 
-        public override bool Equals(object obj)
+        public override Sign Sign { get; }
+
+        protected override AbstractNumber AddNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
-            if (obj is null) return false;
-            return obj is RationalNumber other && Equals(other);
+            return this + (RationalNumber)abstractNumber;
+        }
+
+        protected override AbstractNumber SubtractNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        {
+            return this - (RationalNumber)abstractNumber;
+        }
+
+        protected override AbstractNumber GetOpposite()
+        {
+            return -1 * this;
+        }
+
+        protected override AbstractNumber MultiplyNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        {
+            return this * (RationalNumber)abstractNumber;
+        }
+
+        protected override AbstractNumber DivideNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        {
+            return this / (RationalNumber)abstractNumber;
+        }
+
+        protected override AbstractNumber GetRemainderNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        {
+            return new RationalNumber(0, 1);
+        }
+
+        protected override bool EqualsNotZeroAndEqualType(AbstractNumber other)
+        {
+            return Equals((RationalNumber) other);
         }
 
         public (BigInteger, BigInteger) GetNumeratorAndDenominator()
@@ -122,49 +153,6 @@ namespace MathLib
         public static implicit operator RationalNumber(int num)
         {
             return new RationalNumber(num, 1);
-        }
-
-        public Sign Sign { get; private set; }
-
-        INumber INumber.AddNotZeroAndEqualTypes(INumber number)
-        {
-            return this + (RationalNumber)number;
-        }
-
-        INumber INumber.SubtractNotZeroAndEqualTypes(INumber number)
-        {
-            return this - (RationalNumber) number;
-        }
-
-        INumber INumber.MultiplyNotZeroAndEqualTypes(INumber number)
-        {
-            return this * (RationalNumber) number;
-        }
-
-        INumber INumber.DivideNotZeroAndEqualTypes(INumber number)
-        {
-            return this / (RationalNumber) number;
-        }
-
-        INumber INumber.GetRemainderNotZeroAndEqualTypes(INumber number)
-        {
-            return INumber.Zero;
-        }
-
-        public bool Equals(INumber other)
-        {
-            if (other is RationalNumber number)
-                return Equals(number);
-            return false;
-        }
-
-        public int CompareTo(RationalNumber other)
-        {
-            var numeratorComparison = _numerator.CompareTo(other._numerator);
-            if (numeratorComparison != 0)
-                return numeratorComparison;
-
-            return _denominator.CompareTo(other._denominator);
         }
     }
 }

@@ -1,44 +1,55 @@
 ﻿namespace MathLib
 {
-    public sealed class ZeroNumber : INumber
+    public sealed class ZeroNumber : AbstractNumber
     {
         private static ZeroNumber _instance;
 
         private ZeroNumber()
-        { }
-
-        public static ZeroNumber GetInstance() => _instance ??= new ZeroNumber();
-
-        public Sign Sign => Sign.Zero;
-
-        INumber INumber.AddNotZeroAndEqualTypes(INumber number)
         {
-            return number;
         }
 
-        INumber INumber.SubtractNotZeroAndEqualTypes(INumber number)
+        internal static ZeroNumber GetInstance() => _instance ??= new ZeroNumber();
+
+        public override Sign Sign => Sign.Zero;
+
+        protected override AbstractNumber AddNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
-            return number;
+            return abstractNumber;
         }
 
-        INumber INumber.MultiplyNotZeroAndEqualTypes(INumber number)
+        protected override AbstractNumber SubtractNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        {
+            return -abstractNumber;
+        }
+
+        protected override AbstractNumber GetOpposite()
         {
             return this;
         }
 
-        INumber INumber.DivideNotZeroAndEqualTypes(INumber number)
+        protected override AbstractNumber MultiplyNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
             return this;
         }
 
-        INumber INumber.GetRemainderNotZeroAndEqualTypes(INumber number)
+        protected override AbstractNumber DivideNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
             return this;
         }
 
-        public bool Equals(INumber other)
+        protected override AbstractNumber GetRemainderNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
-            return other != null && other.Sign == Sign.Zero;
+            return this;
+        }
+
+        protected override bool EqualsNotZeroAndEqualType(AbstractNumber other)
+        {
+            return other.IsZero;
+        }
+
+        public override int GetHashCode()
+        {
+            return 0;
         }
     }
 }

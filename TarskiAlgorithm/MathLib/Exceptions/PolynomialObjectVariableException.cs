@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace MathLib
+namespace MathLib.Exceptions
 {
-    public class PolynomialObjectVariableException<T> : Exception where T : INumber
+    public class PolynomialObjectVariableException<T> : Exception where T : AbstractNumber
     {
         public PolynomialObjectVariableException(Polynomial<T> first, Polynomial<T> second) :
             base(GetMessage(first, second))
