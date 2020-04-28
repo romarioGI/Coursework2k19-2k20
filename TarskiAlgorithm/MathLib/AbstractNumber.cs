@@ -5,7 +5,7 @@ namespace MathLib
 {
     public abstract class AbstractNumber : IEquatable<AbstractNumber>
     {
-        public abstract Sign Sign { get; }
+        public Sign Sign { get; protected set; }
 
         public bool IsZero => Sign == Sign.Zero;
 
@@ -59,7 +59,7 @@ namespace MathLib
         }
 
         protected abstract AbstractNumber GetOpposite();
-            
+
         public static AbstractNumber operator *(AbstractNumber first, AbstractNumber second)
         {
             if (first is null || second is null)
@@ -170,5 +170,14 @@ namespace MathLib
         }
 
         public abstract override int GetHashCode();
+
+        public AbstractNumber SetSign(Sign sign)
+        {
+            if (Sign.HasFlag(sign))
+                return SetVerifiedSign(sign);
+            throw new ArgumentException();
+        }
+
+        protected abstract AbstractNumber SetVerifiedSign(Sign sign);
     }
 }

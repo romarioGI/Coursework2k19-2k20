@@ -26,14 +26,26 @@ namespace MathLib
             while (degree >= 0 && coefficients[degree].IsZero)
                 --degree;
 
+            var canZero = true;
+            var canNotZero = false;
+
             _coefficients = new AbstractNumber[degree + 1];
             for (var i = 0; i <= degree; ++i)
+            {
                 _coefficients[i] = coefficients[i];
+                canZero &= _coefficients[i].CanZero;
+                canNotZero |= !_coefficients[i].IsZero;
+            }
 
             Degree = degree;
             _hashCode = CalcHashCode();
 
-            Sign = Degree == -1 ? Sign.Zero : Sign.NotZero;
+            var sign = Sign.NotNumber;
+            if (canZero)
+                sign |= Sign.Zero;
+            if (canNotZero)
+                sign |= Sign.NotZero;
+            Sign = sign;
         }
 
         public readonly int Degree;
@@ -190,6 +202,18 @@ namespace MathLib
 
         public override int GetHashCode() => _hashCode;
 
+        protected override AbstractNumber SetVerifiedSign(Sign sign)
+        {
+            return new Polynomial<T>(_coefficients, ObjectVariable) {Sign = sign};
+        }
+
+        public AbstractNumber SetCoefficientsSigns(List<Sign> signs)
+        {
+            var newCoefficients = _coefficients.Select((c, i) => c.SetSign(signs[i]));
+
+            return new Polynomial<AbstractNumber>(newCoefficients, ObjectVariable);
+        }
+
         private int CalcHashCode()
         {
             var res = HashCode.Combine(Degree);
@@ -198,8 +222,6 @@ namespace MathLib
 
             return res ^ Degree;
         }
-
-        public override Sign Sign { get; }
 
         protected override AbstractNumber AddNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {

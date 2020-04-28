@@ -98,12 +98,15 @@ namespace MathLib
             return HashCode.Combine(_numerator, _denominator);
         }
 
+        protected override AbstractNumber SetVerifiedSign(Sign sign)
+        {
+            return new RationalNumber(_numerator, _denominator) {Sign = sign};
+        }
+
         public bool Equals(RationalNumber other)
         {
             return _numerator.Equals(other._numerator) && _denominator.Equals(other._denominator);
         }
-
-        public override Sign Sign { get; }
 
         protected override AbstractNumber AddNotZeroAndEqualTypes(AbstractNumber abstractNumber)
         {
