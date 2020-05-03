@@ -2,32 +2,42 @@
 
 namespace MathLib
 {
-    public class ObjectVariable:IEquatable<ObjectVariable>
+    public class VariableDomain:IEquatable<VariableDomain>
     {
         public readonly string Name;
 
-        public ObjectVariable(string name)
+        public readonly VariableDomain Children;
+
+        public VariableDomain(string name, VariableDomain children = null)
         {
             Name = name ?? throw new ArgumentNullException();
+            Children = children;
         }
 
-        public bool Equals(ObjectVariable other)
+        public bool Equals(VariableDomain other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Name == other.Name;
+
+            if (Name != other.Name)
+                return false;
+
+            if (Children is null)
+                return other.Children is null;
+
+            return Children.Equals(other.Children);
         }
 
         public override bool Equals(object obj)
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == this.GetType() && Equals((ObjectVariable) obj);
+            return obj.GetType() == GetType() && Equals((VariableDomain) obj);
         }
 
         public override int GetHashCode()
         {
-            return Name.GetHashCode();
+            return HashCode.Combine(Name, Children);
         }
 
         public override string ToString()

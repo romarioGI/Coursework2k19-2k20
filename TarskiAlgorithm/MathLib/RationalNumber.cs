@@ -108,37 +108,42 @@ namespace MathLib
             return _numerator.Equals(other._numerator) && _denominator.Equals(other._denominator);
         }
 
-        protected override AbstractNumber AddNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        protected override AbstractNumber AddNotZeroAndSameTypes(AbstractNumber abstractNumber)
         {
-            return this + (RationalNumber)abstractNumber;
+            return this + (RationalNumber) abstractNumber;
         }
 
-        protected override AbstractNumber SubtractNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        protected override AbstractNumber SubtractNotZeroAndSameTypes(AbstractNumber abstractNumber)
         {
-            return this - (RationalNumber)abstractNumber;
+            return this - (RationalNumber) abstractNumber;
         }
 
-        protected override AbstractNumber GetOpposite()
+        protected override AbstractNumber GetOppositeNotZero()
         {
             return -1 * this;
         }
 
-        protected override AbstractNumber MultiplyNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        protected override AbstractNumber MultiplyNotZeroAndSameTypes(AbstractNumber abstractNumber)
         {
-            return this * (RationalNumber)abstractNumber;
+            return this * (RationalNumber) abstractNumber;
         }
 
-        protected override AbstractNumber DivideNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        protected override AbstractNumber Multiply(int number)
         {
-            return this / (RationalNumber)abstractNumber;
+            return this * number;
         }
 
-        protected override AbstractNumber GetRemainderNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        protected override AbstractNumber DivideNotZeroAndSameTypes(AbstractNumber abstractNumber)
+        {
+            return this / (RationalNumber) abstractNumber;
+        }
+
+        protected override AbstractNumber GetRemainderNotZeroAndSameTypes(AbstractNumber abstractNumber)
         {
             return new RationalNumber(0, 1);
         }
 
-        protected override bool EqualsNotZeroAndEqualType(AbstractNumber other)
+        protected override bool EqualsNotZeroAndSameType(AbstractNumber other)
         {
             return Equals((RationalNumber) other);
         }
