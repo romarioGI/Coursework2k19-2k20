@@ -17,6 +17,7 @@ namespace TarskiAlgorithmLib
             var result = new HashSet<Polynomial<T>>();
 
             var system = polynomials
+                .Where(p => !p.IsZero)
                 .OrderBy(p => p, new PolynomialsDegreeComparator<T>())
                 .ToList();
 
@@ -27,12 +28,15 @@ namespace TarskiAlgorithmLib
             foreach (var p in system)
                 Add(result, p);
 
-            return result;
+            return result.OrderBy(p => p, new PolynomialsDegreeComparator<T>());
         }
 
         private static void Add<T>(HashSet<Polynomial<T>> system, Polynomial<T> polynomial)
             where T : AbstractNumber
         {
+            if (polynomial.IsZero)
+                return;
+
             if (system.Contains(polynomial))
                 return;
 

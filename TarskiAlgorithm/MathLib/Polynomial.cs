@@ -73,6 +73,8 @@ namespace MathLib
             }
         }
 
+        public IEnumerable<AbstractNumber> Coefficients => _coefficients.Select(c => c);
+
         public static Polynomial<T> operator +([NotNull] Polynomial<T> f, [NotNull] Polynomial<T> g)
         {
             if (!f.VariableDomain.Equals(g.VariableDomain))
