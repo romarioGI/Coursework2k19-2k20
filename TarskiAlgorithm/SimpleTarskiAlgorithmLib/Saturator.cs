@@ -6,7 +6,7 @@ namespace SimpleTarskiAlgorithmLib
     /// <summary>
     /// saturator of a polynomial system
     /// </summary>
-    public static class Saturator
+    internal static class Saturator
     {
         public static IEnumerable<Polynomial> Saturate(IEnumerable<Polynomial> polynomials)
         {
@@ -14,9 +14,9 @@ namespace SimpleTarskiAlgorithmLib
 
             var system = polynomials
                 .Where(p => !p.IsZero)
-                .OrderBy(p => p.Degree)
                 .ToList();
 
+            //TODO попробовать избавиться от кратных корней
             var multiplication = system
                 .Aggregate((res, nxt) => res * nxt);
             system.Add(multiplication.GetDerivative());
@@ -24,7 +24,7 @@ namespace SimpleTarskiAlgorithmLib
             foreach (var p in system)
                 Add(result, p);
 
-            return result.OrderBy(p => p.Degree);
+            return result;
         }
 
         private static void Add(HashSet<Polynomial> system, Polynomial polynomial)

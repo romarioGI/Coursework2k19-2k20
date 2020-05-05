@@ -49,6 +49,8 @@ namespace SimpleTarskiAlgorithmLib
             }
         }
 
+        public RationalNumber Leading => _coefficients[Degree];
+
         public IEnumerable<RationalNumber> Coefficients => _coefficients.Select(c => c);
 
         public static Polynomial operator +(Polynomial f, Polynomial g)
