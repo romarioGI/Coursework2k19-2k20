@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Numerics;
 
-namespace MathLib
+namespace SimpleTarskiAlgorithmLib
 {
-    public class RationalNumber : AbstractNumber
+    public struct RationalNumber : IEquatable<RationalNumber>
     {
         private readonly BigInteger _numerator;
         private readonly BigInteger _denominator;
+
+        public readonly Sign Sign;
+
+        public bool IsZero => Sign == Sign.Zero;
 
         public RationalNumber(BigInteger numerator, BigInteger denominator)
         {
@@ -55,6 +59,11 @@ namespace MathLib
             return new RationalNumber(numerator, denominator);
         }
 
+        public static RationalNumber operator -(RationalNumber first)
+        {
+            return new RationalNumber(-first._numerator, first._denominator);
+        }
+
         public RationalNumber Inverse()
         {
             return new RationalNumber(_denominator, _numerator);
@@ -75,7 +84,7 @@ namespace MathLib
 
         public static bool operator ==(RationalNumber first, RationalNumber second)
         {
-            return first != null && first.Equals(second);
+            return first.Equals(second);
         }
 
         public static bool operator !=(RationalNumber first, RationalNumber second)
@@ -103,41 +112,10 @@ namespace MathLib
             return _numerator.Equals(other._numerator) && _denominator.Equals(other._denominator);
         }
 
-        public override Sign Sign { get; }
-
-        protected override AbstractNumber AddNotZeroAndEqualTypes(AbstractNumber abstractNumber)
+        public override bool Equals(object obj)
         {
-            return this + (RationalNumber)abstractNumber;
-        }
-
-        protected override AbstractNumber SubtractNotZeroAndEqualTypes(AbstractNumber abstractNumber)
-        {
-            return this - (RationalNumber)abstractNumber;
-        }
-
-        protected override AbstractNumber GetOpposite()
-        {
-            return -1 * this;
-        }
-
-        protected override AbstractNumber MultiplyNotZeroAndEqualTypes(AbstractNumber abstractNumber)
-        {
-            return this * (RationalNumber)abstractNumber;
-        }
-
-        protected override AbstractNumber DivideNotZeroAndEqualTypes(AbstractNumber abstractNumber)
-        {
-            return this / (RationalNumber)abstractNumber;
-        }
-
-        protected override AbstractNumber GetRemainderNotZeroAndEqualTypes(AbstractNumber abstractNumber)
-        {
-            return new RationalNumber(0, 1);
-        }
-
-        protected override bool EqualsNotZeroAndEqualType(AbstractNumber other)
-        {
-            return Equals((RationalNumber) other);
+            if (obj is null) return false;
+            return obj is RationalNumber rationalNumber && Equals(rationalNumber);
         }
 
         public (BigInteger, BigInteger) GetNumeratorAndDenominator()

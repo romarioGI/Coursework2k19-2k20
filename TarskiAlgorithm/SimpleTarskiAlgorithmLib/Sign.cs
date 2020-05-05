@@ -1,5 +1,8 @@
-﻿namespace MathLib
+﻿using System;
+
+namespace SimpleTarskiAlgorithmLib
 {
+    [Flags]
     public enum Sign : byte
     {
         NotNumber = 0b_0000,

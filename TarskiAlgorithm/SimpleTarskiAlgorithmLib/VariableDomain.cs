@@ -1,28 +1,29 @@
 ﻿using System;
 
-namespace MathLib
+namespace SimpleTarskiAlgorithmLib
 {
-    public class ObjectVariable:IEquatable<ObjectVariable>
+    public class VariableDomain : IEquatable<VariableDomain>
     {
         public readonly string Name;
 
-        public ObjectVariable(string name)
+        public VariableDomain(string name)
         {
             Name = name ?? throw new ArgumentNullException();
         }
 
-        public bool Equals(ObjectVariable other)
+        public bool Equals(VariableDomain other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Name == other.Name;
+
+            return Name != other.Name;
         }
 
         public override bool Equals(object obj)
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj.GetType() == this.GetType() && Equals((ObjectVariable) obj);
+            return obj.GetType() == GetType() && Equals((VariableDomain)obj);
         }
 
         public override int GetHashCode()
