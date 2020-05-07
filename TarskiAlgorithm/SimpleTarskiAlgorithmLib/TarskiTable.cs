@@ -84,6 +84,16 @@ namespace SimpleTarskiAlgorithmLib
             }
         }
 
+        public IEnumerable<Sign> this[Polynomial polynomial]
+        {
+            get
+            {
+                var polyNum = _polynomialCollection[polynomial];
+                foreach (var column in _columns)
+                    yield return column[polyNum];
+            }
+        }
+
         private void AddPolynomial(Polynomial polynomial)
         {
             switch (polynomial.Degree)
