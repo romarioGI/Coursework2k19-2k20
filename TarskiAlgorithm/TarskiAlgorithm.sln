@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTarskiAlgorithmLib", "SimpleTarskiAlgorithmLib\SimpleTarskiAlgorithmLib.csproj", "{E69C5A47-C42C-4A02-B613-1462DBD869E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmLib", "SimpleTarskiAlgorithmLib\SimpleTarskiAlgorithmLib.csproj", "{E69C5A47-C42C-4A02-B613-1462DBD869E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{387A1BBD-5A0B-4A3D-9277-3E9AC9C41527}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTarskiAlgorithmLibTests", "SimpleTarskiAlgorithmLibTests\SimpleTarskiAlgorithmLibTests.csproj", "{EE3F7E16-CB1C-4422-B043-95000AE5151F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{E69C5A47-C42C-4A02-B613-1462DBD869E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E69C5A47-C42C-4A02-B613-1462DBD869E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E69C5A47-C42C-4A02-B613-1462DBD869E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F} = {387A1BBD-5A0B-4A3D-9277-3E9AC9C41527}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BE5C0CC-C801-4A73-9997-8D3B23F71F23}

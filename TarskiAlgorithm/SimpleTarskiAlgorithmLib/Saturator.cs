@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SimpleTarskiAlgorithmLib
@@ -6,7 +7,7 @@ namespace SimpleTarskiAlgorithmLib
     /// <summary>
     /// saturator of a polynomial system
     /// </summary>
-    internal static class Saturator
+    public static class Saturator
     {
         public static IEnumerable<Polynomial> Saturate(IEnumerable<Polynomial> polynomials)
         {
@@ -14,9 +15,12 @@ namespace SimpleTarskiAlgorithmLib
 
             var system = polynomials
                 .Where(p => !p.IsZero)
+                .Distinct()
                 .ToList();
 
-            //TODO попробовать избавиться от кратных корней
+            if(system.Count == 0)
+                throw new ArgumentException();
+
             var multiplication = system
                 .Aggregate((res, nxt) => res * nxt);
             system.Add(multiplication.GetDerivative());
