@@ -16,13 +16,16 @@ namespace SimpleTarskiAlgorithmLib
         public bool IsZero => Degree == -1;
 
         public Polynomial(IEnumerable<RationalNumber> coefficients, VariableDomain variableDomain) :
-            this(coefficients.ToArray(), variableDomain)
+            this(coefficients?.ToArray(), variableDomain)
         {
         }
 
         private Polynomial(RationalNumber[] coefficients, VariableDomain variableDomain)
         {
-            VariableDomain = variableDomain;
+            VariableDomain = variableDomain ?? throw new ArgumentNullException(nameof(variableDomain));
+
+            if (coefficients is null)
+                throw new ArgumentNullException(nameof(coefficients));
 
             var degree = coefficients.Length - 1;
             while (degree >= 0 && coefficients[degree].IsZero)
@@ -55,7 +58,7 @@ namespace SimpleTarskiAlgorithmLib
 
         public static Polynomial operator +(Polynomial f, Polynomial g)
         {
-            if(f is null || g is null)
+            if (f is null || g is null)
                 throw new ArgumentNullException();
 
             if (!f.VariableDomain.Equals(g.VariableDomain))
@@ -109,9 +112,12 @@ namespace SimpleTarskiAlgorithmLib
                 return g;
 
             var result = new RationalNumber[f.Degree + g.Degree + 1];
+            for (var i = 0; i < result.Length; ++i)
+                result[i] = new RationalNumber(0, 1);
+
             for (var d1 = 0; d1 <= f.Degree; ++d1)
-                for (var d2 = 0; d2 <= g.Degree; ++d2)
-                    result[d1 + d2] += f[d1] * g[d2];
+            for (var d2 = 0; d2 <= g.Degree; ++d2)
+                result[d1 + d2] += f[d1] * g[d2];
 
             return new Polynomial(result, f.VariableDomain);
         }
@@ -169,26 +175,12 @@ namespace SimpleTarskiAlgorithmLib
             return DivisionWithRemainder(f, g).Item2;
         }
 
-        public (Polynomial, Polynomial) DivisionWithRemainder(Polynomial g)
-        {
-            if (g is null)
-                throw new ArgumentNullException();
-
-            if (!VariableDomain.Equals(g.VariableDomain))
-                throw new PolynomialObjectVariableException(this, g);
-
-            if(g.IsZero)
-                throw new DivideByZeroException();
-
-            return DivisionWithRemainder(this, g);
-        }
-
-        private static (Polynomial, Polynomial) DivisionWithRemainder( Polynomial f, Polynomial g)
+        private static (Polynomial, Polynomial) DivisionWithRemainder(Polynomial f, Polynomial g)
         {
             var resultLength = Math.Max(f.Degree - g.Degree + 1, 0);
             var result = new RationalNumber[resultLength];
 
-            var fCoefficients = (RationalNumber[])f._coefficients.Clone();
+            var fCoefficients = (RationalNumber[]) f._coefficients.Clone();
             var leadingG = g[g.Degree];
 
             for (var d1 = f.Degree; d1 >= g.Degree; --d1)
@@ -256,7 +248,6 @@ namespace SimpleTarskiAlgorithmLib
 
             return this == other;
         }
-
 
         public override bool Equals(object obj)
         {
