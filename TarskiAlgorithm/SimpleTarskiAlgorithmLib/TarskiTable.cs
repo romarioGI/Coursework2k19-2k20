@@ -7,7 +7,7 @@ namespace SimpleTarskiAlgorithmLib
 {
     public class TarskiTable
     {
-        private class Column: IEnumerable<Sign>
+        private class Column : IEnumerable<Sign>
         {
             private readonly List<Sign> _signs;
 
@@ -43,7 +43,7 @@ namespace SimpleTarskiAlgorithmLib
             }
         }
 
-        private class PolynomialCollection
+        private class PolynomialCollection : IEnumerable<Polynomial>
         {
             private readonly List<Polynomial> _polynomials;
             private readonly Dictionary<Polynomial, int> _polynomialNums;
@@ -63,6 +63,16 @@ namespace SimpleTarskiAlgorithmLib
             public int this[Polynomial polynomial] => _polynomialNums[polynomial];
 
             public Polynomial this[int number] => _polynomials[number];
+
+            public IEnumerator<Polynomial> GetEnumerator()
+            {
+                return _polynomials.GetEnumerator();
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return GetEnumerator();
+            }
         }
 
         private readonly LinkedList<Column> _columns;
@@ -83,6 +93,18 @@ namespace SimpleTarskiAlgorithmLib
                 UpdateColumns();
             }
         }
+
+        public IEnumerable<Sign> this[Polynomial polynomial]
+        {
+            get
+            {
+                var polyNum = _polynomialCollection[polynomial];
+                foreach (var column in _columns)
+                    yield return column[polyNum];
+            }
+        }
+
+        public IEnumerable<Polynomial> Polynomials => _polynomialCollection;
 
         private void AddPolynomial(Polynomial polynomial)
         {
@@ -118,6 +140,7 @@ namespace SimpleTarskiAlgorithmLib
                 column.Push(CalcSign(polynomial, column));
             _lastColumn.Push(polynomial.Leading.Sign);
         }
+
         private static Sign CalcSignFirstColumn(Polynomial polynomial)
         {
             return polynomial.Degree % 2 == 0 ? polynomial.Leading.Sign : polynomial.Leading.Sign.Invert();
@@ -157,7 +180,7 @@ namespace SimpleTarskiAlgorithmLib
 
         private static bool CheckColumns(Column left, Column right)
         {
-            if(left.Last == Sign.Zero && right.Last == Sign.Zero)
+            if (left.Last == Sign.Zero && right.Last == Sign.Zero)
                 throw new Exception("two zeros next to each other");
 
             return !(left.Last == Sign.LessZero && right.Last == Sign.MoreZero ||
