@@ -99,8 +99,10 @@ namespace SimpleTarskiAlgorithmLib
             get
             {
                 var polyNum = _polynomialCollection[polynomial];
+                yield return _firstColumn[polyNum];
                 foreach (var column in _columns)
                     yield return column[polyNum];
+                yield return _lastColumn[polyNum];
             }
         }
 
@@ -158,6 +160,12 @@ namespace SimpleTarskiAlgorithmLib
 
         private void UpdateColumns()
         {
+            if (_columns.Count == 0)
+            {
+                UpdateEmptyTable();
+                return;
+            }
+
             var start = _columns.First;
             var finish = _columns.Last;
             var current = start;
@@ -176,6 +184,12 @@ namespace SimpleTarskiAlgorithmLib
 
             if (!CheckColumns(finish.Value, _lastColumn))
                 _columns.AddLast(GetNewColumn(finish.Value, _lastColumn));
+        }
+
+        private void UpdateEmptyTable()
+        {
+            if (!CheckColumns(_firstColumn, _lastColumn))
+                _columns.AddFirst(GetNewColumn(_firstColumn, _lastColumn));
         }
 
         private static bool CheckColumns(Column left, Column right)
