@@ -2,83 +2,33 @@
 
 namespace LogicLanguageLib
 {
-    public abstract class AbstractFunction<TOut> : NonLogicalSymbol
+    public class Function : NonLogicalSymbol, IEquatable<Function>
     {
         public readonly int Arity;
 
-        protected AbstractFunction(string name, int arity) : base(name)
+        public Function(string name, int arity) : base(name)
         {
             Arity = arity;
         }
 
-        public TOut Calc(params object[] args)
+        public bool Equals(Function other)
         {
-            if (args.Length != Arity)
-                throw new ArgumentException($"args count should be equal {Arity}");
-
-            return CalcAbstract(args);
+            if (other is null) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Arity == other.Arity && base.Equals(other);
         }
 
-        public abstract TOut CalcAbstract(params object[] args);
-    }
-
-    public class Function<TOut> : AbstractFunction<TOut>
-    {
-        private readonly Func<TOut> _func;
-
-        public Function(string name, Func<TOut> func) : base(name, 0)
+        public override bool Equals(object obj)
         {
-            _func = func;
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((Function) obj);
         }
 
-        public TOut Calc()
+        public override int GetHashCode()
         {
-            return _func.Invoke();
-        }
-
-        public override TOut CalcAbstract(params object[] args)
-        {
-            return Calc();
-        }
-    }
-
-    public class Function<T1, TOut> : AbstractFunction<TOut>
-    {
-        private readonly Func<T1, TOut> _func;
-
-        public Function(string name, Func<T1, TOut> func) : base(name, 1)
-        {
-            _func = func;
-        }
-
-        public TOut Calc(T1 arg1)
-        {
-            return _func.Invoke(arg1);
-        }
-
-        public override TOut CalcAbstract(params object[] args)
-        {
-            return Calc((T1) args[0]);
-        }
-    }
-
-    public class Function<T1, T2, TOut> : AbstractFunction<TOut>
-    {
-        private readonly Func<T1, T2, TOut> _func;
-
-        public Function(string name, Func<T1, T2, TOut> func) : base(name, 2)
-        {
-            _func = func;
-        }
-
-        public TOut Calc(T1 arg1, T2 arg2)
-        {
-            return _func.Invoke(arg1, arg2);
-        }
-
-        public override TOut CalcAbstract(params object[] args)
-        {
-            return Calc((T1) args[0], (T2) args[1]);
+            return HashCode.Combine(base.GetHashCode(), Arity);
         }
     }
 }

@@ -8,7 +8,7 @@
         {
         }
 
-        public Negation GetInstance()
+        public static Negation GetInstance()
         {
             return Instance;
         }

@@ -8,7 +8,7 @@
         {
         }
 
-        public RightBracket GetInstance()
+        public static RightBracket GetInstance()
         {
             return Instance;
         }

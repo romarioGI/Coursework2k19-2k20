@@ -8,7 +8,7 @@
         {
         }
 
-        public Implication GetInstance()
+        public static Implication GetInstance()
         {
             return Instance;
         }

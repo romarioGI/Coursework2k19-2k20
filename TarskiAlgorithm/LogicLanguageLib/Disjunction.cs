@@ -8,7 +8,7 @@
         {
         }
 
-        public Disjunction GetInstance()
+        public static Disjunction GetInstance()
         {
             return Instance;
         }

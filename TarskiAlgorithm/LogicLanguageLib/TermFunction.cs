@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace LogicLanguageLib
 {
-    public class TermFunction<TOut> : Term
+    public class TermFunction : Term, IEquatable<TermFunction>
     {
-        public readonly AbstractFunction<TOut> Function;
+        public readonly Function Function;
 
         private readonly Term[] _terms;
 
@@ -19,7 +19,7 @@ namespace LogicLanguageLib
             }
         }
 
-        public TermFunction(AbstractFunction<TOut> function, params Term[] terms)
+        public TermFunction(Function function, params Term[] terms)
         {
             Function = function ?? throw new ArgumentNullException(nameof(function));
 
@@ -39,6 +39,41 @@ namespace LogicLanguageLib
         public override IEnumerable<ObjectVariable> FreeObjectVariables
         {
             get { return _terms.SelectMany(t => t.FreeObjectVariables).Distinct(); }
+        }
+
+        public override bool Equals(Term other)
+        {
+            return Equals(other as TermFunction);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = Function.GetHashCode();
+            foreach (var t in _terms)
+                HashCode.Combine(hashCode, t.GetHashCode());
+
+            return hashCode;
+        }
+
+        public bool Equals(TermFunction other)
+        {
+            if (other is null) return false;
+            if (ReferenceEquals(this, other)) return true;
+            if (!Function.Equals(other.Function)) return false;
+
+            for (var i = 0; i < _terms.Length; i++)
+                if (!_terms[i].Equals(other._terms[i]))
+                    return false;
+
+            return true;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((TermFunction) obj);
         }
     }
 }

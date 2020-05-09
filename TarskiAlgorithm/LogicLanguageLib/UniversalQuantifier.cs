@@ -8,7 +8,7 @@
         {
         }
 
-        public UniversalQuantifier GetInstance()
+        public static UniversalQuantifier GetInstance()
         {
             return Instance;
         }

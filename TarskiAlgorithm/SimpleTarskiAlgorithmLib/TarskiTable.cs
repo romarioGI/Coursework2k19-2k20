@@ -109,6 +109,13 @@ namespace SimpleTarskiAlgorithmLib
 
         public IEnumerable<Polynomial> Polynomials => _polynomialCollection;
 
+        public int Width => 2 + _columns.Count;
+
+        public Dictionary<Polynomial, List<Sign>> GetTableDictionary()
+        {
+            return Polynomials.ToDictionary(p => p, p => this[p].ToList());
+        }
+
         private void AddPolynomial(Polynomial polynomial)
         {
             switch (polynomial.Degree)

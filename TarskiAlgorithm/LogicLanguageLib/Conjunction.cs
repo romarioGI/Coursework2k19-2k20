@@ -8,7 +8,7 @@
         {
         }
 
-        public Conjunction GetInstance()
+        public static Conjunction GetInstance()
         {
             return Instance;
         }
