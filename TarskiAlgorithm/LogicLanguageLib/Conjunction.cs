@@ -1,8 +1,9 @@
 ﻿namespace LogicLanguageLib
 {
-    public class Conjunction:BinaryPropositionalConnective
+    public class Conjunction : BinaryPropositionalConnective
     {
         private static readonly Conjunction Instance = new Conjunction();
+
         private Conjunction() : base("&")
         {
         }

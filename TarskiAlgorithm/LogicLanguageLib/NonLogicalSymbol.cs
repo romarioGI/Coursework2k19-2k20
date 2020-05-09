@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogicLanguageLib
+﻿namespace LogicLanguageLib
 {
-    public abstract class NonLogicalSymbol: Symbol
+    public abstract class NonLogicalSymbol : Symbol
     {
+        protected NonLogicalSymbol(string name) : base(name)
+        {
+        }
     }
 }

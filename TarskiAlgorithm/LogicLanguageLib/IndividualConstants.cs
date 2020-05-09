@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LogicLanguageLib
+﻿namespace LogicLanguageLib
 {
-    public class IndividualConstants: NonLogicalSymbol
+    public class IndividualConstants<T> : NonLogicalSymbol
     {
+        public readonly T Value;
+
+        public IndividualConstants(string name, T value) : base(name)
+        {
+            Value = value;
+        }
     }
 }
