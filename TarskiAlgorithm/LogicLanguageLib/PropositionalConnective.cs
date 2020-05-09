@@ -2,8 +2,11 @@
 {
     public abstract class PropositionalConnective : LogicalSymbol
     {
-        protected PropositionalConnective(string name) : base(name)
+        public readonly int Arity;
+
+        protected PropositionalConnective(string name, int arity) : base(name)
         {
+            Arity = arity;
         }
     }
 }
