@@ -99,6 +99,7 @@ namespace SimpleTarskiAlgorithmLib
             get
             {
                 var polyNum = _polynomialCollection[polynomial];
+
                 yield return _firstColumn[polyNum];
                 foreach (var column in _columns)
                     yield return column[polyNum];
