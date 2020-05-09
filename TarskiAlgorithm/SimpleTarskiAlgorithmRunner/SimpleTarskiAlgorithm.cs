@@ -30,20 +30,21 @@ namespace SimpleTarskiAlgorithmRunner
 
                     var subFormula = formulaQuantifier.SubFormula;
                     var eliminatedSubFormula = QuantifiersElimination(subFormula);
+                    var variableDomain = new VariableDomain(formulaQuantifier.ObjectVariable.ToString());
 
-                    return TarskiEliminate(eliminatedSubFormula, formulaQuantifier.Quantifier);
+                    return TarskiEliminate(eliminatedSubFormula, formulaQuantifier.Quantifier, variableDomain);
                 }
                 default:
                     throw new NotImplementedException();
             }
         }
 
-        private static Formula TarskiEliminate(Formula formula, Quantifier quantifier)
+        private static Formula TarskiEliminate(Formula formula, Quantifier quantifier, VariableDomain variableDomain)
         {
             var predicates = GetFormulasPredicate(formula).Distinct();
 
             var (expectedSigns, formulaPredicateToPolynomials) =
-                ExpectedSignAndFormulaPredicateToPolynomials(predicates);
+                ExpectedSignAndFormulaPredicateToPolynomials(predicates, variableDomain);
 
             var saturatedSystem = Saturator.Saturate(formulaPredicateToPolynomials.Values);
             var tarskiTable = new TarskiTable(saturatedSystem);
@@ -57,13 +58,14 @@ namespace SimpleTarskiAlgorithmRunner
         }
 
         private static (Dictionary<FormulaPredicate, Sign>, Dictionary<FormulaPredicate, Polynomial>)
-            ExpectedSignAndFormulaPredicateToPolynomials(IEnumerable<FormulaPredicate> predicates)
+            ExpectedSignAndFormulaPredicateToPolynomials(IEnumerable<FormulaPredicate> predicates,
+                VariableDomain variableDomain)
         {
             var expectedSign = new Dictionary<FormulaPredicate, Sign>();
             var formulaPredicateToPolynomials = new Dictionary<FormulaPredicate, Polynomial>();
             foreach (var formulaPredicate in predicates)
             {
-                var (polynomial, sign) = ToPolynomialAndSign(formulaPredicate);
+                var (polynomial, sign) = ToPolynomialAndSign(formulaPredicate, variableDomain);
                 expectedSign.Add(formulaPredicate, sign);
                 formulaPredicateToPolynomials.Add(formulaPredicate, polynomial);
             }
@@ -77,7 +79,8 @@ namespace SimpleTarskiAlgorithmRunner
             {
                 case FormulaPredicate formulaPredicate:
                 {
-                    yield return formulaPredicate;
+                    if (formulaPredicate.Predicate.Arity != 0)
+                        yield return formulaPredicate;
                     yield break;
                 }
                 case FormulaPropositionalConnective formulaPropositionalConnective:
@@ -102,12 +105,13 @@ namespace SimpleTarskiAlgorithmRunner
             }
         }
 
-        private static (Polynomial, Sign) ToPolynomialAndSign(FormulaPredicate formulaPredicate)
+        private static (Polynomial, Sign) ToPolynomialAndSign(FormulaPredicate formulaPredicate,
+            VariableDomain variableDomain)
         {
-            return FormulaParser.ToPolynomialAndSign(formulaPredicate);
+            return FormulaConverter.ToPolynomialAndSign(formulaPredicate, variableDomain);
         }
 
-        private static IEnumerable<Formula> GetNewFormulas(Formula formula, int tarskiTableWidth,
+        private static IEnumerable<FormulaPredicate> GetNewFormulas(Formula formula, int tarskiTableWidth,
             Dictionary<FormulaPredicate, Sign> expectedSigns,
             Dictionary<Polynomial, List<Sign>> tarskiTableDictionary,
             Dictionary<FormulaPredicate, Polynomial> formulaPredicateToPolynomials)
@@ -128,7 +132,7 @@ namespace SimpleTarskiAlgorithmRunner
             }
         }
 
-        private static Formula SubstituteInFormula(Formula formula,
+        private static FormulaPredicate SubstituteInFormula(Formula formula,
             Dictionary<FormulaPredicate, Predicate> substitutions)
         {
             switch (formula)
@@ -136,12 +140,14 @@ namespace SimpleTarskiAlgorithmRunner
                 case FormulaPredicate formulaPredicate:
                 {
                     var predicate = substitutions[formulaPredicate];
-                    var terms = formulaPredicate.Terms.ToArray();
 
-                    return new FormulaPredicate(predicate, terms);
+                    return new FormulaPredicate(predicate);
                 }
                 case FormulaPropositionalConnective formulaPropositionalConnective:
                 {
+                    var trueFormula = new FormulaPredicate(True.GetInstance());
+                    var falseFormula = new FormulaPredicate(False.GetInstance());
+
                     var connective = formulaPropositionalConnective.Connective;
                     var newSubFormulas = formulaPropositionalConnective
                         .SubFormulas
@@ -149,31 +155,59 @@ namespace SimpleTarskiAlgorithmRunner
                         .Select(f => SubstituteInFormula(f, substitutions))
                         .ToArray();
 
-                    return new FormulaPropositionalConnective(connective, newSubFormulas);
-                }
-                case FormulaQuantifier formulaQuantifier:
-                {
-                    var quantifier = formulaQuantifier.Quantifier;
-                    var objectVariable = formulaQuantifier.ObjectVariable;
-                    var newSubFormula = SubstituteInFormula(formulaQuantifier.SubFormula, substitutions);
-
-                    return new FormulaQuantifier(quantifier, objectVariable, newSubFormula);
+                    switch (connective)
+                    {
+                        case Disjunction _:
+                        {
+                            var res = newSubFormulas.Any(f => f.Equals(trueFormula));
+                            return res ? trueFormula : falseFormula;
+                        }
+                        case Conjunction _:
+                        {
+                            var res = newSubFormulas.All(f => f.Equals(trueFormula));
+                            return res ? trueFormula : falseFormula;
+                        }
+                        case Implication _:
+                        {
+                            var res = !(newSubFormulas[0].Equals(trueFormula) &&
+                                        newSubFormulas[1].Equals(falseFormula));
+                            return res ? trueFormula : falseFormula;
+                        }
+                        case Negation _:
+                        {
+                            var res = !newSubFormulas.Equals(trueFormula);
+                            return res ? trueFormula : falseFormula;
+                        }
+                        default:
+                            throw new NotImplementedException();
+                    }
                 }
                 default:
                     throw new NotImplementedException();
             }
         }
 
-        private static Formula JoinFormulas(IEnumerable<Formula> formulas, Quantifier quantifier)
+        private static Formula JoinFormulas(IEnumerable<FormulaPredicate> formulas, Quantifier quantifier)
         {
-            PropositionalConnective connective = quantifier switch
+            var trueFormula = new FormulaPredicate(True.GetInstance());
+            var falseFormula = new FormulaPredicate(False.GetInstance());
+            switch (quantifier)
             {
-                ExistentialQuantifier _ => Disjunction.GetInstance(),
-                UniversalQuantifier _ => Conjunction.GetInstance(),
-                _ => throw new NotImplementedException()
-            };
+                case ExistentialQuantifier _:
+                {
+                    var res = formulas.Any(f => f.Equals(trueFormula));
 
-            return FormulaParser.ToFormula(formulas, connective);
+                    return res ? trueFormula : falseFormula;
+                }
+                case UniversalQuantifier _:
+                {
+                    var res = formulas.All(f => f.Equals(trueFormula));
+
+                    return res ? trueFormula : falseFormula;
+                }
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

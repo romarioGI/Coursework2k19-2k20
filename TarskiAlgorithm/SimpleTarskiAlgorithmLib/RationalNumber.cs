@@ -132,5 +132,10 @@ namespace SimpleTarskiAlgorithmLib
         {
             return new RationalNumber(num, 1);
         }
+
+        public override string ToString()
+        {
+            return $"{_numerator}/{_denominator}";
+        }
     }
 }

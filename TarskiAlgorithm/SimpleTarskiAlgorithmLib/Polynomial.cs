@@ -98,6 +98,16 @@ namespace SimpleTarskiAlgorithmLib
             return new Polynomial(result, f.VariableDomain);
         }
 
+        public static Polynomial operator -(Polynomial f)
+        {
+            if (f is null)
+                throw new ArgumentNullException();
+
+            var result = f._coefficients.Select(c => -c);
+
+            return new Polynomial(result, f.VariableDomain);
+        }
+
         public static Polynomial operator *(Polynomial f, Polynomial g)
         {
             if (f is null || g is null)
@@ -239,6 +249,22 @@ namespace SimpleTarskiAlgorithmLib
                 result[d - 1] = this[d] * d;
 
             return new Polynomial(result, VariableDomain);
+        }
+
+        public Polynomial Pow(int n)
+        {
+            var result = new Polynomial(new List<RationalNumber> {1}, VariableDomain);
+            var a = this;
+
+            while (n != 0)
+            {
+                if (n % 2 == 1)
+                    result *= a;
+                n /= 2;
+                a *= a;
+            }
+
+            return result;
         }
 
         public bool Equals(Polynomial other)

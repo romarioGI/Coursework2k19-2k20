@@ -2,16 +2,16 @@
 
 namespace LogicLanguageLib
 {
-    public class IndividualConstants<T> : NonLogicalSymbol, IEquatable<IndividualConstants<T>>
+    public class IndividualConstant<T> : NonLogicalSymbol, IEquatable<IndividualConstant<T>>
     {
         public readonly T Value;
 
-        public IndividualConstants(T value) : base(value.ToString())
+        public IndividualConstant(T value) : base(value.ToString())
         {
             Value = value;
         }
 
-        public bool Equals(IndividualConstants<T> other)
+        public bool Equals(IndividualConstant<T> other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -23,7 +23,7 @@ namespace LogicLanguageLib
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
-            return Equals((IndividualConstants<T>) obj);
+            return Equals((IndividualConstant<T>) obj);
         }
 
         public override int GetHashCode()

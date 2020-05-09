@@ -5,7 +5,7 @@ namespace LogicLanguageLib
 {
     public class ObjectVariable : LogicalSymbol
     {
-        public ObjectVariable(string name, string subscript) : base(Concatenate(name, subscript))
+        public ObjectVariable(string name, string subscript = null) : base(Concatenate(name, subscript))
         {
         }
 
