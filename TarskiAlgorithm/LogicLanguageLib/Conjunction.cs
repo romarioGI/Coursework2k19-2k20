@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class Conjunction : BinaryPropositionalConnective
+    public sealed class Conjunction : BinaryPropositionalConnective
     {
         private static readonly Conjunction Instance = new Conjunction();
 

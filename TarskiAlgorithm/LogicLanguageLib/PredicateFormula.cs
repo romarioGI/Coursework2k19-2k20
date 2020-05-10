@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace LogicLanguageLib
 {
-    public class TermFunction : Term, IEquatable<TermFunction>
+    public class PredicateFormula : Formula, IEquatable<PredicateFormula>
     {
-        public readonly Function Function;
+        public readonly Predicate Predicate;
 
         private readonly Term[] _terms;
 
@@ -19,21 +19,24 @@ namespace LogicLanguageLib
             }
         }
 
-        public TermFunction(Function function, params Term[] terms)
+        public PredicateFormula(Predicate predicate, params Term[] terms)
         {
-            Function = function ?? throw new ArgumentNullException(nameof(function));
+            Predicate = predicate ?? throw new ArgumentNullException(nameof(predicate));
 
             if (terms is null)
                 throw new ArgumentNullException(nameof(terms));
-            if (terms.Length != Function.Arity)
-                throw new ArgumentException();
+            if (terms.Length != Predicate.Arity)
+                throw new ArgumentException("count of terms must be equal predicate.Arity");
 
             _terms = terms;
         }
 
         public override string ToString()
         {
-            return $"{Function}({string.Join<Term>(',', _terms)})";
+            if (Predicate is ArithmeticPredicate)
+                return $"({_terms[0]}{Predicate}{_terms[1]})";
+
+            return $"{Predicate}({string.Join<Term>(',', _terms)})";
         }
 
         public override IEnumerable<ObjectVariable> FreeObjectVariables
@@ -41,25 +44,11 @@ namespace LogicLanguageLib
             get { return _terms.SelectMany(t => t.FreeObjectVariables).Distinct(); }
         }
 
-        public override bool Equals(Term other)
-        {
-            return Equals(other as TermFunction);
-        }
-
-        public override int GetHashCode()
-        {
-            var hashCode = Function.GetHashCode();
-            foreach (var t in _terms)
-                HashCode.Combine(hashCode, t.GetHashCode());
-
-            return hashCode;
-        }
-
-        public bool Equals(TermFunction other)
+        public bool Equals(PredicateFormula other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
-            if (!Function.Equals(other.Function)) return false;
+            if (!Predicate.Equals(other.Predicate)) return false;
 
             for (var i = 0; i < _terms.Length; i++)
                 if (!_terms[i].Equals(other._terms[i]))
@@ -68,12 +57,26 @@ namespace LogicLanguageLib
             return true;
         }
 
+        public override bool Equals(Formula other)
+        {
+            return Equals(other as PredicateFormula);
+        }
+
         public override bool Equals(object obj)
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
-            return Equals((TermFunction) obj);
+            return Equals((PredicateFormula) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            var hashCode = HashCode.Combine(Predicate);
+            foreach (var t in _terms)
+                hashCode = HashCode.Combine(hashCode, t);
+
+            return hashCode;
         }
     }
 }

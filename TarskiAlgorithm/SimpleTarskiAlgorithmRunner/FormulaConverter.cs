@@ -23,11 +23,11 @@ namespace SimpleTarskiAlgorithmRunner
             return ToFormula(ToSymbols(str));
         }
 
-        public static (Polynomial, Sign) ToPolynomialAndSign(FormulaPredicate formulaPredicate,
+        public static (Polynomial, Sign) ToPolynomialAndSign(PredicateFormula predicateFormula,
             VariableDomain variableDomain)
         {
-            var predicate = formulaPredicate.Predicate;
-            var terms = formulaPredicate.Terms.ToArray();
+            var predicate = predicateFormula.Predicate;
+            var terms = predicateFormula.Terms.ToArray();
             switch (predicate.Arity)
             {
                 case 2:
@@ -67,14 +67,14 @@ namespace SimpleTarskiAlgorithmRunner
         {
             switch (term)
             {
-                case TermObjectVariable termObjectVariable:
+                case ObjectVariableTerm termObjectVariable:
                     var thisVariableDomain = new VariableDomain(termObjectVariable.ObjectVariable.ToString());
                     if (!variableDomain.Equals(thisVariableDomain))
                         throw new ArgumentException();
 
                     return new Polynomial(new List<RationalNumber> {0, 1}, variableDomain);
 
-                case TermFunction termFunction:
+                case FunctionTerm termFunction:
                     var function = termFunction.Function;
                     var terms = termFunction.Terms.ToArray();
                     switch (function.Arity)
@@ -84,7 +84,7 @@ namespace SimpleTarskiAlgorithmRunner
                             if (function.Equals(Functions.Pow))
                             {
                                 var p = ToPolynomial(terms[0], variableDomain);
-                                if (terms[1] is TermIndividualConstant<int> termIndividualConstant)
+                                if (terms[1] is IndividualConstantTerm<int> termIndividualConstant)
                                     return p.Pow(termIndividualConstant.IndividualConstant.Value);
 
                                 throw new NotImplementedException();
@@ -92,10 +92,10 @@ namespace SimpleTarskiAlgorithmRunner
 
                             if (function.Equals(Functions.Pow))
                             {
-                                if (terms[0] is TermIndividualConstant<int> && terms[1] is TermIndividualConstant<int>)
+                                if (terms[0] is IndividualConstantTerm<int> && terms[1] is IndividualConstantTerm<int>)
                                 {
-                                    var int1 = ((TermIndividualConstant<int>) terms[0]).IndividualConstant.Value;
-                                    var int2 = ((TermIndividualConstant<int>) terms[1]).IndividualConstant.Value;
+                                    var int1 = ((IndividualConstantTerm<int>) terms[0]).IndividualConstant.Value;
+                                    var int2 = ((IndividualConstantTerm<int>) terms[1]).IndividualConstant.Value;
 
                                     return new Polynomial(new List<RationalNumber> {new RationalNumber(int1, int2)},
                                         variableDomain);
@@ -131,11 +131,11 @@ namespace SimpleTarskiAlgorithmRunner
                             throw new NotImplementedException();
                     }
 
-                case TermIndividualConstant<int> termFunction:
+                case IndividualConstantTerm<int> termFunction:
                     return new Polynomial(new List<RationalNumber>() {termFunction.IndividualConstant.Value},
                         variableDomain);
 
-                case TermIndividualConstant<RationalNumber> termFunction:
+                case IndividualConstantTerm<RationalNumber> termFunction:
                     return new Polynomial(new List<RationalNumber>() {termFunction.IndividualConstant.Value},
                         variableDomain);
 

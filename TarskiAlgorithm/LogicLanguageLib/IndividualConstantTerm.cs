@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace LogicLanguageLib
 {
-    public class TermIndividualConstant<T> : Term, IEquatable<TermIndividualConstant<T>>
+    public class IndividualConstantTerm<T> : Term, IEquatable<IndividualConstantTerm<T>>
     {
         public readonly IndividualConstant<T> IndividualConstant;
 
-        public TermIndividualConstant(IndividualConstant<T> individualConstant)
+        public IndividualConstantTerm(IndividualConstant<T> individualConstant)
         {
             IndividualConstant = individualConstant;
         }
@@ -19,7 +19,7 @@ namespace LogicLanguageLib
 
         public override bool Equals(Term other)
         {
-            return Equals(other as TermIndividualConstant<T>);
+            return Equals(other as IndividualConstantTerm<T>);
         }
 
         public override int GetHashCode()
@@ -32,10 +32,10 @@ namespace LogicLanguageLib
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != this.GetType()) return false;
-            return Equals((TermIndividualConstant<T>) obj);
+            return Equals((IndividualConstantTerm<T>) obj);
         }
 
-        public bool Equals(TermIndividualConstant<T> other)
+        public bool Equals(IndividualConstantTerm<T> other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -45,6 +45,16 @@ namespace LogicLanguageLib
         public override string ToString()
         {
             return IndividualConstant.ToString();
+        }
+
+        public static implicit operator IndividualConstant<T>(IndividualConstantTerm<T> term)
+        {
+            return term.IndividualConstant;
+        }
+
+        public static implicit operator IndividualConstantTerm<T>(IndividualConstant<T> constant)
+        {
+            return new IndividualConstantTerm<T>(constant);
         }
     }
 }

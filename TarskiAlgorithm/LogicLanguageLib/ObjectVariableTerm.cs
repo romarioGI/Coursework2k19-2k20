@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace LogicLanguageLib
 {
-    public class TermObjectVariable : Term, IEquatable<TermObjectVariable>
+    public class ObjectVariableTerm : Term, IEquatable<ObjectVariableTerm>
     {
         public readonly ObjectVariable ObjectVariable;
 
-        public TermObjectVariable(ObjectVariable objectVariable)
+        public ObjectVariableTerm(ObjectVariable objectVariable)
         {
             ObjectVariable = objectVariable;
         }
@@ -22,7 +22,7 @@ namespace LogicLanguageLib
             get { yield return ObjectVariable; }
         }
 
-        public bool Equals(TermObjectVariable other)
+        public bool Equals(ObjectVariableTerm other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -34,17 +34,27 @@ namespace LogicLanguageLib
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
-            return Equals((TermObjectVariable) obj);
+            return Equals((ObjectVariableTerm) obj);
         }
 
         public override bool Equals(Term other)
         {
-            return Equals(other as TermObjectVariable);
+            return Equals(other as ObjectVariableTerm);
         }
 
         public override int GetHashCode()
         {
             return HashCode.Combine(ObjectVariable);
+        }
+
+        public static implicit operator ObjectVariable(ObjectVariableTerm term)
+        {
+            return term.ObjectVariable;
+        }
+
+        public static implicit operator ObjectVariableTerm(ObjectVariable objectVariable)
+        {
+            return new ObjectVariableTerm(objectVariable);
         }
     }
 }

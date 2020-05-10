@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class False : Predicate
+    public sealed class False : BooleanPredicate
     {
         private static readonly False Instance = new False();
 
@@ -9,7 +9,7 @@
             return Instance;
         }
 
-        private False() : base("FALSE", 0)
+        private False() : base("FALSE")
         {
         }
     }

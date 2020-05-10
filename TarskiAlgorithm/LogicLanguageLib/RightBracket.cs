@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class RightBracket : TechnicalSymbol
+    public sealed class RightBracket : TechnicalSymbol
     {
         private static readonly RightBracket Instance = new RightBracket();
 

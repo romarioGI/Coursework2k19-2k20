@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class ExistentialQuantifier : Quantifier
+    public sealed class ExistentialQuantifier : Quantifier
     {
         private static readonly ExistentialQuantifier Instance = new ExistentialQuantifier();
 

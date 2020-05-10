@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace LogicLanguageLib
 {
-    public class FormulaPropositionalConnective : Formula, IEquatable<FormulaPropositionalConnective>
+    public class PropositionalConnectiveFormula : Formula, IEquatable<PropositionalConnectiveFormula>
     {
         public readonly PropositionalConnective Connective;
 
@@ -19,14 +19,14 @@ namespace LogicLanguageLib
             }
         }
 
-        public FormulaPropositionalConnective(PropositionalConnective connective, params Formula[] formulas)
+        public PropositionalConnectiveFormula(PropositionalConnective connective, params Formula[] formulas)
         {
             Connective = connective ?? throw new ArgumentNullException(nameof(connective));
 
             if (formulas is null)
                 throw new ArgumentNullException(nameof(formulas));
             if (formulas.Length != Connective.Arity)
-                throw new ArgumentException();
+                throw new ArgumentException("count of formulas must be equal connective.Arity");
 
             _formulas = formulas;
         }
@@ -37,7 +37,7 @@ namespace LogicLanguageLib
             {
                 UnaryPropositionalConnective _ => $"({Connective}{_formulas[0]})",
                 BinaryPropositionalConnective _ => $"({_formulas[0]}{Connective}{_formulas[1]})",
-                _ => throw new NotImplementedException()
+                _ => throw new NotSupportedException("Connective must be unary or binary")
             };
         }
 
@@ -46,7 +46,7 @@ namespace LogicLanguageLib
             get { return _formulas.SelectMany(f => f.FreeObjectVariables).Distinct(); }
         }
 
-        public bool Equals(FormulaPropositionalConnective other)
+        public bool Equals(PropositionalConnectiveFormula other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
@@ -61,7 +61,7 @@ namespace LogicLanguageLib
 
         public override bool Equals(Formula other)
         {
-            return Equals(other as FormulaPropositionalConnective);
+            return Equals(other as PropositionalConnectiveFormula);
         }
 
         public override bool Equals(object obj)
@@ -69,7 +69,7 @@ namespace LogicLanguageLib
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
             if (obj.GetType() != GetType()) return false;
-            return Equals((FormulaPropositionalConnective) obj);
+            return Equals((PropositionalConnectiveFormula) obj);
         }
 
         public override int GetHashCode()

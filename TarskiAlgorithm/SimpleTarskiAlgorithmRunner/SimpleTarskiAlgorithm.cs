@@ -12,18 +12,18 @@ namespace SimpleTarskiAlgorithmRunner
         {
             switch (formula)
             {
-                case FormulaPredicate _:
+                case PredicateFormula _:
                     return formula;
-                case FormulaPropositionalConnective formulaPropositionalConnective:
+                case PropositionalConnectiveFormula formulaPropositionalConnective:
                 {
                     var subFormulas = formulaPropositionalConnective.SubFormulas;
                     var eliminatedSubFormulas = subFormulas.AsParallel().Select(QuantifiersElimination).ToArray();
 
-                    return new FormulaPropositionalConnective(
+                    return new PropositionalConnectiveFormula(
                         formulaPropositionalConnective.Connective,
                         eliminatedSubFormulas);
                 }
-                case FormulaQuantifier formulaQuantifier:
+                case QuantifierFormula formulaQuantifier:
                 {
                     if (!formulaQuantifier.IsSentence)
                         throw new ArgumentException("the algorithm does not support this formula");
@@ -57,12 +57,12 @@ namespace SimpleTarskiAlgorithmRunner
             return JoinFormulas(newFormulas, quantifier);
         }
 
-        private static (Dictionary<FormulaPredicate, Sign>, Dictionary<FormulaPredicate, Polynomial>)
-            ExpectedSignAndFormulaPredicateToPolynomials(IEnumerable<FormulaPredicate> predicates,
+        private static (Dictionary<PredicateFormula, Sign>, Dictionary<PredicateFormula, Polynomial>)
+            ExpectedSignAndFormulaPredicateToPolynomials(IEnumerable<PredicateFormula> predicates,
                 VariableDomain variableDomain)
         {
-            var expectedSign = new Dictionary<FormulaPredicate, Sign>();
-            var formulaPredicateToPolynomials = new Dictionary<FormulaPredicate, Polynomial>();
+            var expectedSign = new Dictionary<PredicateFormula, Sign>();
+            var formulaPredicateToPolynomials = new Dictionary<PredicateFormula, Polynomial>();
             foreach (var formulaPredicate in predicates)
             {
                 var (polynomial, sign) = ToPolynomialAndSign(formulaPredicate, variableDomain);
@@ -73,17 +73,17 @@ namespace SimpleTarskiAlgorithmRunner
             return (expectedSign, formulaPredicateToPolynomials);
         }
 
-        private static IEnumerable<FormulaPredicate> GetFormulasPredicate(Formula formula)
+        private static IEnumerable<PredicateFormula> GetFormulasPredicate(Formula formula)
         {
             switch (formula)
             {
-                case FormulaPredicate formulaPredicate:
+                case PredicateFormula formulaPredicate:
                 {
                     if (formulaPredicate.Predicate.Arity != 0)
                         yield return formulaPredicate;
                     yield break;
                 }
-                case FormulaPropositionalConnective formulaPropositionalConnective:
+                case PropositionalConnectiveFormula formulaPropositionalConnective:
                 {
                     var subFormulas = formulaPropositionalConnective.SubFormulas;
                     foreach (var subFormula in subFormulas)
@@ -92,7 +92,7 @@ namespace SimpleTarskiAlgorithmRunner
 
                     yield break;
                 }
-                case FormulaQuantifier formulaQuantifier:
+                case QuantifierFormula formulaQuantifier:
                 {
                     var subFormula = formulaQuantifier.SubFormula;
                     foreach (var f in GetFormulasPredicate(subFormula))
@@ -105,20 +105,20 @@ namespace SimpleTarskiAlgorithmRunner
             }
         }
 
-        private static (Polynomial, Sign) ToPolynomialAndSign(FormulaPredicate formulaPredicate,
+        private static (Polynomial, Sign) ToPolynomialAndSign(PredicateFormula predicateFormula,
             VariableDomain variableDomain)
         {
-            return FormulaConverter.ToPolynomialAndSign(formulaPredicate, variableDomain);
+            return FormulaConverter.ToPolynomialAndSign(predicateFormula, variableDomain);
         }
 
-        private static IEnumerable<FormulaPredicate> GetNewFormulas(Formula formula, int tarskiTableWidth,
-            Dictionary<FormulaPredicate, Sign> expectedSigns,
+        private static IEnumerable<PredicateFormula> GetNewFormulas(Formula formula, int tarskiTableWidth,
+            Dictionary<PredicateFormula, Sign> expectedSigns,
             Dictionary<Polynomial, List<Sign>> tarskiTableDictionary,
-            Dictionary<FormulaPredicate, Polynomial> formulaPredicateToPolynomials)
+            Dictionary<PredicateFormula, Polynomial> formulaPredicateToPolynomials)
         {
             for (var i = 0; i < tarskiTableWidth; i++)
             {
-                var substitutions = new Dictionary<FormulaPredicate, Predicate>();
+                var substitutions = new Dictionary<PredicateFormula, Predicate>();
                 foreach (var (formulaPredicate, sign) in expectedSigns)
                 {
                     var actualSign = tarskiTableDictionary[formulaPredicateToPolynomials[formulaPredicate]][i];
@@ -132,21 +132,21 @@ namespace SimpleTarskiAlgorithmRunner
             }
         }
 
-        private static FormulaPredicate SubstituteInFormula(Formula formula,
-            Dictionary<FormulaPredicate, Predicate> substitutions)
+        private static PredicateFormula SubstituteInFormula(Formula formula,
+            Dictionary<PredicateFormula, Predicate> substitutions)
         {
             switch (formula)
             {
-                case FormulaPredicate formulaPredicate:
+                case PredicateFormula formulaPredicate:
                 {
                     var predicate = substitutions[formulaPredicate];
 
-                    return new FormulaPredicate(predicate);
+                    return new PredicateFormula(predicate);
                 }
-                case FormulaPropositionalConnective formulaPropositionalConnective:
+                case PropositionalConnectiveFormula formulaPropositionalConnective:
                 {
-                    var trueFormula = new FormulaPredicate(True.GetInstance());
-                    var falseFormula = new FormulaPredicate(False.GetInstance());
+                    var trueFormula = new PredicateFormula(True.GetInstance());
+                    var falseFormula = new PredicateFormula(False.GetInstance());
 
                     var connective = formulaPropositionalConnective.Connective;
                     var newSubFormulas = formulaPropositionalConnective
@@ -187,10 +187,10 @@ namespace SimpleTarskiAlgorithmRunner
             }
         }
 
-        private static Formula JoinFormulas(IEnumerable<FormulaPredicate> formulas, Quantifier quantifier)
+        private static Formula JoinFormulas(IEnumerable<PredicateFormula> formulas, Quantifier quantifier)
         {
-            var trueFormula = new FormulaPredicate(True.GetInstance());
-            var falseFormula = new FormulaPredicate(False.GetInstance());
+            var trueFormula = new PredicateFormula(True.GetInstance());
+            var falseFormula = new PredicateFormula(False.GetInstance());
             switch (quantifier)
             {
                 case ExistentialQuantifier _:

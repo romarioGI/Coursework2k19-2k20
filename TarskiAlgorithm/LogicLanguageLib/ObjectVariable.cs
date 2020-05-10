@@ -18,9 +18,9 @@ namespace LogicLanguageLib
                 return name;
 
             if (!CheckSubscript(subscript))
-                throw new ArgumentException("Name must contain only digits");
+                throw new ArgumentException("Subscript must contain only digits");
 
-            return $"{name}_{{{subscript}}}";
+            return $"{name}_{subscript}";
         }
 
         private static bool CheckName(string name)

@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class True : Predicate
+    public sealed class True : BooleanPredicate
     {
         private static readonly True Instance = new True();
 
@@ -9,7 +9,7 @@
             return Instance;
         }
 
-        private True() : base("TRUE", 0)
+        private True() : base("TRUE")
         {
         }
     }

@@ -6,9 +6,16 @@ namespace LogicLanguageLib
     {
         public readonly T Value;
 
-        public IndividualConstant(T value) : base(value.ToString())
+        public IndividualConstant(T value) : base(GetName(value))
         {
             Value = value;
+        }
+
+        private static string GetName(T value)
+        {
+            if (value is null)
+                throw new ArgumentNullException(nameof(value));
+            return value.ToString();
         }
 
         public bool Equals(IndividualConstant<T> other)
@@ -29,6 +36,16 @@ namespace LogicLanguageLib
         public override int GetHashCode()
         {
             return HashCode.Combine(Value);
+        }
+
+        public static implicit operator T(IndividualConstant<T> constant)
+        {
+            return constant.Value;
+        }
+
+        public static implicit operator IndividualConstant<T>(T value)
+        {
+            return new IndividualConstant<T>(value);
         }
     }
 }

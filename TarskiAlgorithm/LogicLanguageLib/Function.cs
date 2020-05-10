@@ -28,7 +28,7 @@ namespace LogicLanguageLib
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(base.GetHashCode(), Arity);
+            return HashCode.Combine(Arity, base.GetHashCode());
         }
     }
 }

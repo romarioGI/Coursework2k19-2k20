@@ -9,7 +9,7 @@ namespace LogicLanguageLib
         public abstract IEnumerable<ObjectVariable> FreeObjectVariables { get; }
 
         public bool IsSentence => !FreeObjectVariables.Any();
-        
+
         public abstract bool Equals(Formula other);
 
         public override bool Equals(object obj)
@@ -21,5 +21,7 @@ namespace LogicLanguageLib
         }
 
         public abstract override int GetHashCode();
+
+        public abstract override string ToString();
     }
 }
