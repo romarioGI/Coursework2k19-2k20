@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class UniversalQuantifier : Quantifier
+    public sealed class UniversalQuantifier : Quantifier
     {
         private static readonly UniversalQuantifier Instance = new UniversalQuantifier();
 
@@ -8,7 +8,7 @@
         {
         }
 
-        public UniversalQuantifier GetInstance()
+        public static UniversalQuantifier GetInstance()
         {
             return Instance;
         }

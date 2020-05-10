@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class Negation : UnaryPropositionalConnective
+    public sealed class Negation : UnaryPropositionalConnective
     {
         private static readonly Negation Instance = new Negation();
 
@@ -8,7 +8,7 @@
         {
         }
 
-        public Negation GetInstance()
+        public static Negation GetInstance()
         {
             return Instance;
         }

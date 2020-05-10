@@ -12,6 +12,10 @@ namespace SimpleTarskiAlgorithmLib
 
         public bool IsZero => Sign == Sign.Zero;
 
+        public bool IsInteger => _denominator == 1;
+
+        public bool IsNatural => _denominator == 1 && _numerator > 0;
+
         public RationalNumber(BigInteger numerator, BigInteger denominator)
         {
             if (denominator == 0)
@@ -82,6 +86,14 @@ namespace SimpleTarskiAlgorithmLib
             return new RationalNumber(numerator, denominator);
         }
 
+        public RationalNumber Pow(int degree)
+        {
+            var numerator = BigInteger.Pow(_numerator, degree);
+            var denominator = BigInteger.Pow(_denominator, degree);
+
+            return new RationalNumber(numerator, denominator);
+        }
+
         public static bool operator ==(RationalNumber first, RationalNumber second)
         {
             return first.Equals(second);
@@ -131,6 +143,20 @@ namespace SimpleTarskiAlgorithmLib
         public static implicit operator RationalNumber(int num)
         {
             return new RationalNumber(num, 1);
+        }
+
+        public static implicit operator BigInteger(RationalNumber num)
+        {
+            if (num.IsInteger)
+                return num._numerator;
+            throw new ArgumentException("num is not integer");
+        }
+
+        public override string ToString()
+        {
+            if (_denominator == 1)
+                return $"{_numerator}";
+            return $"{_numerator}/{_denominator}";
         }
     }
 }

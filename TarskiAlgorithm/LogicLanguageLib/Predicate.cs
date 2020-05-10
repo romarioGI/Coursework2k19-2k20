@@ -2,83 +2,33 @@
 
 namespace LogicLanguageLib
 {
-    public abstract class AbstractPredicate : NonLogicalSymbol
+    public class Predicate : NonLogicalSymbol, IEquatable<Predicate>
     {
         public readonly int Arity;
 
-        protected AbstractPredicate(string name, int arity) : base(name)
+        public Predicate(string name, int arity) : base(name)
         {
             Arity = arity;
         }
 
-        public bool Calc(params object[] args)
+        public bool Equals(Predicate other)
         {
-            if (args.Length != Arity)
-                throw new ArgumentException($"args count should be equal {Arity}");
-
-            return CalcAbstract(args);
+            if (other is null) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Arity == other.Arity && base.Equals(other);
         }
 
-        public abstract bool CalcAbstract(params object[] args);
-    }
-
-    public class Predicate : AbstractPredicate
-    {
-        private readonly Func<bool> _func;
-
-        public Predicate(string name, Func<bool> func) : base(name, 0)
+        public override bool Equals(object obj)
         {
-            _func = func;
+            if (obj is null) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != GetType()) return false;
+            return Equals((Predicate) obj);
         }
 
-        public bool Calc()
+        public override int GetHashCode()
         {
-            return _func.Invoke();
-        }
-
-        public override bool CalcAbstract(params object[] args)
-        {
-            return Calc();
-        }
-    }
-
-    public class Predicate<T1> : AbstractPredicate
-    {
-        private readonly Func<T1, bool> _func;
-
-        public Predicate(string name, Func<T1, bool> func) : base(name, 1)
-        {
-            _func = func;
-        }
-
-        public bool Calc(T1 arg1)
-        {
-            return _func.Invoke(arg1);
-        }
-
-        public override bool CalcAbstract(params object[] args)
-        {
-            return Calc((T1) args[0]);
-        }
-    }
-
-    public class Predicate<T1, T2> : AbstractPredicate
-    {
-        private readonly Func<T1, T2, bool> _func;
-
-        public Predicate(string name, Func<T1, T2, bool> func) : base(name, 2)
-        {
-            _func = func;
-        }
-
-        public bool Calc(T1 arg1, T2 arg2)
-        {
-            return _func.Invoke(arg1, arg2);
-        }
-
-        public override bool CalcAbstract(params object[] args)
-        {
-            return Calc((T1) args[0], (T2) args[1]);
+            return HashCode.Combine(base.GetHashCode(), Arity);
         }
     }
 }

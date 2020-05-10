@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class Implication : BinaryPropositionalConnective
+    public sealed class Implication : BinaryPropositionalConnective
     {
         private static readonly Implication Instance = new Implication();
 
@@ -8,7 +8,7 @@
         {
         }
 
-        public Implication GetInstance()
+        public static Implication GetInstance()
         {
             return Instance;
         }

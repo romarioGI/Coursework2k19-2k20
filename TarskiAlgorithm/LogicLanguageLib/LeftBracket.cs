@@ -1,6 +1,6 @@
 ﻿namespace LogicLanguageLib
 {
-    public class LeftBracket : TechnicalSymbol
+    public sealed class LeftBracket : TechnicalSymbol
     {
         private static readonly LeftBracket Instance = new LeftBracket();
 
@@ -8,7 +8,7 @@
         {
         }
 
-        public LeftBracket GetInstance()
+        public static LeftBracket GetInstance()
         {
             return Instance;
         }

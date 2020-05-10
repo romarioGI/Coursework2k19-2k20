@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LogicLanguageLib\LogicLanguageLib.csproj" />
+    <ProjectReference Include="..\SimpleTarskiAlgorithmLib\SimpleTarskiAlgorithmLib.csproj" />
+  </ItemGroup>
+
+</Project>
