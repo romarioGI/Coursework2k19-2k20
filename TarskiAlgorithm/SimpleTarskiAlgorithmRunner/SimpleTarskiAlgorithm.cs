@@ -17,16 +17,14 @@ namespace SimpleTarskiAlgorithmRunner
                 case PropositionalConnectiveFormula formulaPropositionalConnective:
                 {
                     var subFormulas = formulaPropositionalConnective.SubFormulas;
-                    var eliminatedSubFormulas = subFormulas.AsParallel().Select(QuantifiersElimination).ToArray();
+                    var eliminatedSubFormulas = subFormulas.Select(QuantifiersElimination).ToArray();
 
-                    return new PropositionalConnectiveFormula(
-                        formulaPropositionalConnective.Connective,
-                        eliminatedSubFormulas);
+                    return CalcFormula(formulaPropositionalConnective.Connective, eliminatedSubFormulas);
                 }
                 case QuantifierFormula formulaQuantifier:
                 {
                     if (!formulaQuantifier.IsSentence)
-                        throw new ArgumentException("the algorithm does not support this formula");
+                        throw new NotSupportedException("the algorithm does not support open quantifier formulas");
 
                     var subFormula = formulaQuantifier.SubFormula;
                     var eliminatedSubFormula = QuantifiersElimination(subFormula);
@@ -35,7 +33,88 @@ namespace SimpleTarskiAlgorithmRunner
                     return TarskiEliminate(eliminatedSubFormula, formulaQuantifier.Quantifier, variableDomain);
                 }
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException("not supported formula type");
+            }
+        }
+
+        private static Formula CalcFormula(PropositionalConnective connective,
+            params Formula[] subFormulas)
+        {
+            if (!subFormulas.Any(f =>
+                f is PredicateFormula prF &&
+                prF.Predicate is BooleanPredicate))
+                return new PropositionalConnectiveFormula(connective, subFormulas);
+
+            switch (connective)
+            {
+                case BinaryPropositionalConnective _:
+                {
+                    var f1 = subFormulas[0];
+                    var f2 = subFormulas[1];
+
+                    BooleanPredicate predicate;
+                    Formula formula;
+                    bool predicateIsLeft;
+                    if (f1 is PredicateFormula pr1 && pr1.Predicate is BooleanPredicate booleanPredicate1)
+                    {
+                        predicate = booleanPredicate1;
+                        formula = f2;
+                        predicateIsLeft = true;
+                    }
+                    else if (f2 is PredicateFormula pr2 && pr2.Predicate is BooleanPredicate booleanPredicate2)
+                    {
+                        predicate = booleanPredicate2;
+                        formula = f1;
+                        predicateIsLeft = false;
+                    }
+                    else
+                        throw new Exception();
+
+                    formula = connective switch
+                    {
+                        Disjunction _ => predicate switch
+                        {
+                            True _ => new PredicateFormula(True.GetInstance()),
+                            False _ => formula,
+                            _ => throw new NotSupportedException("not supported to calc BooleanPredicate type")
+                        },
+                        Conjunction _ => predicate switch
+                        {
+                            True _ => formula,
+                            False _ => new PredicateFormula(False.GetInstance()),
+                            _ => throw new NotSupportedException("not supported to calc BooleanPredicate type")
+                        },
+                        Implication _ => predicate switch
+                        {
+                            True _ => predicateIsLeft ? formula : new PredicateFormula(True.GetInstance()),
+                            False _ => predicateIsLeft
+                                ? new PredicateFormula(True.GetInstance())
+                                : CalcFormula(Negation.GetInstance(), formula),
+                            _ => throw new NotSupportedException("not supported to calc BooleanPredicate type")
+                        },
+                        _ => throw new NotSupportedException("not supported to calc BinaryPropositionalConnective type")
+                    };
+
+                    return formula;
+                }
+                case UnaryPropositionalConnective _:
+                {
+                    var predicate = (BooleanPredicate) ((PredicateFormula) subFormulas[0]).Predicate;
+                    predicate = connective switch
+                    {
+                        Negation _ => predicate switch
+                        {
+                            True _ => False.GetInstance(),
+                            False _ => True.GetInstance(),
+                            _ => throw new NotSupportedException("not supported to calc BooleanPredicate type")
+                        },
+                        _ => throw new NotSupportedException("not supported to calc UnaryPropositionalConnective type")
+                    };
+
+                    return new PredicateFormula(predicate);
+                }
+                default:
+                    throw new NotSupportedException("not supported to calc PropositionalConnective type");
             }
         }
 
@@ -101,7 +180,7 @@ namespace SimpleTarskiAlgorithmRunner
                     yield break;
                 }
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException("not supported Formula type");
             }
         }
 
@@ -111,14 +190,14 @@ namespace SimpleTarskiAlgorithmRunner
             return FormulaConverter.ToPolynomialAndSign(predicateFormula, variableDomain);
         }
 
-        private static IEnumerable<PredicateFormula> GetNewFormulas(Formula formula, int tarskiTableWidth,
+        private static IEnumerable<Formula> GetNewFormulas(Formula formula, int tarskiTableWidth,
             Dictionary<PredicateFormula, Sign> expectedSigns,
             Dictionary<Polynomial, List<Sign>> tarskiTableDictionary,
             Dictionary<PredicateFormula, Polynomial> formulaPredicateToPolynomials)
         {
             for (var i = 0; i < tarskiTableWidth; i++)
             {
-                var substitutions = new Dictionary<PredicateFormula, Predicate>();
+                var substitutions = new Dictionary<PredicateFormula, BooleanPredicate>();
                 foreach (var (formulaPredicate, sign) in expectedSigns)
                 {
                     var actualSign = tarskiTableDictionary[formulaPredicateToPolynomials[formulaPredicate]][i];
@@ -132,8 +211,8 @@ namespace SimpleTarskiAlgorithmRunner
             }
         }
 
-        private static PredicateFormula SubstituteInFormula(Formula formula,
-            Dictionary<PredicateFormula, Predicate> substitutions)
+        private static Formula SubstituteInFormula(Formula formula,
+            Dictionary<PredicateFormula, BooleanPredicate> substitutions)
         {
             switch (formula)
             {
@@ -145,9 +224,6 @@ namespace SimpleTarskiAlgorithmRunner
                 }
                 case PropositionalConnectiveFormula formulaPropositionalConnective:
                 {
-                    var trueFormula = new PredicateFormula(True.GetInstance());
-                    var falseFormula = new PredicateFormula(False.GetInstance());
-
                     var connective = formulaPropositionalConnective.Connective;
                     var newSubFormulas = formulaPropositionalConnective
                         .SubFormulas
@@ -155,59 +231,25 @@ namespace SimpleTarskiAlgorithmRunner
                         .Select(f => SubstituteInFormula(f, substitutions))
                         .ToArray();
 
-                    switch (connective)
-                    {
-                        case Disjunction _:
-                        {
-                            var res = newSubFormulas.Any(f => f.Equals(trueFormula));
-                            return res ? trueFormula : falseFormula;
-                        }
-                        case Conjunction _:
-                        {
-                            var res = newSubFormulas.All(f => f.Equals(trueFormula));
-                            return res ? trueFormula : falseFormula;
-                        }
-                        case Implication _:
-                        {
-                            var res = !(newSubFormulas[0].Equals(trueFormula) &&
-                                        newSubFormulas[1].Equals(falseFormula));
-                            return res ? trueFormula : falseFormula;
-                        }
-                        case Negation _:
-                        {
-                            var res = !newSubFormulas.Equals(trueFormula);
-                            return res ? trueFormula : falseFormula;
-                        }
-                        default:
-                            throw new NotImplementedException();
-                    }
+                    return CalcFormula(connective, newSubFormulas);
                 }
                 default:
-                    throw new NotImplementedException();
+                    throw new NotSupportedException("not supported Formula type");
             }
         }
 
-        private static Formula JoinFormulas(IEnumerable<PredicateFormula> formulas, Quantifier quantifier)
+        private static Formula JoinFormulas(IEnumerable<Formula> formulas, Quantifier quantifier)
         {
-            var trueFormula = new PredicateFormula(True.GetInstance());
-            var falseFormula = new PredicateFormula(False.GetInstance());
-            switch (quantifier)
+            var connective = quantifier switch
             {
-                case ExistentialQuantifier _:
-                {
-                    var res = formulas.Any(f => f.Equals(trueFormula));
+                ExistentialQuantifier _ => (PropositionalConnective) Disjunction.GetInstance(),
+                UniversalQuantifier _ => Conjunction.GetInstance(),
+                _ => throw new NotSupportedException("not supported Quantifier type")
+            };
 
-                    return res ? trueFormula : falseFormula;
-                }
-                case UniversalQuantifier _:
-                {
-                    var res = formulas.All(f => f.Equals(trueFormula));
+            var formula = formulas.Aggregate((res, f) => CalcFormula(connective, res, f));
 
-                    return res ? trueFormula : falseFormula;
-                }
-                default:
-                    throw new NotImplementedException();
-            }
+            return formula;
         }
     }
 }

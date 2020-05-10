@@ -19,7 +19,7 @@ namespace SimpleTarskiAlgorithmLib
                 .ToList();
 
             if(system.Count == 0)
-                throw new ArgumentException();
+                throw new ArgumentException("system must be not empty");
 
             var multiplication = system
                 .Aggregate((res, nxt) => res * nxt);

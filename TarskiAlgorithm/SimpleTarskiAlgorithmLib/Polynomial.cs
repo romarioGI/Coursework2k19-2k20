@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using SimpleTarskiAlgorithmLib.Exceptions;
 
 namespace SimpleTarskiAlgorithmLib
 {
-    //TODO а ведь могут подаваться нулевые многочлены, что делать?
     public class Polynomial : IEquatable<Polynomial>
     {
         private readonly RationalNumber[] _coefficients;
@@ -251,16 +251,18 @@ namespace SimpleTarskiAlgorithmLib
             return new Polynomial(result, VariableDomain);
         }
 
-        public Polynomial Pow(int n)
+        public Polynomial Pow(BigInteger degree)
         {
+            if (degree < 0)
+                throw new ArgumentOutOfRangeException(nameof(degree));
             var result = new Polynomial(new List<RationalNumber> {1}, VariableDomain);
             var a = this;
 
-            while (n != 0)
+            while (degree != 0)
             {
-                if (n % 2 == 1)
+                if (degree % 2 == 1)
                     result *= a;
-                n /= 2;
+                degree /= 2;
                 a *= a;
             }
 
