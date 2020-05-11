@@ -1,25 +1,10 @@
 ﻿using System;
+using SimpleTarskiAlgorithmLib;
 
 namespace TarskiAlgorithmLib
 {
     public static class ExtensionMethods
     {
-        public static Sign Invert(this Sign sign)
-        {
-            return sign switch
-            {
-                Sign.NotNumber => Sign.NotNumber,
-                Sign.LessZero => Sign.MoreZero,
-                Sign.MoreZero => Sign.LessZero,
-                Sign.Zero => Sign.Zero,
-                Sign.NotLessZero => Sign.NotMoreZero,
-                Sign.NotMoreZero => Sign.NotLessZero,
-                Sign.NotZero => Sign.NotZero,
-                Sign.Undefined => Sign.Undefined,
-                _ => throw new NotImplementedException()
-            };
-        }
-
         public static Sign Add(this Sign first, Sign second)
         {
             return first switch
@@ -151,7 +136,7 @@ namespace TarskiAlgorithmLib
 
         public static Sign Divide(this Sign first, Sign second)
         {
-            if(second.HasFlag(Sign.Zero))
+            if (second.HasFlag(Sign.Zero))
                 throw new DivideByZeroException();
 
             return first.Multi(second);

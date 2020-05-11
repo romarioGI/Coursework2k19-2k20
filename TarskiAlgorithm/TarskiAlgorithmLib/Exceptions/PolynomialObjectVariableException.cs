@@ -2,28 +2,17 @@
 
 namespace TarskiAlgorithmLib.Exceptions
 {
-    public class PolynomialObjectVariableException<T> : Exception where T : AbstractNumber
+    public class PolynomialMonomialVariableNameException : Exception
     {
-        public PolynomialObjectVariableException(Polynomial<T> first, Polynomial<T> second) :
+        public PolynomialMonomialVariableNameException(PolynomialMonomial first, PolynomialMonomial second) :
             base(GetMessage(first, second))
         {
         }
 
-        public PolynomialObjectVariableException(Polynomial<T> first) :
-            base(GetMessage(first))
-        {
-        }
-
-        private static string GetMessage(Polynomial<T> first, Polynomial<T> second)
+        private static string GetMessage(PolynomialMonomial first, PolynomialMonomial second)
         {
             return
-                $"Polynomials have {first.VariableDomain} and {second.VariableDomain} ObjectVariables, but they must be equal";
-        }
-
-        private static string GetMessage(Polynomial<T> first)
-        {
-            return
-                "Polynomial coefficients VariableDomain and Polynomial.VariableDomain.Children must be equal ";
+                $"Polynomials have {first.VariableDomain} and {second.VariableDomain} VariableDomain, but they must be equal";
         }
     }
 }
