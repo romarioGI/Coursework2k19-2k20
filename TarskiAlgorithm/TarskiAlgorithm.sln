@@ -5,7 +5,18 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmLib", "SimpleTarskiAlgorithmLib\SimpleTarskiAlgorithmLib.csproj", "{E69C5A47-C42C-4A02-B613-1462DBD869E8}"
 EndProject
+
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLanguageLib", "LogicLanguageLib\LogicLanguageLib.csproj", "{3BD44AA0-657D-42D5-94A0-5EF5F7BFF2C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{387A1BBD-5A0B-4A3D-9277-3E9AC9C41527}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmLibTests", "SimpleTarskiAlgorithmLibTests\SimpleTarskiAlgorithmLibTests.csproj", "{EE3F7E16-CB1C-4422-B043-95000AE5151F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmRunner", "SimpleTarskiAlgorithmRunner\SimpleTarskiAlgorithmRunner.csproj", "{97E891EC-21C5-4EF6-9F6D-611EE6AAC231}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTarskiAlgorithmRunnerTests", "SimpleTarskiAlgorithmRunnerTests\SimpleTarskiAlgorithmRunnerTests.csproj", "{3B66ADEA-29DB-4814-8EA7-51403ABEF56F}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarskiAlgorithmLib", "TarskiAlgorithmLib\TarskiAlgorithmLib.csproj", "{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +28,22 @@ Global
 		{E69C5A47-C42C-4A02-B613-1462DBD869E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E69C5A47-C42C-4A02-B613-1462DBD869E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E69C5A47-C42C-4A02-B613-1462DBD869E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BD44AA0-657D-42D5-94A0-5EF5F7BFF2C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD44AA0-657D-42D5-94A0-5EF5F7BFF2C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD44AA0-657D-42D5-94A0-5EF5F7BFF2C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD44AA0-657D-42D5-94A0-5EF5F7BFF2C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97E891EC-21C5-4EF6-9F6D-611EE6AAC231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97E891EC-21C5-4EF6-9F6D-611EE6AAC231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97E891EC-21C5-4EF6-9F6D-611EE6AAC231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97E891EC-21C5-4EF6-9F6D-611EE6AAC231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B66ADEA-29DB-4814-8EA7-51403ABEF56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B66ADEA-29DB-4814-8EA7-51403ABEF56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B66ADEA-29DB-4814-8EA7-51403ABEF56F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B66ADEA-29DB-4814-8EA7-51403ABEF56F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -24,6 +51,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EE3F7E16-CB1C-4422-B043-95000AE5151F} = {387A1BBD-5A0B-4A3D-9277-3E9AC9C41527}
+		{3B66ADEA-29DB-4814-8EA7-51403ABEF56F} = {387A1BBD-5A0B-4A3D-9277-3E9AC9C41527}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2BE5C0CC-C801-4A73-9997-8D3B23F71F23}
