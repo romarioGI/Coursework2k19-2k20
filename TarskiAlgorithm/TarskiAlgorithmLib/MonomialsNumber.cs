@@ -5,16 +5,11 @@ using SimpleTarskiAlgorithmLib;
 
 namespace TarskiAlgorithmLib
 {
-    //TODO в словаре мб стоит избавиться от ключей с нулевым коеф, при этои всем добавлять пустой моном со значением 0
     public struct MonomialsNumber : IEquatable<MonomialsNumber>
     {
         private readonly Dictionary<Monomial, RationalNumber> _coefficients;
 
         public readonly Sign Sign;
-
-        public static MonomialsNumber Zero => new MonomialsNumber(Monomial.EmptyMonomial, 0);
-
-        public static MonomialsNumber One => new MonomialsNumber(Monomial.EmptyMonomial, 1);
 
         public MonomialsNumber(Monomial monomial, RationalNumber coefficient)
         {
@@ -32,9 +27,15 @@ namespace TarskiAlgorithmLib
 
         }
 
-        private MonomialsNumber(Dictionary<Monomial, RationalNumber> coefficients, Sign sign)
+        private MonomialsNumber(IEnumerable<(Monomial, RationalNumber)> coefficients, Sign sign)
         {
-            _coefficients = coefficients;
+            _coefficients = coefficients
+                .Where(x => x.Item2 != 0)
+                .ToDictionary(x => x.Item1, x => x.Item2);
+
+            if (!_coefficients.ContainsKey(Monomial.EmptyMonomial))
+                _coefficients.Add(Monomial.EmptyMonomial, 0);
+
             Sign = sign;
         }
 
@@ -55,47 +56,62 @@ namespace TarskiAlgorithmLib
 
         public static MonomialsNumber operator +(MonomialsNumber first, MonomialsNumber second)
         {
-            var res = new Dictionary<Monomial, RationalNumber>();
-            foreach (var p in first._coefficients)
-                res.Add(p.Key, p.Value);
-
-            foreach (var p in second._coefficients)
-                if (res.ContainsKey(p.Key))
-                    res[p.Key] += p.Value;
-                else
-                    res.Add(p.Key, p.Value);
-
             var sign = first.Sign.Add(second.Sign);
 
-            return new MonomialsNumber(res, sign);
+            return new MonomialsNumber(GetSum(first, second), sign);
+        }
+
+        private static IEnumerable<(Monomial, RationalNumber)> GetSum(MonomialsNumber first, MonomialsNumber second)
+        {
+            foreach (var p in first._coefficients)
+            {
+                if (second._coefficients.ContainsKey(p.Key))
+                    yield return (p.Key, p.Value + second._coefficients[p.Key]);
+                else
+                    yield return (p.Key, p.Value);
+            }
+
+            foreach (var p in second._coefficients)
+            {
+                if (!first._coefficients.ContainsKey(p.Key))
+                    yield return (p.Key, p.Value);
+            }
         }
 
         public static MonomialsNumber operator -(MonomialsNumber first, MonomialsNumber second)
         {
-            var res = new Dictionary<Monomial, RationalNumber>();
-            foreach (var p in first._coefficients)
-                res.Add(p.Key, p.Value);
-
-            foreach (var p in second._coefficients)
-                if (res.ContainsKey(p.Key))
-                    res[p.Key] -= p.Value;
-                else
-                    res.Add(p.Key, -p.Value);
-
             var sign = first.Sign.Subtract(second.Sign);
 
-            return new MonomialsNumber(res, sign);
+            return new MonomialsNumber(GetDivide(first, second), sign);
+        }
+
+        private static IEnumerable<(Monomial, RationalNumber)> GetDivide(MonomialsNumber first, MonomialsNumber second)
+        {
+            foreach (var p in first._coefficients)
+            {
+                if (second._coefficients.ContainsKey(p.Key))
+                    yield return (p.Key, p.Value - second._coefficients[p.Key]);
+                else
+                    yield return (p.Key, p.Value);
+            }
+
+            foreach (var p in second._coefficients)
+            {
+                if (!first._coefficients.ContainsKey(p.Key))
+                    yield return (p.Key, -p.Value);
+            }
         }
 
         public static MonomialsNumber operator -(MonomialsNumber first)
         {
-            var res = new Dictionary<Monomial, RationalNumber>();
-            foreach (var p in first._coefficients)
-                res.Add(p.Key, -p.Value);
-
             var sign = first.Sign.Invert();
 
-            return new MonomialsNumber(res, sign);
+            return new MonomialsNumber(GetInvert(first), sign);
+        }
+
+        private static IEnumerable<(Monomial, RationalNumber)> GetInvert(MonomialsNumber first)
+        {
+            return first._coefficients.Select(p => (p.Key, -p.Value));
         }
 
         public static MonomialsNumber operator *(MonomialsNumber first, MonomialsNumber second)
@@ -115,7 +131,7 @@ namespace TarskiAlgorithmLib
 
             var sign = first.Sign.Multi(second.Sign);
 
-            return new MonomialsNumber(res, sign);
+            return new MonomialsNumber(res.Select(p => (p.Key, p.Value)), sign);
         }
 
         public bool Equals(MonomialsNumber other)
@@ -135,14 +151,6 @@ namespace TarskiAlgorithmLib
                 hashCode += HashCode.Combine(key, value);
 
             return hashCode;
-        }
-
-        public MonomialsNumber SetSign(Sign sign)
-        {
-            if (!Sign.HasFlag(sign))
-                throw new ArgumentException();
-
-            return new MonomialsNumber(_coefficients, sign);
         }
 
         public override string ToString()

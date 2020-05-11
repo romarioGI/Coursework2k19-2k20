@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TarskiAlgorithmLib
+namespace SimpleTarskiAlgorithmLib
 {
     public struct VariableName : IEquatable<VariableName>, IComparable<VariableName>
     {

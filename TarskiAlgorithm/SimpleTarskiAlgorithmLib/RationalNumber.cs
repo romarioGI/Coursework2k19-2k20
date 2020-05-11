@@ -130,11 +130,6 @@ namespace SimpleTarskiAlgorithmLib
             return obj is RationalNumber rationalNumber && Equals(rationalNumber);
         }
 
-        public (BigInteger, BigInteger) GetNumeratorAndDenominator()
-        {
-            return (_numerator, _denominator);
-        }
-
         public static implicit operator RationalNumber(BigInteger num)
         {
             return new RationalNumber(num, 1);

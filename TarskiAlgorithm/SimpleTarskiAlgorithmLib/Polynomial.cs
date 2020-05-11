@@ -11,18 +11,18 @@ namespace SimpleTarskiAlgorithmLib
         private readonly RationalNumber[] _coefficients;
         private readonly int _hashCode;
 
-        public readonly VariableDomain VariableDomain;
+        public readonly VariableName VariableName;
 
         public bool IsZero => Degree == -1;
 
-        public Polynomial(IEnumerable<RationalNumber> coefficients, VariableDomain variableDomain) :
-            this(coefficients?.ToArray(), variableDomain)
+        public Polynomial(IEnumerable<RationalNumber> coefficients, VariableName variableName) :
+            this(coefficients?.ToArray(), variableName)
         {
         }
 
-        private Polynomial(RationalNumber[] coefficients, VariableDomain variableDomain)
+        private Polynomial(RationalNumber[] coefficients, VariableName variableName)
         {
-            VariableDomain = variableDomain ?? throw new ArgumentNullException(nameof(variableDomain));
+            VariableName = variableName;
 
             if (coefficients is null)
                 throw new ArgumentNullException(nameof(coefficients));
@@ -54,14 +54,12 @@ namespace SimpleTarskiAlgorithmLib
 
         public RationalNumber Leading => _coefficients[Degree];
 
-        public IEnumerable<RationalNumber> Coefficients => _coefficients.Select(c => c);
-
         public static Polynomial operator +(Polynomial f, Polynomial g)
         {
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialObjectVariableException(f, g);
 
             var result = new RationalNumber[Math.Max(f.Degree, g.Degree) + 1];
@@ -74,7 +72,7 @@ namespace SimpleTarskiAlgorithmLib
             for (var d = minDegree + 1; d <= g.Degree; ++d)
                 result[d] = g[d];
 
-            return new Polynomial(result, f.VariableDomain);
+            return new Polynomial(result, f.VariableName);
         }
 
         public static Polynomial operator -(Polynomial f, Polynomial g)
@@ -82,7 +80,7 @@ namespace SimpleTarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialObjectVariableException(f, g);
 
             var result = new RationalNumber[Math.Max(f.Degree, g.Degree) + 1];
@@ -95,7 +93,7 @@ namespace SimpleTarskiAlgorithmLib
             for (var d = minDegree + 1; d <= g.Degree; ++d)
                 result[d] = -g[d];
 
-            return new Polynomial(result, f.VariableDomain);
+            return new Polynomial(result, f.VariableName);
         }
 
         public static Polynomial operator -(Polynomial f)
@@ -105,7 +103,7 @@ namespace SimpleTarskiAlgorithmLib
 
             var result = f._coefficients.Select(c => -c);
 
-            return new Polynomial(result, f.VariableDomain);
+            return new Polynomial(result, f.VariableName);
         }
 
         public static Polynomial operator *(Polynomial f, Polynomial g)
@@ -113,7 +111,7 @@ namespace SimpleTarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialObjectVariableException(f, g);
 
             if (f.IsZero)
@@ -129,7 +127,7 @@ namespace SimpleTarskiAlgorithmLib
             for (var d2 = 0; d2 <= g.Degree; ++d2)
                 result[d1 + d2] += f[d1] * g[d2];
 
-            return new Polynomial(result, f.VariableDomain);
+            return new Polynomial(result, f.VariableName);
         }
 
         public static Polynomial operator *(Polynomial f, int a)
@@ -142,7 +140,7 @@ namespace SimpleTarskiAlgorithmLib
 
             var result = f._coefficients.Select(c => c * a).ToArray();
 
-            return new Polynomial(result, f.VariableDomain);
+            return new Polynomial(result, f.VariableName);
         }
 
         public static Polynomial operator *(int a, Polynomial f)
@@ -158,7 +156,7 @@ namespace SimpleTarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialObjectVariableException(f, g);
 
             if (g.IsZero)
@@ -174,7 +172,7 @@ namespace SimpleTarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialObjectVariableException(f, g);
 
             if (g.IsZero)
@@ -206,9 +204,9 @@ namespace SimpleTarskiAlgorithmLib
                     fCoefficients[monomDegree + d2] -= newCoefficient * g[d2];
             }
 
-            var q = new Polynomial(result, f.VariableDomain);
+            var q = new Polynomial(result, f.VariableName);
 
-            var r = new Polynomial(fCoefficients, f.VariableDomain);
+            var r = new Polynomial(fCoefficients, f.VariableName);
 
             return (q, r);
         }
@@ -218,7 +216,7 @@ namespace SimpleTarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialObjectVariableException(f, g);
 
             if (ReferenceEquals(f, g))
@@ -248,14 +246,14 @@ namespace SimpleTarskiAlgorithmLib
             for (var d = 1; d <= Degree; d++)
                 result[d - 1] = this[d] * d;
 
-            return new Polynomial(result, VariableDomain);
+            return new Polynomial(result, VariableName);
         }
 
         public Polynomial Pow(BigInteger degree)
         {
             if (degree < 0)
                 throw new ArgumentOutOfRangeException(nameof(degree));
-            var result = new Polynomial(new List<RationalNumber> {1}, VariableDomain);
+            var result = new Polynomial(new List<RationalNumber> {1}, VariableName);
             var a = this;
 
             while (degree != 0)
@@ -292,7 +290,7 @@ namespace SimpleTarskiAlgorithmLib
             foreach (var coefficient in _coefficients)
                 res = HashCode.Combine(coefficient, res);
 
-            return HashCode.Combine(res, VariableDomain, Degree);
+            return HashCode.Combine(res, VariableName, Degree);
         }
     }
 }

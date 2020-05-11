@@ -28,7 +28,7 @@ namespace SimpleTarskiAlgorithmRunner
 
                     var subFormula = formulaQuantifier.SubFormula;
                     var eliminatedSubFormula = QuantifiersElimination(subFormula);
-                    var variableDomain = new VariableDomain(formulaQuantifier.ObjectVariable.ToString());
+                    var variableDomain = new VariableName(formulaQuantifier.ObjectVariable.ToString());
 
                     return TarskiEliminate(eliminatedSubFormula, formulaQuantifier.Quantifier, variableDomain);
                 }
@@ -118,15 +118,15 @@ namespace SimpleTarskiAlgorithmRunner
             }
         }
 
-        private static Formula TarskiEliminate(Formula formula, Quantifier quantifier, VariableDomain variableDomain)
+        private static Formula TarskiEliminate(Formula formula, Quantifier quantifier, VariableName variableName)
         {
             var predicates = GetFormulasPredicate(formula).Distinct();
 
             var (expectedSigns, formulaPredicateToPolynomials) =
-                ExpectedSignAndFormulaPredicateToPolynomials(predicates, variableDomain);
+                ExpectedSignAndFormulaPredicateToPolynomials(predicates, variableName);
 
-            var saturatedSystem = Saturator.Saturate(formulaPredicateToPolynomials.Values);
-            var tarskiTable = new TarskiTable(saturatedSystem);
+            var saturatedSystem = SimpleSaturator.Saturate(formulaPredicateToPolynomials.Values);
+            var tarskiTable = new SimpleTarskiTable(saturatedSystem);
             var tarskiTableWidth = tarskiTable.Width;
             var tarskiTableDictionary = tarskiTable.GetTableDictionary();
 
@@ -138,13 +138,13 @@ namespace SimpleTarskiAlgorithmRunner
 
         private static (Dictionary<PredicateFormula, Sign>, Dictionary<PredicateFormula, Polynomial>)
             ExpectedSignAndFormulaPredicateToPolynomials(IEnumerable<PredicateFormula> predicates,
-                VariableDomain variableDomain)
+                VariableName variableName)
         {
             var expectedSign = new Dictionary<PredicateFormula, Sign>();
             var formulaPredicateToPolynomials = new Dictionary<PredicateFormula, Polynomial>();
             foreach (var formulaPredicate in predicates)
             {
-                var (polynomial, sign) = ToPolynomialAndSign(formulaPredicate, variableDomain);
+                var (polynomial, sign) = ToPolynomialAndSign(formulaPredicate, variableName);
                 expectedSign.Add(formulaPredicate, sign);
                 formulaPredicateToPolynomials.Add(formulaPredicate, polynomial);
             }
@@ -185,9 +185,9 @@ namespace SimpleTarskiAlgorithmRunner
         }
 
         private static (Polynomial, Sign) ToPolynomialAndSign(PredicateFormula predicateFormula,
-            VariableDomain variableDomain)
+            VariableName variableName)
         {
-            return FormulaConverter.ToPolynomialAndSign(predicateFormula, variableDomain);
+            return FormulaConverter.ToPolynomialAndSign(predicateFormula, variableName);
         }
 
         private static IEnumerable<Formula> GetNewFormulas(Formula formula, int tarskiTableWidth,

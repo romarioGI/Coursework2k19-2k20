@@ -72,10 +72,10 @@ namespace TarskiAlgorithmLib
 
         public RationalMonomialsNumber Pow(int degree)
         {
-            if(degree < 0)
+            if (degree < 0)
                 throw new ArgumentOutOfRangeException();
 
-            RationalMonomialsNumber res = MonomialsNumber.One;
+            RationalMonomialsNumber res = 1;
             var cur = this;
 
             while (degree != 0)
@@ -118,7 +118,7 @@ namespace TarskiAlgorithmLib
 
         public static implicit operator RationalMonomialsNumber(MonomialsNumber num)
         {
-            return new RationalMonomialsNumber(num, MonomialsNumber.One);
+            return new RationalMonomialsNumber(num, 1);
         }
 
         public static implicit operator RationalMonomialsNumber(int num)
@@ -128,7 +128,7 @@ namespace TarskiAlgorithmLib
 
         public override string ToString()
         {
-            if (_denominator.Equals(MonomialsNumber.One))
+            if (_denominator.Equals(1))
                 return $"{_numerator}";
             return $"{_numerator}/{_denominator}";
         }

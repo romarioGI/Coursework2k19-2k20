@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using SimpleTarskiAlgorithmLib;
 using TarskiAlgorithmLib.Exceptions;
 
 namespace TarskiAlgorithmLib
@@ -11,18 +12,18 @@ namespace TarskiAlgorithmLib
         private readonly RationalMonomialsNumber[] _coefficients;
         private readonly int _hashCode;
 
-        public readonly VariableName VariableDomain;
+        public readonly VariableName VariableName;
 
         public bool IsZero => Degree == -1;
 
-        public PolynomialMonomial(IEnumerable<RationalMonomialsNumber> coefficients, VariableName variableDomain) :
-            this(coefficients?.ToArray(), variableDomain)
+        public PolynomialMonomial(IEnumerable<RationalMonomialsNumber> coefficients, VariableName variableName) :
+            this(coefficients?.ToArray(), variableName)
         {
         }
 
-        private PolynomialMonomial(RationalMonomialsNumber[] coefficients, VariableName variableDomain)
+        private PolynomialMonomial(RationalMonomialsNumber[] coefficients, VariableName variableName)
         {
-            VariableDomain = variableDomain;
+            VariableName = variableName;
 
             if (coefficients is null)
                 throw new ArgumentNullException(nameof(coefficients));
@@ -61,7 +62,7 @@ namespace TarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialMonomialVariableNameException(f, g);
 
             var result = new RationalMonomialsNumber[Math.Max(f.Degree, g.Degree) + 1];
@@ -74,7 +75,7 @@ namespace TarskiAlgorithmLib
             for (var d = minDegree + 1; d <= g.Degree; ++d)
                 result[d] = g[d];
 
-            return new PolynomialMonomial(result, f.VariableDomain);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
         public static PolynomialMonomial operator -(PolynomialMonomial f, PolynomialMonomial g)
@@ -82,7 +83,7 @@ namespace TarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialMonomialVariableNameException(f, g);
 
             var result = new RationalMonomialsNumber[Math.Max(f.Degree, g.Degree) + 1];
@@ -95,7 +96,7 @@ namespace TarskiAlgorithmLib
             for (var d = minDegree + 1; d <= g.Degree; ++d)
                 result[d] = -g[d];
 
-            return new PolynomialMonomial(result, f.VariableDomain);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
         public static PolynomialMonomial operator -(PolynomialMonomial f)
@@ -105,7 +106,7 @@ namespace TarskiAlgorithmLib
 
             var result = f._coefficients.Select(c => -c);
 
-            return new PolynomialMonomial(result, f.VariableDomain);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
         public static PolynomialMonomial operator *(PolynomialMonomial f, PolynomialMonomial g)
@@ -113,7 +114,7 @@ namespace TarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialMonomialVariableNameException(f, g);
 
             if (f.IsZero)
@@ -129,7 +130,7 @@ namespace TarskiAlgorithmLib
             for (var d2 = 0; d2 <= g.Degree; ++d2)
                 result[d1 + d2] += f[d1] * g[d2];
 
-            return new PolynomialMonomial(result, f.VariableDomain);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
         public static PolynomialMonomial operator *(PolynomialMonomial f, int a)
@@ -142,7 +143,7 @@ namespace TarskiAlgorithmLib
 
             var result = f._coefficients.Select(c => c * a).ToArray();
 
-            return new PolynomialMonomial(result, f.VariableDomain);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
         public static PolynomialMonomial operator *(int a, PolynomialMonomial f)
@@ -158,7 +159,7 @@ namespace TarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialMonomialVariableNameException(f, g);
 
             if (g.IsZero)
@@ -174,7 +175,7 @@ namespace TarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialMonomialVariableNameException(f, g);
 
             if (g.IsZero)
@@ -207,9 +208,9 @@ namespace TarskiAlgorithmLib
                     fCoefficients[monomDegree + d2] -= newCoefficient * g[d2];
             }
 
-            var q = new PolynomialMonomial(result, f.VariableDomain);
+            var q = new PolynomialMonomial(result, f.VariableName);
 
-            var r = new PolynomialMonomial(fCoefficients, f.VariableDomain);
+            var r = new PolynomialMonomial(fCoefficients, f.VariableName);
 
             return (q, r);
         }
@@ -219,7 +220,7 @@ namespace TarskiAlgorithmLib
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
-            if (!f.VariableDomain.Equals(g.VariableDomain))
+            if (!f.VariableName.Equals(g.VariableName))
                 throw new PolynomialMonomialVariableNameException(f, g);
 
             if (ReferenceEquals(f, g))
@@ -249,14 +250,14 @@ namespace TarskiAlgorithmLib
             for (var d = 1; d <= Degree; d++)
                 result[d - 1] = this[d] * d;
 
-            return new PolynomialMonomial(result, VariableDomain);
+            return new PolynomialMonomial(result, VariableName);
         }
 
         public PolynomialMonomial Pow(BigInteger degree)
         {
             if (degree < 0)
                 throw new ArgumentOutOfRangeException(nameof(degree));
-            var result = new PolynomialMonomial(new List<RationalMonomialsNumber> {1}, VariableDomain);
+            var result = new PolynomialMonomial(new List<RationalMonomialsNumber> {1}, VariableName);
             var a = this;
 
             while (degree != 0)
@@ -293,7 +294,7 @@ namespace TarskiAlgorithmLib
             foreach (var coefficient in _coefficients)
                 res = HashCode.Combine(coefficient, res);
 
-            return HashCode.Combine(res, VariableDomain, Degree);
+            return HashCode.Combine(res, VariableName, Degree);
         }
     }
 }

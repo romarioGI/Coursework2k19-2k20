@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace SimpleTarskiAlgorithmLib
@@ -7,7 +6,7 @@ namespace SimpleTarskiAlgorithmLib
     /// <summary>
     /// saturator of a polynomial system
     /// </summary>
-    public static class Saturator
+    public static class SimpleSaturator
     {
         public static IEnumerable<Polynomial> Saturate(IEnumerable<Polynomial> polynomials)
         {
@@ -18,8 +17,8 @@ namespace SimpleTarskiAlgorithmLib
                 .Distinct()
                 .ToList();
 
-            if(system.Count == 0)
-                throw new ArgumentException("system must be not empty");
+            if (system.Count == 0)
+                return system;
 
             var multiplication = system
                 .Aggregate((res, nxt) => res * nxt);

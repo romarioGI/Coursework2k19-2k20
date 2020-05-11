@@ -3,6 +3,7 @@ using SimpleTarskiAlgorithmLib;
 
 namespace TarskiAlgorithmLib
 {
+    //TODO перепроверить
     public static class ExtensionMethods
     {
         public static Sign Add(this Sign first, Sign second)
@@ -54,7 +55,7 @@ namespace TarskiAlgorithmLib
                     Sign.NotNumber => Sign.NotNumber,
                     _ => Sign.Undefined
                 },
-                _ => throw new NotImplementedException()
+                _ => throw new NotSupportedException()
             };
         }
 
@@ -130,7 +131,7 @@ namespace TarskiAlgorithmLib
                     Sign.Zero => Sign.Zero,
                     _ => Sign.Undefined
                 },
-                _ => throw new NotImplementedException()
+                _ => throw new NotSupportedException()
             };
         }
 
