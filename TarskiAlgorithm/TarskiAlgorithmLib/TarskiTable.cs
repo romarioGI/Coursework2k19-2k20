@@ -81,9 +81,6 @@ namespace TarskiAlgorithmLib
         private readonly Column _lastColumn;
         private readonly PolynomialCollection _polynomialCollection;
 
-        private static readonly HashSet<Sign> PossibleSigns = new HashSet<Sign>()
-            {Sign.LessZero, Sign.Zero, Sign.MoreZero};
-
         public TarskiTable(IEnumerable<PolynomialMonomial> polynomials)
         {
             _columns = new LinkedList<Column>();
@@ -93,7 +90,7 @@ namespace TarskiAlgorithmLib
 
             foreach (var p in polynomials.OrderBy(p => p.Degree))
             {
-                if (!PossibleSigns.Contains(p.Leading.Sign))
+                if (!p.Leading.Sign.IsBasic())
                     throw new ArgumentException("Sign of leading coefficient is impossible");
 
                 AddPolynomial(p);

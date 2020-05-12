@@ -42,7 +42,7 @@ namespace TarskiAlgorithmLib
 
         public readonly int Degree;
 
-        private RationalMonomialsNumber this[int degree]
+        public  RationalMonomialsNumber this[int degree]
         {
             get
             {
@@ -295,6 +295,29 @@ namespace TarskiAlgorithmLib
                 res = HashCode.Combine(coefficient, res);
 
             return HashCode.Combine(res, VariableName, Degree);
+        }
+
+        public PolynomialMonomial SetSigns(List<Sign> signs)
+        {
+            if (signs.Count > _coefficients.Length)
+                throw new ArgumentException();
+
+            var newCoef = new RationalMonomialsNumber[_coefficients.Length + 1];
+
+            var degree = Degree;
+            foreach (var s in signs)
+            {
+                newCoef[degree] = _coefficients[degree].SetSign(s);
+                degree--;
+            }
+
+            while (degree >= 0)
+            {
+                newCoef[degree] = _coefficients[degree];
+                degree--;
+            }
+
+            return new PolynomialMonomial(newCoef, VariableName);
         }
     }
 }

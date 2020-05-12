@@ -23,6 +23,17 @@ namespace TarskiAlgorithmLib
             Sign = _numerator.Sign.Divide(_denominator.Sign);
         }
 
+        private RationalMonomialsNumber(MonomialsNumber numerator, MonomialsNumber denominator, Sign sign)
+        {
+            if (denominator.Sign.HasFlag(Sign.Zero))
+                throw new DivideByZeroException();
+
+            _numerator = numerator;
+            _denominator = denominator;
+
+            Sign = _numerator.Sign.Divide(_denominator.Sign) & sign;
+        }
+
         public static RationalMonomialsNumber operator +(RationalMonomialsNumber first, RationalMonomialsNumber second)
         {
             var numerator = first._numerator * second._denominator + second._numerator * first._denominator;
@@ -131,6 +142,14 @@ namespace TarskiAlgorithmLib
             if (_denominator.Equals(1))
                 return $"{_numerator}";
             return $"{_numerator}/{_denominator}";
+        }
+
+        public RationalMonomialsNumber SetSign(Sign sign)
+        {
+            if (!Sign.HasFlag(sign))
+                throw new ArgumentException();
+
+            return new RationalMonomialsNumber(_numerator, _denominator, sign);
         }
     }
 }

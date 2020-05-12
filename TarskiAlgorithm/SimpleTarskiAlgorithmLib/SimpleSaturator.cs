@@ -41,8 +41,7 @@ namespace SimpleTarskiAlgorithmLib
             Add(system, polynomial.GetDerivative());
 
             // важно привести к массиву, так как в этом методе используется system, поэтому его нельзя менять, пока метод не завершиться
-            var remainders = GetRemainders(system, polynomial)
-                .Where(p => !p.IsZero).ToArray();
+            var remainders = GetRemainders(system, polynomial).ToArray();
 
             system.Add(polynomial);
 

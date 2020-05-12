@@ -151,5 +151,10 @@ namespace TarskiAlgorithmLib
                 return Sign.Zero;
             return Sign.MoreZero;
         }
+
+        public static bool IsBasic(this Sign sign)
+        {
+            return sign == Sign.Zero || sign == Sign.MoreZero || sign == Sign.LessZero;
+        }
     }
 }
