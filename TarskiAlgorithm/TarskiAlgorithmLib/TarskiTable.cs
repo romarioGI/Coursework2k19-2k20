@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SimpleTarskiAlgorithmLib;
 
-namespace SimpleTarskiAlgorithmLib
+namespace TarskiAlgorithmLib
 {
     public class TarskiTable
     {
@@ -43,28 +44,28 @@ namespace SimpleTarskiAlgorithmLib
             }
         }
 
-        private class PolynomialCollection : IEnumerable<Polynomial>
+        private class PolynomialCollection : IEnumerable<PolynomialMonomial>
         {
-            private readonly List<Polynomial> _polynomials;
-            private readonly Dictionary<Polynomial, int> _polynomialNums;
+            private readonly List<PolynomialMonomial> _polynomials;
+            private readonly Dictionary<PolynomialMonomial, int> _polynomialNums;
 
             public PolynomialCollection()
             {
-                _polynomials = new List<Polynomial>();
-                _polynomialNums = new Dictionary<Polynomial, int>();
+                _polynomials = new List<PolynomialMonomial>();
+                _polynomialNums = new Dictionary<PolynomialMonomial, int>();
             }
 
-            public void Add(Polynomial polynomial)
+            public void Add(PolynomialMonomial polynomial)
             {
                 _polynomialNums.Add(polynomial, _polynomials.Count);
                 _polynomials.Add(polynomial);
             }
 
-            public int this[Polynomial polynomial] => _polynomialNums[polynomial];
+            public int this[PolynomialMonomial polynomial] => _polynomialNums[polynomial];
 
-            public Polynomial this[int number] => _polynomials[number];
+            public PolynomialMonomial this[int number] => _polynomials[number];
 
-            public IEnumerator<Polynomial> GetEnumerator()
+            public IEnumerator<PolynomialMonomial> GetEnumerator()
             {
                 return _polynomials.GetEnumerator();
             }
@@ -80,7 +81,7 @@ namespace SimpleTarskiAlgorithmLib
         private readonly Column _lastColumn;
         private readonly PolynomialCollection _polynomialCollection;
 
-        public TarskiTable(IEnumerable<Polynomial> polynomials)
+        public TarskiTable(IEnumerable<PolynomialMonomial> polynomials)
         {
             _columns = new LinkedList<Column>();
             _firstColumn = new Column();
@@ -89,15 +90,25 @@ namespace SimpleTarskiAlgorithmLib
 
             foreach (var p in polynomials.OrderBy(p => p.Degree))
             {
+                if (!p.Leading.Sign.IsBasic())
+                    throw new ArgumentException("Sign of leading coefficient is impossible");
+
                 AddPolynomial(p);
                 UpdateColumns();
             }
         }
 
-        public IEnumerable<Sign> this[Polynomial polynomial]
+        public IEnumerable<Sign> this[PolynomialMonomial polynomial]
         {
             get
             {
+                if (polynomial.IsZero)
+                {
+                    for (var i = 0; i < Width; i++)
+                        yield return Sign.Zero;
+                    yield break;
+                }
+
                 var polyNum = _polynomialCollection[polynomial];
 
                 yield return _firstColumn[polyNum];
@@ -107,16 +118,16 @@ namespace SimpleTarskiAlgorithmLib
             }
         }
 
-        public IEnumerable<Polynomial> Polynomials => _polynomialCollection;
+        public IEnumerable<PolynomialMonomial> Polynomials => _polynomialCollection;
 
         public int Width => 2 + _columns.Count;
 
-        public Dictionary<Polynomial, List<Sign>> GetTableDictionary()
+        public Dictionary<PolynomialMonomial, List<Sign>> GetTableDictionary()
         {
             return Polynomials.ToDictionary(p => p, p => this[p].ToList());
         }
 
-        private void AddPolynomial(Polynomial polynomial)
+        private void AddPolynomial(PolynomialMonomial polynomial)
         {
             switch (polynomial.Degree)
             {
@@ -131,7 +142,7 @@ namespace SimpleTarskiAlgorithmLib
             }
         }
 
-        private void AddZeroDegreePolynomial(Polynomial polynomial)
+        private void AddZeroDegreePolynomial(PolynomialMonomial polynomial)
         {
             _polynomialCollection.Add(polynomial);
 
@@ -141,7 +152,7 @@ namespace SimpleTarskiAlgorithmLib
             _lastColumn.Push(polynomial.Leading.Sign);
         }
 
-        private void AddMoreZeroDegreePolynomial(Polynomial polynomial)
+        private void AddMoreZeroDegreePolynomial(PolynomialMonomial polynomial)
         {
             _polynomialCollection.Add(polynomial);
 
@@ -151,12 +162,12 @@ namespace SimpleTarskiAlgorithmLib
             _lastColumn.Push(polynomial.Leading.Sign);
         }
 
-        private static Sign CalcSignFirstColumn(Polynomial polynomial)
+        private static Sign CalcSignFirstColumn(PolynomialMonomial polynomial)
         {
             return polynomial.Degree % 2 == 0 ? polynomial.Leading.Sign : polynomial.Leading.Sign.Invert();
         }
 
-        private Sign CalcSign(Polynomial polynomial, Column column)
+        private Sign CalcSign(PolynomialMonomial polynomial, Column column)
         {
             var lastZeroSignPoly = _polynomialCollection[column.NumberOfLastZero];
             polynomial %= lastZeroSignPoly;

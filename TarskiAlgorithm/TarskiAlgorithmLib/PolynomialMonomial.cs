@@ -2,25 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
-using SimpleTarskiAlgorithmLib.Exceptions;
+using SimpleTarskiAlgorithmLib;
+using TarskiAlgorithmLib.Exceptions;
 
-namespace SimpleTarskiAlgorithmLib
+namespace TarskiAlgorithmLib
 {
-    public class Polynomial : IEquatable<Polynomial>
+    public class PolynomialMonomial : IEquatable<PolynomialMonomial>
     {
-        private readonly RationalNumber[] _coefficients;
+        private readonly RationalMonomialsNumber[] _coefficients;
         private readonly int _hashCode;
 
         public readonly VariableName VariableName;
 
         public bool IsZero => Degree == -1;
 
-        public Polynomial(IEnumerable<RationalNumber> coefficients, VariableName variableName) :
+        public PolynomialMonomial(IEnumerable<RationalMonomialsNumber> coefficients, VariableName variableName) :
             this(coefficients?.ToArray(), variableName)
         {
         }
 
-        private Polynomial(RationalNumber[] coefficients, VariableName variableName)
+        private PolynomialMonomial(RationalMonomialsNumber[] coefficients, VariableName variableName)
         {
             VariableName = variableName;
 
@@ -31,7 +32,7 @@ namespace SimpleTarskiAlgorithmLib
             while (degree >= 0 && coefficients[degree].IsZero)
                 --degree;
 
-            _coefficients = new RationalNumber[degree + 1];
+            _coefficients = new RationalMonomialsNumber[degree + 1];
             for (var i = 0; i <= degree; ++i)
                 _coefficients[i] = coefficients[i];
 
@@ -41,7 +42,7 @@ namespace SimpleTarskiAlgorithmLib
 
         public readonly int Degree;
 
-        private RationalNumber this[int degree]
+        public  RationalMonomialsNumber this[int degree]
         {
             get
             {
@@ -52,17 +53,19 @@ namespace SimpleTarskiAlgorithmLib
             }
         }
 
-        public RationalNumber Leading => _coefficients[Degree];
+        public RationalMonomialsNumber Leading => _coefficients[Degree];
 
-        public static Polynomial operator +(Polynomial f, Polynomial g)
+        public IEnumerable<RationalMonomialsNumber> Coefficients => _coefficients.Select(c => c);
+
+        public static PolynomialMonomial operator +(PolynomialMonomial f, PolynomialMonomial g)
         {
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
             if (!f.VariableName.Equals(g.VariableName))
-                throw new PolynomialObjectVariableException(f, g);
+                throw new PolynomialMonomialVariableNameException(f, g);
 
-            var result = new RationalNumber[Math.Max(f.Degree, g.Degree) + 1];
+            var result = new RationalMonomialsNumber[Math.Max(f.Degree, g.Degree) + 1];
             var minDegree = Math.Min(f.Degree, g.Degree);
             for (var d = 0; d <= minDegree; ++d)
                 result[d] = f[d] + g[d];
@@ -72,18 +75,18 @@ namespace SimpleTarskiAlgorithmLib
             for (var d = minDegree + 1; d <= g.Degree; ++d)
                 result[d] = g[d];
 
-            return new Polynomial(result, f.VariableName);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
-        public static Polynomial operator -(Polynomial f, Polynomial g)
+        public static PolynomialMonomial operator -(PolynomialMonomial f, PolynomialMonomial g)
         {
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
             if (!f.VariableName.Equals(g.VariableName))
-                throw new PolynomialObjectVariableException(f, g);
+                throw new PolynomialMonomialVariableNameException(f, g);
 
-            var result = new RationalNumber[Math.Max(f.Degree, g.Degree) + 1];
+            var result = new RationalMonomialsNumber[Math.Max(f.Degree, g.Degree) + 1];
             var minDegree = Math.Min(f.Degree, g.Degree);
             for (var d = 0; d <= minDegree; ++d)
                 result[d] = f[d] - g[d];
@@ -93,44 +96,44 @@ namespace SimpleTarskiAlgorithmLib
             for (var d = minDegree + 1; d <= g.Degree; ++d)
                 result[d] = -g[d];
 
-            return new Polynomial(result, f.VariableName);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
-        public static Polynomial operator -(Polynomial f)
+        public static PolynomialMonomial operator -(PolynomialMonomial f)
         {
             if (f is null)
                 throw new ArgumentNullException();
 
             var result = f._coefficients.Select(c => -c);
 
-            return new Polynomial(result, f.VariableName);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
-        public static Polynomial operator *(Polynomial f, Polynomial g)
+        public static PolynomialMonomial operator *(PolynomialMonomial f, PolynomialMonomial g)
         {
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
             if (!f.VariableName.Equals(g.VariableName))
-                throw new PolynomialObjectVariableException(f, g);
+                throw new PolynomialMonomialVariableNameException(f, g);
 
             if (f.IsZero)
                 return f;
             if (g.IsZero)
                 return g;
 
-            var result = new RationalNumber[f.Degree + g.Degree + 1];
+            var result = new RationalMonomialsNumber[f.Degree + g.Degree + 1];
             for (var i = 0; i < result.Length; ++i)
-                result[i] = new RationalNumber(0, 1);
+                result[i] = new RationalMonomialsNumber(0, 1);
 
             for (var d1 = 0; d1 <= f.Degree; ++d1)
             for (var d2 = 0; d2 <= g.Degree; ++d2)
                 result[d1 + d2] += f[d1] * g[d2];
 
-            return new Polynomial(result, f.VariableName);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
-        public static Polynomial operator *(Polynomial f, int a)
+        public static PolynomialMonomial operator *(PolynomialMonomial f, int a)
         {
             if (f is null)
                 throw new ArgumentNullException();
@@ -140,10 +143,10 @@ namespace SimpleTarskiAlgorithmLib
 
             var result = f._coefficients.Select(c => c * a).ToArray();
 
-            return new Polynomial(result, f.VariableName);
+            return new PolynomialMonomial(result, f.VariableName);
         }
 
-        public static Polynomial operator *(int a, Polynomial f)
+        public static PolynomialMonomial operator *(int a, PolynomialMonomial f)
         {
             if (f is null)
                 throw new ArgumentNullException();
@@ -151,13 +154,13 @@ namespace SimpleTarskiAlgorithmLib
             return f * a;
         }
 
-        public static Polynomial operator /(Polynomial f, Polynomial g)
+        public static PolynomialMonomial operator /(PolynomialMonomial f, PolynomialMonomial g)
         {
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
             if (!f.VariableName.Equals(g.VariableName))
-                throw new PolynomialObjectVariableException(f, g);
+                throw new PolynomialMonomialVariableNameException(f, g);
 
             if (g.IsZero)
                 throw new DivideByZeroException();
@@ -167,13 +170,13 @@ namespace SimpleTarskiAlgorithmLib
             return DivisionWithRemainder(f, g).Item1;
         }
 
-        public static Polynomial operator %(Polynomial f, Polynomial g)
+        public static PolynomialMonomial operator %(PolynomialMonomial f, PolynomialMonomial g)
         {
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
             if (!f.VariableName.Equals(g.VariableName))
-                throw new PolynomialObjectVariableException(f, g);
+                throw new PolynomialMonomialVariableNameException(f, g);
 
             if (g.IsZero)
                 throw new DivideByZeroException();
@@ -183,12 +186,13 @@ namespace SimpleTarskiAlgorithmLib
             return DivisionWithRemainder(f, g).Item2;
         }
 
-        private static (Polynomial, Polynomial) DivisionWithRemainder(Polynomial f, Polynomial g)
+        private static (PolynomialMonomial, PolynomialMonomial) DivisionWithRemainder(PolynomialMonomial f,
+            PolynomialMonomial g)
         {
             var resultLength = Math.Max(f.Degree - g.Degree + 1, 0);
-            var result = new RationalNumber[resultLength];
+            var result = new RationalMonomialsNumber[resultLength];
 
-            var fCoefficients = (RationalNumber[]) f._coefficients.Clone();
+            var fCoefficients = (RationalMonomialsNumber[]) f._coefficients.Clone();
             var leadingG = g[g.Degree];
 
             for (var d1 = f.Degree; d1 >= g.Degree; --d1)
@@ -204,20 +208,20 @@ namespace SimpleTarskiAlgorithmLib
                     fCoefficients[monomDegree + d2] -= newCoefficient * g[d2];
             }
 
-            var q = new Polynomial(result, f.VariableName);
+            var q = new PolynomialMonomial(result, f.VariableName);
 
-            var r = new Polynomial(fCoefficients, f.VariableName);
+            var r = new PolynomialMonomial(fCoefficients, f.VariableName);
 
             return (q, r);
         }
 
-        public static bool operator ==(Polynomial f, Polynomial g)
+        public static bool operator ==(PolynomialMonomial f, PolynomialMonomial g)
         {
             if (f is null || g is null)
                 throw new ArgumentNullException();
 
             if (!f.VariableName.Equals(g.VariableName))
-                throw new PolynomialObjectVariableException(f, g);
+                throw new PolynomialMonomialVariableNameException(f, g);
 
             if (ReferenceEquals(f, g))
                 return true;
@@ -232,28 +236,28 @@ namespace SimpleTarskiAlgorithmLib
             return true;
         }
 
-        public static bool operator !=(Polynomial f, Polynomial g)
+        public static bool operator !=(PolynomialMonomial f, PolynomialMonomial g)
         {
             return !(f == g);
         }
 
-        public Polynomial GetDerivative()
+        public PolynomialMonomial GetDerivative()
         {
             if (IsZero)
                 return this;
 
-            var result = new RationalNumber[Degree];
+            var result = new RationalMonomialsNumber[Degree];
             for (var d = 1; d <= Degree; d++)
                 result[d - 1] = this[d] * d;
 
-            return new Polynomial(result, VariableName);
+            return new PolynomialMonomial(result, VariableName);
         }
 
-        public Polynomial Pow(BigInteger degree)
+        public PolynomialMonomial Pow(BigInteger degree)
         {
             if (degree < 0)
                 throw new ArgumentOutOfRangeException(nameof(degree));
-            var result = new Polynomial(new List<RationalNumber> {1}, VariableName);
+            var result = new PolynomialMonomial(new List<RationalMonomialsNumber> {1}, VariableName);
             var a = this;
 
             while (degree != 0)
@@ -267,7 +271,7 @@ namespace SimpleTarskiAlgorithmLib
             return result;
         }
 
-        public bool Equals(Polynomial other)
+        public bool Equals(PolynomialMonomial other)
         {
             if (other is null)
                 return false;
@@ -279,7 +283,7 @@ namespace SimpleTarskiAlgorithmLib
         {
             if (obj is null) return false;
             if (ReferenceEquals(this, obj)) return true;
-            return obj is Polynomial polynomial && Equals(polynomial);
+            return obj is PolynomialMonomial polynomial && Equals(polynomial);
         }
 
         public override int GetHashCode() => _hashCode;
@@ -291,6 +295,29 @@ namespace SimpleTarskiAlgorithmLib
                 res = HashCode.Combine(coefficient, res);
 
             return HashCode.Combine(res, VariableName, Degree);
+        }
+
+        public PolynomialMonomial SetSigns(List<Sign> signs)
+        {
+            if (signs.Count > _coefficients.Length)
+                throw new ArgumentException();
+
+            var newCoef = new RationalMonomialsNumber[_coefficients.Length + 1];
+
+            var degree = Degree;
+            foreach (var s in signs)
+            {
+                newCoef[degree] = _coefficients[degree].SetSign(s);
+                degree--;
+            }
+
+            while (degree >= 0)
+            {
+                newCoef[degree] = _coefficients[degree];
+                degree--;
+            }
+
+            return new PolynomialMonomial(newCoef, VariableName);
         }
     }
 }

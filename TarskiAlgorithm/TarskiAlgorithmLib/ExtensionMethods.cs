@@ -1,25 +1,11 @@
 ﻿using System;
+using SimpleTarskiAlgorithmLib;
 
 namespace TarskiAlgorithmLib
 {
+    //TODO перепроверить
     public static class ExtensionMethods
     {
-        public static Sign Invert(this Sign sign)
-        {
-            return sign switch
-            {
-                Sign.NotNumber => Sign.NotNumber,
-                Sign.LessZero => Sign.MoreZero,
-                Sign.MoreZero => Sign.LessZero,
-                Sign.Zero => Sign.Zero,
-                Sign.NotLessZero => Sign.NotMoreZero,
-                Sign.NotMoreZero => Sign.NotLessZero,
-                Sign.NotZero => Sign.NotZero,
-                Sign.Undefined => Sign.Undefined,
-                _ => throw new NotImplementedException()
-            };
-        }
-
         public static Sign Add(this Sign first, Sign second)
         {
             return first switch
@@ -69,7 +55,7 @@ namespace TarskiAlgorithmLib
                     Sign.NotNumber => Sign.NotNumber,
                     _ => Sign.Undefined
                 },
-                _ => throw new NotImplementedException()
+                _ => throw new NotSupportedException()
             };
         }
 
@@ -145,13 +131,13 @@ namespace TarskiAlgorithmLib
                     Sign.Zero => Sign.Zero,
                     _ => Sign.Undefined
                 },
-                _ => throw new NotImplementedException()
+                _ => throw new NotSupportedException()
             };
         }
 
         public static Sign Divide(this Sign first, Sign second)
         {
-            if(second.HasFlag(Sign.Zero))
+            if (second.HasFlag(Sign.Zero))
                 throw new DivideByZeroException();
 
             return first.Multi(second);
@@ -164,6 +150,11 @@ namespace TarskiAlgorithmLib
             if (number == 0)
                 return Sign.Zero;
             return Sign.MoreZero;
+        }
+
+        public static bool IsBasic(this Sign sign)
+        {
+            return sign == Sign.Zero || sign == Sign.MoreZero || sign == Sign.LessZero;
         }
     }
 }

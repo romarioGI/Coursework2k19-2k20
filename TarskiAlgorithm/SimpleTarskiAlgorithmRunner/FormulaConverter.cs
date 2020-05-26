@@ -24,7 +24,7 @@ namespace SimpleTarskiAlgorithmRunner
         }
 
         public static (Polynomial, Sign) ToPolynomialAndSign(PredicateFormula predicateFormula,
-            VariableDomain variableDomain)
+            VariableName variableName)
         {
             var predicate = predicateFormula.Predicate;
             var terms = predicateFormula.Terms.ToArray();
@@ -36,50 +36,50 @@ namespace SimpleTarskiAlgorithmRunner
 
             var polynomial = predicate.Arity switch
             {
-                2 => ToPolynomial(terms[0], variableDomain) - ToPolynomial(terms[1], variableDomain),
-                1 => ToPolynomial(terms[0], variableDomain),
+                2 => ToPolynomial(terms[0], variableName) - ToPolynomial(terms[1], variableName),
+                1 => ToPolynomial(terms[0], variableName),
                 _ => throw new NotSupportedException("do not support predicate with arity more then 2")
             };
 
             return (polynomial, sign);
         }
 
-        public static Polynomial ToPolynomial(Term term, VariableDomain variableDomain)
+        public static Polynomial ToPolynomial(Term term, VariableName variableName)
         {
             switch (term)
             {
                 case ObjectVariableTerm termObjectVariable:
-                    var thisVariableDomain = new VariableDomain(termObjectVariable.ObjectVariable.ToString());
-                    if (!variableDomain.Equals(thisVariableDomain))
+                    var thisVariableDomain = new VariableName(termObjectVariable.ObjectVariable.ToString());
+                    if (!variableName.Equals(thisVariableDomain))
                         throw new ArgumentException("VariableDomainException");
 
-                    return new Polynomial(new List<RationalNumber> {0, 1}, variableDomain);
+                    return new Polynomial(new List<RationalNumber> {0, 1}, variableName);
 
                 case FunctionTerm termFunction:
                     var function = termFunction.Function;
                     var terms = termFunction.Terms.ToArray();
 
-                    return TermFunctionInterpret(variableDomain, function, terms);
+                    return TermFunctionInterpret(variableName, function, terms);
 
                 case IndividualConstantTerm<int> termFunction:
                     return new Polynomial(new List<RationalNumber> {termFunction.IndividualConstant.Value},
-                        variableDomain);
+                        variableName);
 
                 case IndividualConstantTerm<RationalNumber> termFunction:
                     return new Polynomial(new List<RationalNumber> {termFunction.IndividualConstant.Value},
-                        variableDomain);
+                        variableName);
 
                 default:
                     throw new NotSupportedException("not supported term type");
             }
         }
 
-        private static Polynomial TermFunctionInterpret(VariableDomain variableDomain, Function function, Term[] terms)
+        private static Polynomial TermFunctionInterpret(VariableName variableName, Function function, Term[] terms)
         {
             if (function is ArithmeticFunction)
             {
-                var p1 = ToPolynomial(terms[0], variableDomain);
-                var p2 = ToPolynomial(terms[1], variableDomain);
+                var p1 = ToPolynomial(terms[0], variableName);
+                var p2 = ToPolynomial(terms[1], variableName);
                 if (function.Equals(Functions.Add))
                     return p1 + p2;
 
@@ -112,7 +112,7 @@ namespace SimpleTarskiAlgorithmRunner
 
             if (function.Equals(Functions.UnaryMinus))
             {
-                var p1 = ToPolynomial(terms[0], variableDomain);
+                var p1 = ToPolynomial(terms[0], variableName);
 
                 return -p1;
             }

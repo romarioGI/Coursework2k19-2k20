@@ -12,7 +12,7 @@ namespace SimpleTarskiAlgorithmLib.Exceptions
         private static string GetMessage(Polynomial first, Polynomial second)
         {
             return
-                $"Polynomials have {first.VariableDomain} and {second.VariableDomain} ObjectVariables, but they must be equal";
+                $"Polynomials have {first.VariableName} and {second.VariableName} VariableNames, but they must be equal";
         }
     }
 }
