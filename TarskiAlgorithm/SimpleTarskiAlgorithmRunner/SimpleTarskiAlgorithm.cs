@@ -17,7 +17,7 @@ namespace SimpleTarskiAlgorithmRunner
                 case PropositionalConnectiveFormula formulaPropositionalConnective:
                 {
                     var subFormulas = formulaPropositionalConnective.SubFormulas;
-                    var eliminatedSubFormulas = subFormulas.Select(QuantifiersElimination).ToArray();
+                    var eliminatedSubFormulas = subFormulas.AsParallel().Select(QuantifiersElimination).ToArray();
 
                     return CalcFormula(formulaPropositionalConnective.Connective, eliminatedSubFormulas);
                 }
@@ -28,9 +28,9 @@ namespace SimpleTarskiAlgorithmRunner
 
                     var subFormula = formulaQuantifier.SubFormula;
                     var eliminatedSubFormula = QuantifiersElimination(subFormula);
-                    var variableDomain = new VariableName(formulaQuantifier.ObjectVariable.ToString());
+                    var variableName = new VariableName(formulaQuantifier.ObjectVariable.ToString());
 
-                    return TarskiEliminate(eliminatedSubFormula, formulaQuantifier.Quantifier, variableDomain);
+                    return TarskiEliminate(eliminatedSubFormula, formulaQuantifier.Quantifier, variableName);
                 }
                 default:
                     throw new NotSupportedException("not supported formula type");
@@ -86,7 +86,9 @@ namespace SimpleTarskiAlgorithmRunner
                         },
                         Implication _ => predicate switch
                         {
-                            True _ => predicateIsLeft ? formula : new PredicateFormula(True.GetInstance()),
+                            True _ => predicateIsLeft 
+                                ? formula 
+                                : new PredicateFormula(True.GetInstance()),
                             False _ => predicateIsLeft
                                 ? new PredicateFormula(True.GetInstance())
                                 : CalcFormula(Negation.GetInstance(), formula),

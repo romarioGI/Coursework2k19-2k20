@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleTarskiAlgorithmLib;
 using SimpleTarskiAlgorithmLib.Exceptions;
+// ReSharper disable UnusedVariable
+// ReSharper disable InconsistentNaming
 
 namespace SimpleTarskiAlgorithmLibTests
 {
@@ -73,35 +75,12 @@ namespace SimpleTarskiAlgorithmLibTests
             var p4 = new Polynomial(GetRepeatCoefficients(new RationalNumber(1, 2), 3), YName);
             Assert.AreEqual(new RationalNumber(1, 2), p4.Leading);
 
-            try
-            {
-                var p5 = new Polynomial(new RationalNumber[] { }, XName);
-                var l5 = p5.Leading;
-                Assert.Fail("An exception should have been thrown");
-            }
-            catch (IndexOutOfRangeException ae)
-            {
-                Assert.AreEqual("Index was outside the bounds of the array.", ae.Message);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Unexpected exception of type {0} caught: {1}", e.GetType(), e.Message);
-            }
 
-            try
-            {
-                var p6 = new Polynomial(new RationalNumber[] {0, 0, 0}, YName);
-                var l6 = p6.Leading;
-                Assert.Fail("An exception should have been thrown");
-            }
-            catch (IndexOutOfRangeException ae)
-            {
-                Assert.AreEqual("Index was outside the bounds of the array.", ae.Message);
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Unexpected exception of type {0} caught: {1}", e.GetType(), e.Message);
-            }
+            var p5 = new Polynomial(new RationalNumber[] { }, XName);
+            Assert.AreEqual(0, p5.Leading);
+
+            var p6 = new Polynomial(new RationalNumber[] {0, 0, 0}, YName);
+            Assert.AreEqual(0, p6.Leading);
         }
 
         [TestMethod]
@@ -317,7 +296,7 @@ namespace SimpleTarskiAlgorithmLibTests
             var p3 = new Polynomial(new RationalNumber[] {7, -3, 5}, XName);
             var p4 = new Polynomial(new RationalNumber[] {15, -13, 0, 3, 0, -6, 32}, XName);
             var expected_p3_p4 = new Polynomial(new RationalNumber[] {0}, XName);
-            var expected_p4_p3 = new Polynomial(new RationalNumber[]
+            var expected_p4_p3 = new Polynomial(new []
             {
                 new RationalNumber(18167, 3125),
                 new RationalNumber(-4701, 625),

@@ -52,7 +52,7 @@ namespace SimpleTarskiAlgorithmLib
             }
         }
 
-        public RationalNumber Leading => _coefficients[Degree];
+        public RationalNumber Leading => IsZero? 0 : _coefficients[Degree];
 
         public static Polynomial operator +(Polynomial f, Polynomial g)
         {
