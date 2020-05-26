@@ -12,41 +12,37 @@ namespace SimpleTarskiAlgorithmLib
         {
             var result = new HashSet<Polynomial>();
 
+            var queue = new Queue<Polynomial>();
+
             var system = polynomials
                 .Where(p => !p.IsZero)
-                .Distinct()
-                .ToList();
-
-            if (system.Count == 0)
-                return system;
-
-            var multiplication = system
-                .Aggregate((res, nxt) => res * nxt);
-            system.Add(multiplication.GetDerivative());
+                .Distinct();
 
             foreach (var p in system)
-                Add(result, p);
+                queue.Enqueue(p);
+
+            if (queue.Count == 0)
+                return new List<Polynomial>();
+
+            var multiplication = queue
+                .Aggregate((res, nxt) => res * nxt);
+            queue.Enqueue(multiplication.GetDerivative());
+
+            while (queue.Count != 0)
+            {
+                var cur = queue.Dequeue();
+                if (cur.IsZero || result.Contains(cur))
+                    continue;
+
+                queue.Enqueue(cur.GetDerivative());
+                foreach (var r in GetRemainders(result, cur))
+                    queue.Enqueue(r);
+
+                result.Add(cur);
+            }
+
 
             return result;
-        }
-
-        private static void Add(HashSet<Polynomial> system, Polynomial polynomial)
-        {
-            if (polynomial.IsZero)
-                return;
-
-            if (system.Contains(polynomial))
-                return;
-
-            Add(system, polynomial.GetDerivative());
-
-            // важно привести к массиву, так как в этом методе используется system, поэтому его нельзя менять, пока метод не завершиться
-            var remainders = GetRemainders(system, polynomial).ToArray();
-
-            system.Add(polynomial);
-
-            foreach (var p in remainders)
-                Add(system, p);
         }
 
         private static IEnumerable<Polynomial> GetRemainders(IEnumerable<Polynomial> system, Polynomial polynomial)
