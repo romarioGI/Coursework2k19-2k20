@@ -9,21 +9,6 @@ namespace SimpleTarskiAlgorithmRunner
 {
     public static class FormulaConverter
     {
-        public static Formula ToFormula(IEnumerable<Symbol> symbols)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static IEnumerable<Symbol> ToSymbols(string str)
-        {
-            throw new NotImplementedException();
-        }
-
-        public static Formula ToFormula(string str)
-        {
-            return ToFormula(ToSymbols(str));
-        }
-
         public static (Polynomial, Sign) ToPolynomialAndSign(PredicateFormula predicateFormula,
             VariableName variableName)
         {
