@@ -1,4 +1,4 @@
-﻿using LogicLanguageLib;
+﻿using LogicLanguageLib.Alphabet;
 
 namespace SimpleTarskiAlgorithmRunner
 {

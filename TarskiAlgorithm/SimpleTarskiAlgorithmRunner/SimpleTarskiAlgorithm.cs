@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LogicLanguageLib;
+using LogicLanguageLib.Alphabet;
+using LogicLanguageLib.Words;
 using SimpleTarskiAlgorithmLib;
 
 namespace SimpleTarskiAlgorithmRunner

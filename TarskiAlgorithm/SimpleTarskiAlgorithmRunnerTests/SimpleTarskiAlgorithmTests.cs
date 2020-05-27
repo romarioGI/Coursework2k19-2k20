@@ -1,4 +1,5 @@
-﻿using LogicLanguageLib;
+﻿using LogicLanguageLib.Alphabet;
+using LogicLanguageLib.Words;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleTarskiAlgorithmLib;
 using SimpleTarskiAlgorithmRunner;
@@ -12,7 +13,7 @@ namespace SimpleTarskiAlgorithmRunnerTests
         [TestMethod]
         public void Test1()
         {
-            ObjectVariableTerm x = new ObjectVariable("x");
+            ObjectVariableTerm x = new ObjectVariable('x');
 
             IndividualConstantTerm<RationalNumber> half =
                 (IndividualConstant<RationalNumber>) (new RationalNumber(1, 2));
@@ -32,7 +33,7 @@ namespace SimpleTarskiAlgorithmRunnerTests
         [TestMethod]
         public void Test2()
         {
-            ObjectVariableTerm x = new ObjectVariable("x");
+            ObjectVariableTerm x = new ObjectVariable('x');
 
             IndividualConstantTerm<RationalNumber> half =
                 (IndividualConstant<RationalNumber>) (new RationalNumber(1, 2));
@@ -58,7 +59,7 @@ namespace SimpleTarskiAlgorithmRunnerTests
         [TestMethod]
         public void Test3()
         {
-            ObjectVariableTerm x = new ObjectVariable("x");
+            ObjectVariableTerm x = new ObjectVariable('x');
 
             IndividualConstantTerm<RationalNumber> half =
                 (IndividualConstant<RationalNumber>) (new RationalNumber(1, 2));
@@ -96,7 +97,7 @@ namespace SimpleTarskiAlgorithmRunnerTests
         [TestMethod]
         public void Test4()
         {
-            ObjectVariableTerm x = new ObjectVariable("x");
+            ObjectVariableTerm x = new ObjectVariable('x');
 
             IndividualConstantTerm<RationalNumber> half =
                 (IndividualConstant<RationalNumber>) (new RationalNumber(1, 2));

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using LogicLanguageLib;
+using LogicLanguageLib.Alphabet;
 using SimpleTarskiAlgorithmLib;
 
 namespace SimpleTarskiAlgorithmRunner
