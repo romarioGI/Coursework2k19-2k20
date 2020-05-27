@@ -2,7 +2,7 @@
 {
     public abstract class UnaryPropositionalConnective : PropositionalConnective
     {
-        protected UnaryPropositionalConnective(string name) : base(name, 1)
+        protected UnaryPropositionalConnective() : base(1)
         {
         }
     }

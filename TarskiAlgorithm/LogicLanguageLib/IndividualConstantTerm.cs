@@ -27,14 +27,6 @@ namespace LogicLanguageLib
             return HashCode.Combine(IndividualConstant);
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is null) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((IndividualConstantTerm<T>) obj);
-        }
-
         public bool Equals(IndividualConstantTerm<T> other)
         {
             if (other is null) return false;

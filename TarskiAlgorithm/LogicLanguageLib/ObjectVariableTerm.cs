@@ -29,14 +29,6 @@ namespace LogicLanguageLib
             return ObjectVariable.Equals(other.ObjectVariable);
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is null) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((ObjectVariableTerm) obj);
-        }
-
         public override bool Equals(Term other)
         {
             return Equals(other as ObjectVariableTerm);

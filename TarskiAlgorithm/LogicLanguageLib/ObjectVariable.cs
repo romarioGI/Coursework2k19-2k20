@@ -1,36 +1,44 @@
 ﻿using System;
-using System.Linq;
 
 namespace LogicLanguageLib
 {
-    public class ObjectVariable : LogicalSymbol
+    public class ObjectVariable : LogicalSymbol, IEquatable<ObjectVariable>
     {
-        public ObjectVariable(string name, string subscript = null) : base(Concatenate(name, subscript))
+        private readonly char _char;
+        private readonly int? _index;
+
+        public ObjectVariable(char c, int? i)
         {
+            if (!char.IsLetter(c))
+                throw new ArgumentException("c should be letter");
+            if (i != null && i < 0)
+                throw new ArgumentOutOfRangeException(nameof(i), "i must not be less than zero");
+            _char = c;
+            _index = i;
         }
 
-        private static string Concatenate(string name, string subscript)
+        public override string ToString()
         {
-            if (!CheckName(name))
-                throw new ArgumentException("Name must contain only letters");
-
-            if (string.IsNullOrEmpty(subscript))
-                return name;
-
-            if (!CheckSubscript(subscript))
-                throw new ArgumentException("Subscript must contain only digits");
-
-            return $"{name}_{subscript}";
+            return _index is null ? _char.ToString() : $"{_char}_{_index}";
         }
 
-        private static bool CheckName(string name)
+        protected override bool EqualsSameType(Symbol other)
         {
-            return name.All(char.IsLetter);
+            var otherSameType = (ObjectVariable) other;
+
+            return _char == otherSameType._char && _index == otherSameType._index;
         }
 
-        private static bool CheckSubscript(string subscript)
+        public override int GetHashCode()
         {
-            return subscript.All(char.IsDigit);
+            return HashCode.Combine(_char, _index);
+        }
+
+        public bool Equals(ObjectVariable other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return _char == other._char && _index == other._index;
         }
     }
 }

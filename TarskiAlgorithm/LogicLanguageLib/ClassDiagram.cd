@@ -1,232 +1,253 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LogicLanguageLib.ArithmeticFunction" Collapsed="true">
+    <Position X="21" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticFunction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.ArithmeticPredicate" Collapsed="true">
+    <Position X="14.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>ArithmeticPredicate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="LogicLanguageLib.BinaryPropositionalConnective" Collapsed="true">
-    <Position X="16.25" Y="6.75" Width="1.5" />
+    <Position X="32.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>BinaryPropositionalConnective.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="LogicLanguageLib.BooleanPredicate" Collapsed="true">
+    <Position X="17.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>BooleanPredicate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Comma" Collapsed="true">
+    <Position X="43.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Comma.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="LogicLanguageLib.Conjunction" Collapsed="true">
-    <Position X="16.25" Y="8.25" Width="1.5" />
+    <Position X="34.5" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Conjunction.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.Disjunction" Collapsed="true">
-    <Position X="18.5" Y="8.25" Width="1.5" />
+    <Position X="30" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Disjunction.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LogicLanguageLib.ExistentialQuantification" Collapsed="true">
-    <Position X="7.25" Y="6.75" Width="1.5" />
+  <Class Name="LogicLanguageLib.ExistentialQuantifier" Collapsed="true">
+    <Position X="25.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
-      <FileName>ExistentialQuantification.cs</FileName>
+      <FileName>ExistentialQuantifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.False" Collapsed="true">
+    <Position X="18.75" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>False.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.Formula" Collapsed="true">
-    <Position X="3.75" Y="8.5" Width="1.5" />
+    <Position X="21" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEggAAAAAAAAAAAIAAAACAAAAAAAA=</HashCode>
       <FileName>Formula.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="LogicLanguageLib.FormulaPredicate" Collapsed="true">
-    <Position X="6" Y="9.75" Width="1.5" />
+  <Class Name="LogicLanguageLib.Function" Collapsed="true">
+    <Position X="21" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAQAEAAAAAEAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>FormulaPredicate.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="LogicLanguageLib.FormulaPropositionalConnective" Collapsed="true">
-    <Position X="1.5" Y="9.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAIAEAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>FormulaPropositionalConnective.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="LogicLanguageLib.FormulaQuantifier" Collapsed="true">
-    <Position X="3.75" Y="9.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAgAAAAAAAAAABACAAAACAAAAAAA=</HashCode>
-      <FileName>FormulaQuantifier.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="LogicLanguageLib.AbstractFunction&lt;TOut&gt;" Collapsed="true">
-    <Position X="34.25" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAEAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Function.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="LogicLanguageLib.Function&lt;TOut&gt;" Collapsed="true">
-    <Position X="32" Y="6.75" Width="1.5" />
+  <Class Name="LogicLanguageLib.FunctionTerm" Collapsed="true">
+    <Position X="15.25" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Function.cs</FileName>
+      <HashCode>AAAACAAQAAAAAAAEggAAAAIAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>FunctionTerm.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="LogicLanguageLib.Function&lt;T1, TOut&gt;" Collapsed="true">
-    <Position X="34.25" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Function.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="LogicLanguageLib.Function&lt;T1, T2, TOut&gt;" Collapsed="true">
-    <Position X="36.5" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Function.cs</FileName>
-    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicLanguageLib.Implication" Collapsed="true">
-    <Position X="14" Y="8.25" Width="1.5" />
+    <Position X="32.25" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Implication.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LogicLanguageLib.IndividualConstants&lt;T&gt;" Collapsed="true">
-    <Position X="23" Y="5.25" Width="1.5" />
+  <Class Name="LogicLanguageLib.IndividualConstant&lt;T&gt;" Collapsed="true">
+    <Position X="12" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
-      <FileName>IndividualConstants.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAgAAAAAAAIAAAAIAAAAAgIAAABAA=</HashCode>
+      <FileName>IndividualConstant.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.IndividualConstantTerm&lt;T&gt;" Collapsed="true">
+    <Position X="10.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAAAAAEggAAAAAAIAAAAIAAgAAAAAAAAAA=</HashCode>
+      <FileName>IndividualConstantTerm.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicLanguageLib.LeftBracket" Collapsed="true">
-    <Position X="11.75" Y="6.75" Width="1.5" />
+    <Position X="39" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>LeftBracket.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.LogicalSymbol" Collapsed="true">
-    <Position X="11.75" Y="3.75" Width="1.5" />
+    <Position X="33.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>LogicalSymbol.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.Negation" Collapsed="true">
-    <Position X="20.75" Y="8.25" Width="1.5" />
+    <Position X="36.75" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>Negation.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.NonLogicalSymbol" Collapsed="true">
-    <Position X="29.75" Y="3.75" Width="1.5" />
+    <Position X="16.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>NonLogicalSymbol.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.ObjectVariable" Collapsed="true">
-    <Position X="2.75" Y="5.25" Width="1.5" />
+    <Position X="23.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAQAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEAAAgAACAAIAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>ObjectVariable.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="LogicLanguageLib.AbstractPredicate" Collapsed="true">
-    <Position X="27.5" Y="5.25" Width="1.5" />
+  <Class Name="LogicLanguageLib.ObjectVariableTerm" Collapsed="true">
+    <Position X="13" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAEAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Predicate.cs</FileName>
+      <HashCode>AAAAAgAAAAAAAAAEggAAAAAAAAAAAICAAAAAAAAAABA=</HashCode>
+      <FileName>ObjectVariableTerm.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicLanguageLib.Predicate" Collapsed="true">
-    <Position X="25.25" Y="6.75" Width="1.5" />
+    <Position X="16.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Predicate.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="LogicLanguageLib.Predicate&lt;T1&gt;" Collapsed="true">
-    <Position X="27.5" Y="6.75" Width="1.5" />
+  <Class Name="LogicLanguageLib.PredicateFormula" Collapsed="true">
+    <Position X="23.25" Y="11.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Predicate.cs</FileName>
+      <HashCode>AAAACAAQAEAAAAAEggAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>PredicateFormula.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="LogicLanguageLib.Predicate&lt;T1, T2&gt;" Collapsed="true">
-    <Position X="29.75" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAABAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Predicate.cs</FileName>
-    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicLanguageLib.PropositionalConnective" Collapsed="true">
-    <Position X="17.5" Y="5.25" Width="1.5" />
+    <Position X="33.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAEAAgAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>PropositionalConnective.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.PropositionalConnectiveFormula" Collapsed="true">
+    <Position X="18.75" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAIAEggAAAIAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>PropositionalConnectiveFormula.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicLanguageLib.Quantifier" Collapsed="true">
-    <Position X="6.25" Y="5.25" Width="1.5" />
+    <Position X="26.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Quantifier.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="LogicLanguageLib.QuantifierFormula" Collapsed="true">
+    <Position X="21" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEggAAAAAAAAAAQICAAAACAAAAAAA=</HashCode>
+      <FileName>QuantifierFormula.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="LogicLanguageLib.RightBracket" Collapsed="true">
-    <Position X="9.5" Y="6.75" Width="1.5" />
+    <Position X="41.25" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>RightBracket.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.Symbol" Collapsed="true">
-    <Position X="19.75" Y="2.5" Width="1.5" />
+    <Position X="27.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEgAAAAAQAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAACAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Symbol.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="LogicLanguageLib.TechnicalSymbol" Collapsed="true">
-    <Position X="10.75" Y="5.25" Width="1.5" />
+    <Position X="41.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TechnicalSymbol.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.Term" Collapsed="true">
-    <Position X="10.5" Y="8.5" Width="1.5" />
+    <Position X="13" Y="10.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAggAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>Term.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
-  <Class Name="LogicLanguageLib.TermFunction&lt;TOut&gt;" Collapsed="true">
-    <Position X="11.5" Y="9.75" Width="1.5" />
+  <Class Name="LogicLanguageLib.True" Collapsed="true">
+    <Position X="16.5" Y="9.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAACAAQAAAAAAAEAgAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>TermFunction.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="LogicLanguageLib.TermObjectVariable" Collapsed="true">
-    <Position X="9.25" Y="9.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAgAAAAAAAAAAAACAAAAAAAAAAAA=</HashCode>
-      <FileName>TermObjectVariable.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>True.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.UnaryPropositionalConnective" Collapsed="true">
-    <Position X="20.75" Y="6.75" Width="1.5" />
+    <Position X="36.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>UnaryPropositionalConnective.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="LogicLanguageLib.UniversalQuantifier" Collapsed="true">
-    <Position X="5" Y="6.75" Width="1.5" />
+    <Position X="27.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
       <FileName>UniversalQuantifier.cs</FileName>

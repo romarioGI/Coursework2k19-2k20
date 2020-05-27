@@ -62,14 +62,6 @@ namespace LogicLanguageLib
             return Equals(other as PredicateFormula);
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is null) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((PredicateFormula) obj);
-        }
-
         public override int GetHashCode()
         {
             var hashCode = HashCode.Combine(Predicate);

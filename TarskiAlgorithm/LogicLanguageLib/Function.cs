@@ -6,29 +6,38 @@ namespace LogicLanguageLib
     {
         public readonly int Arity;
 
-        public Function(string name, int arity) : base(name)
+        private readonly string _name;
+
+        public Function(string name, int arity)
         {
             Arity = arity;
+
+            if(string.IsNullOrEmpty(name))
+                throw new ArgumentException("Function name must not be null or empty");
+            _name = name;
         }
 
         public bool Equals(Function other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Arity == other.Arity && base.Equals(other);
+            return Arity == other.Arity && _name.Equals(other._name);
         }
 
-        public override bool Equals(object obj)
+        public override string ToString()
         {
-            if (obj is null) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((Function) obj);
+            return _name;
+        }
+
+        protected override bool EqualsSameType(Symbol other)
+        {
+            var otherSameType = (Function) other;
+            return Arity == otherSameType.Arity && _name.Equals(otherSameType._name);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Arity, base.GetHashCode());
+            return HashCode.Combine(Arity, _name);
         }
     }
 }

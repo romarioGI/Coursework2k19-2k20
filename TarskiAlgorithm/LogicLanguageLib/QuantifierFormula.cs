@@ -36,14 +36,6 @@ namespace LogicLanguageLib
                    SubFormula.Equals(other.SubFormula);
         }
 
-        public override bool Equals(object obj)
-        {
-            if (obj is null) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((QuantifierFormula) obj);
-        }
-
         public override bool Equals(Formula other)
         {
             return Equals(other as QuantifierFormula);

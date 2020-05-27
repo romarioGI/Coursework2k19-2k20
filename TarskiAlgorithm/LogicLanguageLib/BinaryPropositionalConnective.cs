@@ -2,7 +2,7 @@
 {
     public abstract class BinaryPropositionalConnective : PropositionalConnective
     {
-        protected BinaryPropositionalConnective(string name) : base(name, 2)
+        protected BinaryPropositionalConnective() : base(2)
         {
         }
     }

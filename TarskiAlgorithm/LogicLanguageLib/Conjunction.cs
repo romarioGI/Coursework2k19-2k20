@@ -1,16 +1,33 @@
-﻿namespace LogicLanguageLib
+﻿using System;
+
+namespace LogicLanguageLib
 {
     public sealed class Conjunction : BinaryPropositionalConnective
     {
         private static readonly Conjunction Instance = new Conjunction();
 
-        private Conjunction() : base("&")
+        private Conjunction()
         {
         }
 
         public static Conjunction GetInstance()
         {
             return Instance;
+        }
+
+        public override string ToString()
+        {
+            return "&";
+        }
+
+        protected override bool EqualsSameType(Symbol other)
+        {
+            return other is Conjunction;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine("&");
         }
     }
 }

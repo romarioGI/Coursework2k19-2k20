@@ -4,25 +4,17 @@ namespace LogicLanguageLib
 {
     public abstract class Symbol : IEquatable<Symbol>
     {
-        public readonly string Name;
-
-        protected Symbol(string name)
-        {
-            Name = name ?? throw new ArgumentNullException();
-        }
-
-        public override string ToString()
-        {
-            return Name;
-        }
+        public abstract override string ToString();
 
         public bool Equals(Symbol other)
         {
             if (other is null) return false;
             if (ReferenceEquals(this, other)) return true;
             if (GetType() != other.GetType()) return false;
-            return Name == other.Name;
+            return EqualsSameType(other);
         }
+
+        protected abstract bool EqualsSameType(Symbol other);
 
         public override bool Equals(object obj)
         {
@@ -32,9 +24,6 @@ namespace LogicLanguageLib
             return Equals((Symbol) obj);
         }
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Name);
-        }
+        public abstract override int GetHashCode();
     }
 }

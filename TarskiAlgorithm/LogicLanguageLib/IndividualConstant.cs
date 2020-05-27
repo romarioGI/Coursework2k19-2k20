@@ -6,16 +6,12 @@ namespace LogicLanguageLib
     {
         public readonly T Value;
 
-        public IndividualConstant(T value) : base(GetName(value))
-        {
-            Value = value;
-        }
-
-        private static string GetName(T value)
+        public IndividualConstant(T value)
         {
             if (value is null)
                 throw new ArgumentNullException(nameof(value));
-            return value.ToString();
+
+            Value = value;
         }
 
         public bool Equals(IndividualConstant<T> other)
@@ -25,12 +21,14 @@ namespace LogicLanguageLib
             return Value.Equals(other.Value);
         }
 
-        public override bool Equals(object obj)
+        public override string ToString()
         {
-            if (obj is null) return false;
-            if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
-            return Equals((IndividualConstant<T>) obj);
+            return Value.ToString();
+        }
+
+        protected override bool EqualsSameType(Symbol other)
+        {
+            return Value.Equals(((IndividualConstant<T>)other).Value);
         }
 
         public override int GetHashCode()
