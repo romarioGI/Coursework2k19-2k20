@@ -6,6 +6,8 @@ namespace LogicLanguageLib.Alphabet
     {
         public abstract override string ToString();
 
+        public abstract int Priority { get; }
+
         public bool Equals(Symbol other)
         {
             if (other is null) return false;

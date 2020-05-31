@@ -10,25 +10,197 @@ namespace LogicLanguageLib.IO
     {
         private static Formula ToFormula(IEnumerable<Symbol> symbols)
         {
-            CheckOrder(symbols);
             var rpn = ToRpn(symbols);
 
             return Calc(rpn);
         }
 
-        private static void CheckOrder(IEnumerable<Symbol> symbols)
-        {
-            throw new NotImplementedException();
-        }
-
         private static IEnumerable<Symbol> ToRpn(IEnumerable<Symbol> symbols)
         {
-            throw new NotImplementedException();
+            Symbol previous = null;
+            var stack = new Stack<Symbol>();
+            foreach (var symbol in symbols)
+            {
+                CheckOrder(previous, symbol);
+
+                if (symbol.Priority < 0)
+                    yield return symbol;
+                else if (symbol.Priority == 0)
+                    stack.Push(symbol);
+                else
+                {
+                    while (stack.Count > 0 && stack.Peek().Priority >= symbol.Priority)
+                        yield return stack.Pop();
+
+                    if (symbol.Priority != 10)
+                        stack.Push(symbol);
+                    else
+                    {
+                        if(symbol is RightBracket)
+                            if (stack.Count == 0)
+                                throw new ArgumentException("the left bracket was expected");
+                            else
+                                stack.Pop();
+                    }
+                }
+
+                previous = symbol;
+            }
+
+            while (stack.Count > 0)
+                yield return stack.Pop();
+        }
+
+        private static void CheckOrder(Symbol left, Symbol right)
+        {
+            return;
         }
 
         private static Formula Calc(IEnumerable<Symbol> rpn)
         {
-            throw new NotImplementedException();
+            var stack = new Stack<object>();
+            foreach (var symbol in rpn)
+            {
+                switch (symbol)
+                {
+                    case TechnicalSymbol _:
+                        continue;
+                    case ObjectVariable objectVariable:
+                        stack.Push(new ObjectVariableTerm(objectVariable));
+                        break;
+                    case IndividualConstant<int> constant:
+                        stack.Push(new IndividualConstantTerm<int>(constant));
+                        break;
+                    case IndividualConstant<BigInteger> constant:
+                        stack.Push(new IndividualConstantTerm<BigInteger>(constant));
+                        break;
+                    case BinaryPropositionalConnective connective:
+                        CalcBinaryPropositionalConnective(stack, connective);
+                        break;
+                    case UnaryPropositionalConnective connective:
+                        CalcUnaryPropositionalConnective(stack, connective);
+                        break;
+                    case Quantifier quantifier:
+                        CalcQuantifier(quantifier, stack);
+                        break;
+                    case Predicate predicate:
+                        CalcPredicate(predicate, stack);
+                        break;
+                    case Function function:
+                        CalcFunction(function, stack);
+                        break;
+                    default:
+                        throw new NotSupportedException($"unknown symbol {symbol}");
+                }
+            }
+
+            if (stack.Count != 1)
+                throw new ArgumentException("incorrect formula");
+
+            try
+            {
+                return (Formula) stack.Peek();
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("is not formula");
+            }
+        }
+
+        private static void CalcBinaryPropositionalConnective(Stack<object> stack, BinaryPropositionalConnective connective)
+        {
+            if (stack.Count < 2)
+                throw new ArgumentException($"two formulas were expected for {connective}");
+            try
+            {
+                var right = (Formula) stack.Pop();
+                var left = (Formula) stack.Pop();
+
+                var newFormula = new PropositionalConnectiveFormula(connective, left, right);
+
+                stack.Push(newFormula);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException($"two formulas were expected for {connective}");
+            }
+        }
+
+        private static void CalcUnaryPropositionalConnective(Stack<object> stack, UnaryPropositionalConnective connective)
+        {
+            if (stack.Count < 1)
+                throw new ArgumentException($"one formula was expected for {connective}");
+            try
+            {
+                var right = (Formula) stack.Pop();
+
+                var newFormula = new PropositionalConnectiveFormula(connective, right);
+
+                stack.Push(newFormula);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException($"one formula was expected for {connective}");
+            }
+        }
+
+        private static void CalcPredicate(Predicate predicate, Stack<object> stack)
+        {
+            var args = new Term[predicate.Arity];
+            if (stack.Count < predicate.Arity)
+                throw new ArgumentException(
+                    $"expected {predicate.Arity} terms for the predicate {predicate}");
+            try
+            {
+                for (var i = args.Length - 1; i >= 0; i--)
+                    args[i] = (Term)stack.Pop();
+                var newFormula = new PredicateFormula(predicate, args);
+
+                stack.Push(newFormula);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(
+                    $"expected {predicate.Arity} terms for the predicate {predicate}");
+            }
+        }
+
+        private static void CalcQuantifier(Quantifier quantifier, Stack<object> stack)
+        {
+            if (stack.Count < 2)
+                throw new ArgumentException("incorrect quantifier formula");
+            try
+            {
+                var formula = (Formula) stack.Pop();
+                var objectVar = (ObjectVariableTerm) stack.Pop();
+
+                var newFormula = new QuantifierFormula(quantifier, objectVar, formula);
+                stack.Push(newFormula);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException("incorrect quantifier formula");
+            }
+        }
+
+        private static void CalcFunction(Function function, Stack<object> stack)
+        {
+            var args = new Term[function.Arity];
+            if (stack.Count < function.Arity)
+                throw new ArgumentException(
+                    $"expected {function.Arity} terms for the function {function}");
+            try
+            {
+                for (var i = args.Length - 1; i >= 0; i--)
+                    args[i] = (Term)stack.Pop();
+                var newTerm = new FunctionTerm(function, args);
+                stack.Push(newTerm);
+            }
+            catch (Exception)
+            {
+                throw new ArgumentException(
+                    $"expected {function.Arity} terms for the predicate {function}");
+            }
         }
 
         private static IEnumerable<Symbol> ToSymbols(string str)
@@ -40,6 +212,7 @@ namespace LogicLanguageLib.IO
                 switch (str[index])
                 {
                     case ' ':
+                        ++index;
                         continue;
                     case '(':
                         yield return LeftBracket.GetInstance();
@@ -57,7 +230,6 @@ namespace LogicLanguageLib.IO
                         ++index;
                         continue;
                     case '\\':
-                        ++index;
                         yield return SpecialSymbol(str, ref index);
                         isLastForUnaryMinus = true;
                         continue;
@@ -89,13 +261,14 @@ namespace LogicLanguageLib.IO
                     if (isLastForUnaryMinus)
                     {
                         yield return UnaryMinus.GetInstance();
+                        ++index;
                         continue;
                     }
                 }
 
-                if (IsArithmeticFunction(str[index]))
+                if (IsArithmeticBinaryFunction(str[index]))
                 {
-                    yield return SpecialFunctionSymbol(str, ref index);
+                    yield return ArithmeticBinaryFunctionSymbol(str, ref index);
                     isLastForUnaryMinus = true;
                     continue;
                 }
@@ -119,21 +292,60 @@ namespace LogicLanguageLib.IO
 
             return tag switch
             {
-                "lnot" => (Symbol) Negation.GetInstance(),
+                "lnot" => Negation.GetInstance(),
                 "lor" => Disjunction.GetInstance(),
                 "land" => Conjunction.GetInstance(),
                 "to" => Implication.GetInstance(),
                 "forall" => UniversalQuantifier.GetInstance(),
                 "exists" => ExistentialQuantifier.GetInstance(),
                 "over" => Division.GetInstance(),
-                _ => throw new ArgumentException($"unknown tag before the symbol with the number {index}")
+                "func" => GetFunction(str, ref index), // \func{name arity}
+                "pr" => GetPredicate(str, ref index), // \pr{name arity}
+                _ => throw new ArgumentException($"unknown tag {tag} before the symbol with the number {index}")
             };
+        }
+
+        private static Function GetFunction(string str, ref int index)
+        {
+            var (name, arity) = GetFunctionAndPredicateParameters(str, ref index);
+            return new Function(name, arity);
+        }
+
+        private static Predicate GetPredicate(string str, ref int index)
+        {
+            var (name, arity) = GetFunctionAndPredicateParameters(str, ref index);
+            return new Predicate(name, arity);
+        }
+
+        private static (string, int) GetFunctionAndPredicateParameters(string str, ref int index)
+        {
+            if (index >= str.Length || str[index] != '{')
+                throw new ArgumentException($"expected {{ at position {index}");
+            ++index;
+
+            var name = GetTag(str, ref index);
+            if (name.Length == 0)
+                throw new ArgumentException($"expected name at position {index}");
+
+            if (index >= str.Length || str[index] != ' ')
+                throw new ArgumentException($"expected whitespace at position {index}");
+            ++index;
+
+            var arity = GetInteger(str, ref index);
+            if (arity > int.MaxValue)
+                throw new ArgumentException($"arity should be less than {int.MaxValue}");
+
+            if (index >= str.Length || str[index] != '}')
+                throw new ArgumentException($"expected {{ at position {index}");
+            ++index;
+
+            return (name, (int) arity);
         }
 
         private static string GetTag(string str, ref int index)
         {
             var len = 0;
-            while (index < str.Length && (char.IsLetter(str[index + len]) || char.IsDigit(str[index + len])))
+            while (index + len < str.Length && (char.IsLetter(str[index + len]) || char.IsDigit(str[index + len])))
                 ++len;
 
             var res = str.Substring(index, len);
@@ -173,7 +385,7 @@ namespace LogicLanguageLib.IO
         private static BigInteger GetInteger(string str, ref int index)
         {
             var len = 0;
-            while (char.IsDigit(str[index + len]))
+            while (index + len < str.Length && char.IsDigit(str[index + len]))
                 ++len;
 
             var res = BigInteger.Parse(str.Substring(index, len));
@@ -195,12 +407,12 @@ namespace LogicLanguageLib.IO
             return res;
         }
 
-        private static bool IsArithmeticFunction(char symbol)
+        private static bool IsArithmeticBinaryFunction(char symbol)
         {
             return ArithmeticBinaryFunction.IsArithmeticBinaryFunction(symbol);
         }
 
-        private static Symbol SpecialFunctionSymbol(string str, ref int index)
+        private static Symbol ArithmeticBinaryFunctionSymbol(string str, ref int index)
         {
             var res = ArithmeticBinaryFunction.Factory(str[index]);
             ++index;

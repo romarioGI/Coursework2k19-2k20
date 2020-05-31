@@ -124,8 +124,9 @@ namespace SimpleTarskiAlgorithmRunnerTests
             var actual = SimpleTarskiAlgorithm.QuantifiersElimination(f);
 
             Formula expected = f3;
+            Formula expected1 = new PropositionalConnectiveFormula(Disjunction.GetInstance(), pr4, pr3);
 
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(expected.Equals(actual) || expected1.Equals(actual));
         }
     }
 }

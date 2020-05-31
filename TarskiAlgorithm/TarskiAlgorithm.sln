@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmRunner
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TarskiAlgorithmLib", "TarskiAlgorithmLib\TarskiAlgorithmLib.csproj", "{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTarskiAlgorithmConsoleApp", "SimpleTarskiAlgorithmConsoleApp\SimpleTarskiAlgorithmConsoleApp.csproj", "{B8296D88-321C-4746-B835-8ADF329A77EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmConsoleApp", "SimpleTarskiAlgorithmConsoleApp\SimpleTarskiAlgorithmConsoleApp.csproj", "{B8296D88-321C-4746-B835-8ADF329A77EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

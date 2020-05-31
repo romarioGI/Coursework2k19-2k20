@@ -26,6 +26,8 @@ namespace LogicLanguageLib.Alphabet
             return Value.ToString();
         }
 
+        public override int Priority => -10;
+
         protected override bool EqualsSameType(Symbol other)
         {
             return Value.Equals(((IndividualConstant<T>)other).Value);

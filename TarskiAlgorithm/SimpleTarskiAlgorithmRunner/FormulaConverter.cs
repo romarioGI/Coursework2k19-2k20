@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using LogicLanguageLib.Alphabet;
 using LogicLanguageLib.Words;
 using SimpleTarskiAlgorithmLib;
@@ -47,12 +48,16 @@ namespace SimpleTarskiAlgorithmRunner
 
                     return TermFunctionInterpret(variableName, function, terms);
 
-                case IndividualConstantTerm<int> termFunction:
-                    return new Polynomial(new List<RationalNumber> {termFunction.IndividualConstant.Value},
+                case IndividualConstantTerm<int> constant:
+                    return new Polynomial(new List<RationalNumber> { constant.IndividualConstant.Value},
                         variableName);
 
-                case IndividualConstantTerm<RationalNumber> termFunction:
-                    return new Polynomial(new List<RationalNumber> {termFunction.IndividualConstant.Value},
+                case IndividualConstantTerm<BigInteger> constant:
+                    return new Polynomial(new List<RationalNumber> { constant.IndividualConstant.Value },
+                        variableName);
+
+                case IndividualConstantTerm<RationalNumber> constant:
+                    return new Polynomial(new List<RationalNumber> { constant.IndividualConstant.Value},
                         variableName);
 
                 default:

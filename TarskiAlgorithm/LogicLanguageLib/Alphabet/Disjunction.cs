@@ -20,6 +20,8 @@ namespace LogicLanguageLib.Alphabet
             return "∨";
         }
 
+        public override int Priority => 30;
+
         protected override bool EqualsSameType(Symbol other)
         {
             return true;

@@ -12,5 +12,7 @@
         {
             return Instance;
         }
+
+        public override int Priority => 120;
     }
 }

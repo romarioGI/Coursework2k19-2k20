@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using LogicLanguageLib.IO;
 using LogicLanguageLib.Words;
 using SimpleTarskiAlgorithmRunner;
@@ -9,21 +10,25 @@ namespace SimpleTarskiAlgorithmConsoleApp
     {
         static void Main()
         {
+            Console.Title = "Tarski";
+            var sw = new StreamWriter("OUTPUT.txt");
+
             Console.Write("Please enter the formula: ");
             var formulaString = Console.ReadLine();
-
+            Console.WriteLine("waiting");
             Formula formula;
             try
-            {
+            { 
                 formula = Parser.ToFormula(formulaString);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Input error:\n{e}");
+                sw.WriteLine($"Input error:\n{e}");
                 return;
             }
 
-            Console.WriteLine($"Entered formula: {formula}");
+            sw.WriteLine(formulaString);
+            sw.WriteLine($"Entered formula: {formula}");
 
             Formula result;
             try
@@ -32,11 +37,13 @@ namespace SimpleTarskiAlgorithmConsoleApp
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Error during elimination:\n{e}");
+                sw.WriteLine($"Error during elimination:\n{e}");
                 throw;
             }
 
-            Console.WriteLine($"Result: {result}");
+            sw.WriteLine($"Result: {result}");
+            sw.Close();
+            Console.WriteLine("see results in OUTPUT.txt");
         }
     }
 }

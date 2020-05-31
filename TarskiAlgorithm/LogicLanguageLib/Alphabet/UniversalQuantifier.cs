@@ -6,10 +6,6 @@ namespace LogicLanguageLib.Alphabet
     {
         private static readonly UniversalQuantifier Instance = new UniversalQuantifier();
 
-        private UniversalQuantifier()
-        {
-        }
-
         public static UniversalQuantifier GetInstance()
         {
             return Instance;

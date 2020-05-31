@@ -29,6 +29,8 @@ namespace LogicLanguageLib.Alphabet
             return _name;
         }
 
+        public override int Priority => 70;
+
         protected override bool EqualsSameType(Symbol other)
         {
             var otherSameType = (Predicate) other;

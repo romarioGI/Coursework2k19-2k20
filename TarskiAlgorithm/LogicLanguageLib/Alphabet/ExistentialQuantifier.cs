@@ -6,10 +6,6 @@ namespace LogicLanguageLib.Alphabet
     {
         private static readonly ExistentialQuantifier Instance = new ExistentialQuantifier();
 
-        private ExistentialQuantifier()
-        {
-        }
-
         public static ExistentialQuantifier GetInstance()
         {
             return Instance;

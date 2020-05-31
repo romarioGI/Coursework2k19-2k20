@@ -8,6 +8,8 @@ namespace LogicLanguageLib.Alphabet
         {
         }
 
+        public override int Priority => 80;
+
         public bool Equals(ArithmeticPredicate other)
         {
             return base.Equals(other);

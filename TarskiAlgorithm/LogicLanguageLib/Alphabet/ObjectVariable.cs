@@ -22,6 +22,8 @@ namespace LogicLanguageLib.Alphabet
             return _index is null ? _char.ToString() : $"{_char}_{_index}";
         }
 
+        public override int Priority => -10;
+
         protected override bool EqualsSameType(Symbol other)
         {
             var otherSameType = (ObjectVariable) other;
