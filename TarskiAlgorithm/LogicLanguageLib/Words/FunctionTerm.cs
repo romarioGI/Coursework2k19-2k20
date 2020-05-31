@@ -34,9 +34,9 @@ namespace LogicLanguageLib.Words
 
         public override string ToString()
         {
-            if (Function is ArithmeticFunction)
-                return $"({_terms[0]}{Function}{_terms[1]})";
-            return $"{Function}({string.Join<Term>(',', _terms)})";
+            if (Function is ArithmeticBinaryFunction)
+                return $"{LeftBracket.GetInstance()}{_terms[0]}{Function}{_terms[1]}{RightBracket.GetInstance()}";
+            return $"{Function}{LeftBracket.GetInstance()}{string.Join<Term>(Comma.GetInstance().ToString(), _terms)}{RightBracket.GetInstance()}";
         }
 
         public override IEnumerable<ObjectVariable> FreeObjectVariables

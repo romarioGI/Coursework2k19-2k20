@@ -2,7 +2,7 @@
 
 namespace LogicLanguageLib.Alphabet
 {
-    public class ObjectVariable : LogicalSymbol, IEquatable<ObjectVariable>
+    public sealed class ObjectVariable : LogicalSymbol, IEquatable<ObjectVariable>
     {
         private readonly char _char;
         private readonly int? _index;

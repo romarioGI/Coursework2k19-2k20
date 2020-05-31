@@ -62,7 +62,7 @@ namespace SimpleTarskiAlgorithmRunner
 
         private static Polynomial TermFunctionInterpret(VariableName variableName, Function function, Term[] terms)
         {
-            if (function is ArithmeticFunction)
+            if (function is ArithmeticBinaryFunction)
             {
                 var p1 = ToPolynomial(terms[0], variableName);
                 var p2 = ToPolynomial(terms[1], variableName);

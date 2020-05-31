@@ -8,14 +8,33 @@ namespace LogicLanguageLib.IO
 {
     public static class Parser
     {
-        public static Formula ToFormula(IEnumerable<Symbol> symbols)
+        private static Formula ToFormula(IEnumerable<Symbol> symbols)
+        {
+            CheckOrder(symbols);
+            var rpn = ToRpn(symbols);
+
+            return Calc(rpn);
+        }
+
+        private static void CheckOrder(IEnumerable<Symbol> symbols)
         {
             throw new NotImplementedException();
         }
 
-        public static IEnumerable<Symbol> ToSymbols(string str)
+        private static IEnumerable<Symbol> ToRpn(IEnumerable<Symbol> symbols)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static Formula Calc(IEnumerable<Symbol> rpn)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static IEnumerable<Symbol> ToSymbols(string str)
         {
             var index = 0;
+            var isLastForUnaryMinus = true;
             while (index < str.Length)
             {
                 switch (str[index])
@@ -24,43 +43,60 @@ namespace LogicLanguageLib.IO
                         continue;
                     case '(':
                         yield return LeftBracket.GetInstance();
+                        isLastForUnaryMinus = true;
                         ++index;
                         continue;
                     case ')':
                         yield return RightBracket.GetInstance();
+                        isLastForUnaryMinus = false;
                         ++index;
                         continue;
                     case ',':
                         yield return Comma.GetInstance();
+                        isLastForUnaryMinus = true;
                         ++index;
                         continue;
                     case '\\':
                         ++index;
                         yield return SpecialSymbol(str, ref index);
+                        isLastForUnaryMinus = true;
                         continue;
                 }
 
                 if (char.IsLetter(str[index]))
                 {
                     yield return LetterSymbol(str, ref index);
+                    isLastForUnaryMinus = false;
                     continue;
                 }
 
                 if (char.IsDigit(str[index]))
                 {
                     yield return DigitSymbol(str, ref index);
+                    isLastForUnaryMinus = false;
                     continue;
                 }
 
-                if (IsSpecialPredicate(str[index]))
+                if (IsArithmeticPredicate(str[index]))
                 {
-                    yield return SpecialPredicateSymbol(str, ref index);
+                    yield return ArithmeticPredicateSymbol(str, ref index);
+                    isLastForUnaryMinus = true;
                     continue;
                 }
 
-                if (IsSpecialFunction(str[index]))
+                if (str[index] == '-')
+                {
+                    if (isLastForUnaryMinus)
+                    {
+                        yield return UnaryMinus.GetInstance();
+                        continue;
+                    }
+                }
+
+                if (IsArithmeticFunction(str[index]))
                 {
                     yield return SpecialFunctionSymbol(str, ref index);
+                    isLastForUnaryMinus = true;
                     continue;
                 }
 
@@ -89,9 +125,7 @@ namespace LogicLanguageLib.IO
                 "to" => Implication.GetInstance(),
                 "forall" => UniversalQuantifier.GetInstance(),
                 "exists" => ExistentialQuantifier.GetInstance(),
-                "over" => new ArithmeticFunction("/"),
-                "func" => throw new NotImplementedException(), // \func{arity} дальше через запятую параметры
-                "pr" => throw new NotImplementedException(), // \pr{arity} дальше через запятую параметры
+                "over" => Division.GetInstance(),
                 _ => throw new ArgumentException($"unknown tag before the symbol with the number {index}")
             };
         }
@@ -148,27 +182,27 @@ namespace LogicLanguageLib.IO
             return res;
         }
 
-        private static bool IsSpecialPredicate(char symbol)
+        private static bool IsArithmeticPredicate(char symbol)
         {
-            return symbol == '<' || symbol == '>' || symbol == '=';
+            return ArithmeticPredicate.IsArithmeticPredicate(symbol);
         }
 
-        private static Symbol SpecialPredicateSymbol(string str, ref int index)
+        private static Symbol ArithmeticPredicateSymbol(string str, ref int index)
         {
-            var res = new Predicate(str[index].ToString(), 2);
+            var res = ArithmeticPredicate.Factory(str[index]);
             ++index;
 
             return res;
         }
 
-        private static bool IsSpecialFunction(char symbol)
+        private static bool IsArithmeticFunction(char symbol)
         {
-            return symbol == '+' || symbol == '-' || symbol == '^' || symbol == '*' || symbol == '/';
+            return ArithmeticBinaryFunction.IsArithmeticBinaryFunction(symbol);
         }
 
         private static Symbol SpecialFunctionSymbol(string str, ref int index)
         {
-            var res = new ArithmeticFunction(str[index].ToString());
+            var res = ArithmeticBinaryFunction.Factory(str[index]);
             ++index;
 
             return res;

@@ -18,7 +18,7 @@ namespace LogicLanguageLib.Alphabet
 
         protected override bool EqualsSameType(Symbol other)
         {
-            return other is RightBracket;
+            return true;
         }
 
         public override int GetHashCode()

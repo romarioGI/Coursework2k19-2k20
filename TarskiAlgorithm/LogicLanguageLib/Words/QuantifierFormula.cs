@@ -20,7 +20,7 @@ namespace LogicLanguageLib.Words
 
         public override string ToString()
         {
-            return $"({Quantifier}{ObjectVariable}){SubFormula}";
+            return $"{LeftBracket.GetInstance()}{Quantifier}{ObjectVariable}{RightBracket.GetInstance()}{SubFormula}";
         }
 
         public override IEnumerable<ObjectVariable> FreeObjectVariables

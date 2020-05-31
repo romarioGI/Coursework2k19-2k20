@@ -35,9 +35,9 @@ namespace LogicLanguageLib.Words
         public override string ToString()
         {
             if (Predicate is ArithmeticPredicate)
-                return $"({_terms[0]}{Predicate}{_terms[1]})";
+                return $"{LeftBracket.GetInstance()}{_terms[0]}{Predicate}{_terms[1]}{RightBracket.GetInstance()}";
 
-            return $"{Predicate}({string.Join<Term>(',', _terms)})";
+            return $"{Predicate}{LeftBracket.GetInstance()}{string.Join<Term>(Comma.GetInstance().ToString(), _terms)}{RightBracket.GetInstance()}";
         }
 
         public override IEnumerable<ObjectVariable> FreeObjectVariables

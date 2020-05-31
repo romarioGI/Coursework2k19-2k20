@@ -22,7 +22,7 @@ namespace LogicLanguageLib.Alphabet
 
         protected override bool EqualsSameType(Symbol other)
         {
-            return other is Implication;
+            return true;
         }
 
         public override int GetHashCode()

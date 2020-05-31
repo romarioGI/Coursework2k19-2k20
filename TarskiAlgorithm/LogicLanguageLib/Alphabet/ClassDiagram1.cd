@@ -1,0 +1,256 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="LogicLanguageLib.Alphabet.Addition" Collapsed="true">
+    <Position X="46" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Addition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.ArithmeticBinaryFunction" Collapsed="true">
+    <Position X="50.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAoAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\ArithmeticBinaryFunction.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.ArithmeticPredicate" Collapsed="true">
+    <Position X="37" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAoAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\ArithmeticPredicate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.BinaryPropositionalConnective" Collapsed="true">
+    <Position X="21.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\BinaryPropositionalConnective.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.BooleanPredicate" Collapsed="true">
+    <Position X="42.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\BooleanPredicate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Comma" Collapsed="true">
+    <Position X="16.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Comma.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Conjunction" Collapsed="true">
+    <Position X="19" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Conjunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Disjunction" Collapsed="true">
+    <Position X="21.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Disjunction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Division" Collapsed="true">
+    <Position X="48.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Division.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.EqualityPredicate" Collapsed="true">
+    <Position X="37" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\EqualityPredicate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.ExistentialQuantifier" Collapsed="true">
+    <Position X="28" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\ExistentialQuantifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Exponentiation" Collapsed="true">
+    <Position X="55" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Exponentiation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.False" Collapsed="true">
+    <Position X="41.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\False.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Function" Collapsed="true">
+    <Position X="51.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAEAEgAAAAACAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Function.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Implication" Collapsed="true">
+    <Position X="23.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Implication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.IndividualConstant&lt;T&gt;" Collapsed="true">
+    <Position X="59.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAACAIAAAAIAAAAAgIAAAAAA=</HashCode>
+      <FileName>Alphabet\IndividualConstant.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.LeftBracket" Collapsed="true">
+    <Position X="14.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\LeftBracket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.LessPredicate" Collapsed="true">
+    <Position X="39.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\LessPredicate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.LogicalSymbol" Collapsed="true">
+    <Position X="22.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\LogicalSymbol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.MorePredicate" Collapsed="true">
+    <Position X="34.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\MorePredicate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Multiplication" Collapsed="true">
+    <Position X="50.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Multiplication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Negation" Collapsed="true">
+    <Position X="25.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Negation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.NonLogicalSymbol" Collapsed="true">
+    <Position X="47.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\NonLogicalSymbol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.ObjectVariable" Collapsed="true">
+    <Position X="32.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAgAACAAIAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\ObjectVariable.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Predicate" Collapsed="true">
+    <Position X="39.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAAEAEgAAAAACAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Predicate.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.PropositionalConnective" Collapsed="true">
+    <Position X="22.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\PropositionalConnective.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Quantifier" Collapsed="true">
+    <Position X="29.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Quantifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.RightBracket" Collapsed="true">
+    <Position X="12.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\RightBracket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Subtraction" Collapsed="true">
+    <Position X="52.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Subtraction.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.Symbol" Collapsed="true">
+    <Position X="36" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEgAAAAACAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\Symbol.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.TechnicalSymbol" Collapsed="true">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\TechnicalSymbol.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.True" Collapsed="true">
+    <Position X="43.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\True.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.UnaryMinus" Collapsed="true">
+    <Position X="57.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\UnaryMinus.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.UnaryPropositionalConnective" Collapsed="true">
+    <Position X="25.75" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\UnaryPropositionalConnective.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="LogicLanguageLib.Alphabet.UniversalQuantifier" Collapsed="true">
+    <Position X="30.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAACABAAAAIAAQAAAAAAAAAA=</HashCode>
+      <FileName>Alphabet\UniversalQuantifier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

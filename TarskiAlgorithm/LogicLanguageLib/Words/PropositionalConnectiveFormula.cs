@@ -36,8 +36,8 @@ namespace LogicLanguageLib.Words
         {
             return Connective switch
             {
-                UnaryPropositionalConnective _ => $"({Connective}{_formulas[0]})",
-                BinaryPropositionalConnective _ => $"({_formulas[0]}{Connective}{_formulas[1]})",
+                UnaryPropositionalConnective _ => $"{LeftBracket.GetInstance()}{Connective}{_formulas[0]}{RightBracket.GetInstance()}",
+                BinaryPropositionalConnective _ => $"{LeftBracket.GetInstance()}{_formulas[0]}{Connective}{_formulas[1]}{RightBracket.GetInstance()}",
                 _ => throw new NotSupportedException("Connective must be unary or binary")
             };
         }

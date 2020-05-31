@@ -5,7 +5,6 @@ VisualStudioVersion = 16.0.29911.84
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmLib", "SimpleTarskiAlgorithmLib\SimpleTarskiAlgorithmLib.csproj", "{E69C5A47-C42C-4A02-B613-1462DBD869E8}"
 EndProject
-
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicLanguageLib", "LogicLanguageLib\LogicLanguageLib.csproj", "{3BD44AA0-657D-42D5-94A0-5EF5F7BFF2C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{387A1BBD-5A0B-4A3D-9277-3E9AC9C41527}"
@@ -14,9 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmLibTes
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmRunner", "SimpleTarskiAlgorithmRunner\SimpleTarskiAlgorithmRunner.csproj", "{97E891EC-21C5-4EF6-9F6D-611EE6AAC231}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTarskiAlgorithmRunnerTests", "SimpleTarskiAlgorithmRunnerTests\SimpleTarskiAlgorithmRunnerTests.csproj", "{3B66ADEA-29DB-4814-8EA7-51403ABEF56F}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TarskiAlgorithmLib", "TarskiAlgorithmLib\TarskiAlgorithmLib.csproj", "{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}"
-
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTarskiAlgorithmRunnerTests", "SimpleTarskiAlgorithmRunnerTests\SimpleTarskiAlgorithmRunnerTests.csproj", "{3B66ADEA-29DB-4814-8EA7-51403ABEF56F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TarskiAlgorithmLib", "TarskiAlgorithmLib\TarskiAlgorithmLib.csproj", "{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTarskiAlgorithmConsoleApp", "SimpleTarskiAlgorithmConsoleApp\SimpleTarskiAlgorithmConsoleApp.csproj", "{B8296D88-321C-4746-B835-8ADF329A77EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +49,10 @@ Global
 		{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9492BD78-9BB1-446E-A0B9-80AF9F30E6B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8296D88-321C-4746-B835-8ADF329A77EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8296D88-321C-4746-B835-8ADF329A77EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8296D88-321C-4746-B835-8ADF329A77EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8296D88-321C-4746-B835-8ADF329A77EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

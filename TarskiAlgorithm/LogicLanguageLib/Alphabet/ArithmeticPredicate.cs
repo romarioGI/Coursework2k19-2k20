@@ -2,9 +2,9 @@
 
 namespace LogicLanguageLib.Alphabet
 {
-    public class ArithmeticPredicate : Predicate, IEquatable<ArithmeticPredicate>
+    public abstract class ArithmeticPredicate : Predicate, IEquatable<ArithmeticPredicate>
     {
-        public ArithmeticPredicate(string name) : base(name, 2)
+        protected ArithmeticPredicate(string name) : base(name, 2)
         {
         }
 
@@ -14,5 +14,21 @@ namespace LogicLanguageLib.Alphabet
         }
 
         public override int GetHashCode() => base.GetHashCode();
+
+        public static bool IsArithmeticPredicate(char c)
+        {
+            return c == '=' || c == '<' || c == '>';
+        }
+
+        public static ArithmeticPredicate Factory(char c)
+        {
+            return c switch
+            {
+                '<' => LessPredicate.GetInstance(),
+                '=' => EqualityPredicate.GetInstance(),
+                '>' => MorePredicate.GetInstance(),
+                _ => throw new ArgumentException($"{c} - is not a predicate")
+            };
+        }
     }
 }
