@@ -78,7 +78,7 @@ namespace SimpleTarskiAlgorithmRunner
                     return p1 - p2;
 
                 if (function.Equals(Functions.Multi))
-                    return p1 - p2;
+                    return p1 * p2;
 
                 if (function.Equals(Functions.Divide))
                 {

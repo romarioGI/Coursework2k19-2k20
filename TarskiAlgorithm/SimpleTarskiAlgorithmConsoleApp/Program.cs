@@ -11,39 +11,40 @@ namespace SimpleTarskiAlgorithmConsoleApp
         static void Main()
         {
             Console.Title = "Tarski";
-            var sw = new StreamWriter("OUTPUT.txt");
-
-            Console.Write("Please enter the formula: ");
-            var formulaString = Console.ReadLine();
-            Console.WriteLine("waiting");
-            Formula formula;
-            try
-            { 
-                formula = Parser.ToFormula(formulaString);
-            }
-            catch (Exception e)
+            using (var sw = new StreamWriter("OUTPUT1.txt"))
             {
-                sw.WriteLine($"Input error:\n{e}");
-                return;
-            }
+                Console.Write("Please enter the formula: ");
+                var formulaString = Console.ReadLine();
+                Console.WriteLine("waiting");
+                Formula formula;
+                try
+                {
+                    formula = Parser.ToFormula(formulaString);
+                }
+                catch (Exception e)
+                {
+                    sw.WriteLine($"Input error:\n{e}");
+                    return;
+                }
 
-            sw.WriteLine(formulaString);
-            sw.WriteLine($"Entered formula: {formula}");
+                sw.WriteLine(formulaString);
+                sw.WriteLine($"Entered formula: {formula}");
 
-            Formula result;
-            try
-            {
-                result = SimpleTarskiAlgorithm.QuantifiersElimination(formula);
-            }
-            catch (Exception e)
-            {
-                sw.WriteLine($"Error during elimination:\n{e}");
-                throw;
-            }
+                Formula result;
+                try
+                {
+                    result = SimpleTarskiAlgorithm.QuantifiersElimination(formula);
+                }
+                catch (Exception e)
+                {
+                    sw.WriteLine($"Error during elimination:\n{e}");
+                    throw;
+                }
 
-            sw.WriteLine($"Result: {result}");
-            sw.Close();
-            Console.WriteLine("see results in OUTPUT.txt");
+                sw.WriteLine($"Result: {result}");
+                sw.Close();
+                Console.WriteLine("see results in OUTPUT.txt");
+            }
         }
     }
 }
