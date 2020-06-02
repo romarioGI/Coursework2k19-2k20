@@ -1,0 +1,44 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[english,russian]{babel}   
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsfonts,amsmath,enumerate,titlesec,indentfirst,graphicx}
+\usepackage[left=30mm, top=20mm, right=20mm, bottom=20mm, nohead, footskip=10mm]{geometry} % настройки полей документа
+\usepackage{amsthm}
+
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.png,.jpg}
+
+\newcommand{\sectionbreak}{\clearpage}
+
+\renewcommand{\emptyset}{\varnothing} %символ пустого множества
+\renewcommand{\bar}[1]{\overline{#1}} %растягивание всевозможных подчеркиваний
+
+%\theoremstyle{definition}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{definition}{Определение}[section]
+\newtheorem{proposal}{Утверждение}[section]
+\newtheorem*{remark}{Замечание}
+
+\renewcommand\qedsymbol{$\blacktriangleleft$} %символ QED
+
+\parindent=1.25cm %отступ абзаца
+
+\begin{document}
+    \input{титульный лист.tex}
+
+    \renewcommand*\contentsname{Оглавление}
+    \tableofcontents
+    
+    \input{введение.tex}
+
+    \input{описание алгоритма.tex}
+
+    \input{реализация.tex}
+
+    \input{заключение.tex}
+
+    \input{список литературы.tex}
+    
+    \input{приложения.tex}
+
+\end{document}
