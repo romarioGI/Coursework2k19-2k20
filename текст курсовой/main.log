@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.15)  1 JUN 2020 17:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.15)  5 JUN 2020 03:04
 entering extended mode
 **"c:/Users/Gibadulin Roman/Desktop/С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№/main.tex"
 ("c:/Users/Gibadulin Roman/Desktop/С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№/main.tex"
@@ -356,6 +356,13 @@ File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen118
 \Gin@req@width=\dimen119
+) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count102
+\float@exts=\toks25
+\float@box=\box30
+\@float@everytoks=\toks26
+\@floatcapt=\box31
 ) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.sty"
 Package: geometry 2018/04/16 v5.8 Page Geometry
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifpdf.sty"
@@ -367,9 +374,9 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 ) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/generic/iftex\ifxetex.sty"
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count102
-\Gm@cntv=\count103
-\c@Gm@tempcnt=\count104
+\Gm@cnth=\count103
+\Gm@cntv=\count104
+\c@Gm@tempcnt=\count105
 \Gm@bindingoffset=\dimen120
 \Gm@wd@mp=\dimen121
 \Gm@odd@mp=\dimen122
@@ -378,22 +385,49 @@ Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 \Gm@layoutheight=\dimen125
 \Gm@layouthoffset=\dimen126
 \Gm@layoutvoffset=\dimen127
-\Gm@dimlist=\toks25
+\Gm@dimlist=\toks27
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/geometry\geometry.cfg")) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amscls\amsthm.sty"
 Package: amsthm 2017/10/31 v2.20.4
-\thm@style=\toks26
-\thm@bodyfont=\toks27
-\thm@headfont=\toks28
-\thm@notefont=\toks29
-\thm@headpunct=\toks30
+\thm@style=\toks28
+\thm@bodyfont=\toks29
+\thm@headfont=\toks30
+\thm@notefont=\toks31
+\thm@headpunct=\toks32
 \thm@preskip=\skip48
 \thm@postskip=\skip49
 \thm@headsep=\skip50
-\dth@everypar=\toks31
+\dth@everypar=\toks33
+) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cmll\cmll.sty"
+Package: cmll 2010/04/20 Linear Logic symbols for Computer Modern
+ ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ifthen.sty"
+Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
 )
-\c@theorem=\count105
-\c@definition=\count106
-\c@proposal=\count107
+\symllsymbols=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `llsymbols' in version `bold'
+(Font)                  U/cmllr/m/n --> U/cmllr/bx/n on input line 49.
+) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/booktabs\booktabs.sty"
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen128
+\lightrulewidth=\dimen129
+\cmidrulewidth=\dimen130
+\belowrulesep=\dimen131
+\belowbottomsep=\dimen132
+\aboverulesep=\dimen133
+\abovetopsep=\dimen134
+\cmidrulesep=\dimen135
+\cmidrulekern=\dimen136
+\defaultaddspace=\dimen137
+\@cmidla=\count106
+\@cmidlb=\count107
+\@aboverulesep=\dimen138
+\@belowrulesep=\dimen139
+\@thisruleclass=\count108
+\@lastruleclass=\count109
+\@thisrulewidth=\dimen140
+)
+\c@theorem=\count110
+\c@definition=\count111
+\c@proposal=\count112
  ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\main.aux"
 LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 4.
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cyrillic\t2acmr.fd"
@@ -401,33 +435,33 @@ File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 28.
+LaTeX Font Info:    ... okay on input line 28.
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count108
-\scratchdimen=\dimen128
-\scratchbox=\box30
-\nofMPsegments=\count109
-\nofMParguments=\count110
-\everyMPshowfont=\toks32
-\MPscratchCnt=\count111
-\MPscratchDim=\dimen129
-\MPnumerator=\count112
-\makeMPintoPDFobject=\count113
-\everyMPtoPDFconversion=\toks33
+\scratchcounter=\count113
+\scratchdimen=\dimen141
+\scratchbox=\box32
+\nofMPsegments=\count114
+\nofMParguments=\count115
+\everyMPshowfont=\toks34
+\MPscratchCnt=\count116
+\MPscratchDim=\dimen142
+\MPnumerator=\count117
+\makeMPintoPDFobject=\count118
+\everyMPtoPDFconversion=\toks35
 ) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\infwarerr.sty"
@@ -501,61 +535,58 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Trying to load font information for U+msb on input line 26.
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+LaTeX Font Info:    Trying to load font information for U+cmllr on input line 26.
+ ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cmll\ucmllr.fd") [1
 
 {C:/Users/Gibadulin Roman/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\main.toc")
 \tf@toc=\write3
 \openout3 = `main.toc'.
 
- ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\РІРІРµРґРµРЅРёРµ.tex" [1
+ ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\РІРІРµРґРµРЅРёРµ.tex" [2
 
-]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\РѕРїРёСЃР°РЅРёРµ Р°Р»РіРѕСЂРёС‚РјР°.tex" [2
+]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\РѕРїРёСЃР°РЅРёРµ Р°Р»РіРѕСЂРёС‚РјР°.tex" [3
 
-] [3
+] [4
 
 ]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 55.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 77.
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 55.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 77.
+ [5] [6] [7] [8] [9] [10]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\СЂРµР°Р»РёР·Р°С†РёСЏ.tex" [11] [12
 
-Overfull \hbox (8.17433pt too wide) in paragraph at lines 74--75
-[]\T2A/cmr/m/n/12 Изначально пред-ло-жен-ный Тар-ским <<ре-ша-ю-щий ме-тод>> (decision method (ссыл-
+]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\Р·Р°РєР»СЋС‡РµРЅРёРµ.tex" [13]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\СЃРїРёСЃРѕРє Р»РёС‚РµСЂР°С‚СѓСЂС‹.tex" [14
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+[]\T2A/cmr/m/n/12 Алгоритм Тар-ско-го. Лек-ция 1 // Лек-то-ри-ум. URL:
  []
 
 
-Overfull \hbox (46.2927pt too wide) in paragraph at lines 76--78
-[]\T2A/cmr/m/n/12 Описываем ал-го-ритм, в ко-то-ром есть сло-ва "ищем кор-ни мно-го-чле-нов"сформулировать
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+[]\T2A/cmr/m/n/12 Алгоритм Тар-ско-го. Лек-ция 2 // Лек-то-ри-ум. URL:
  []
 
-[4]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\СЂРµР°Р»РёР·Р°С†РёСЏ.tex" [5]
-Overfull \hbox (62.13495pt too wide) in paragraph at lines 29--29
-|[]\T2A/cmr/bx/n/14.4 Реализация ба-зо-во-го слу-чая. Биб-лио-те-ка SimpleTarskiAlgorithmLib| 
- []
+) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\РїСЂРёР»РѕР¶РµРЅРёСЏ.tex" [15
 
-[6
-
-]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\Р·Р°РєР»СЋС‡РµРЅРёРµ.tex" [7]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\СЃРїРёСЃРѕРє Р»РёС‚РµСЂР°С‚СѓСЂС‹.tex" [8
-
-]) ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\РїСЂРёР»РѕР¶РµРЅРёСЏ.tex" [9
-
-]) [10
+]) [16
 
 ] ("c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\main.aux") ) 
 Here is how much of TeX's memory you used:
- 4847 strings out of 492450
- 67032 string characters out of 3115332
- 148718 words of memory out of 3000000
- 9087 multiletter control sequences out of 15000+200000
- 14915 words of font info for 40 fonts, out of 3000000 for 9000
+ 5107 strings out of 492450
+ 70610 string characters out of 3115332
+ 159408 words of memory out of 3000000
+ 9319 multiletter control sequences out of 15000+200000
+ 19094 words of font info for 51 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,5n,32p,954b,199s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labi1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\main.pdf" (11 pages, 187512 bytes).
+ 51i,20n,32p,1782b,200s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labi1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/cmll/cmllr12.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on "c:/Users\Gibadulin Roman\Desktop\С‚РµРєСЃС‚ РєСѓСЂСЃРѕРІРѕР№\main.pdf" (16 pages, 276297 bytes).
 PDF statistics:
- 446 PDF objects out of 1000 (max. 8388607)
+ 492 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

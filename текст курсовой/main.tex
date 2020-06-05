@@ -1,9 +1,11 @@
 \documentclass[a4paper,12pt]{article}
 \usepackage[english,russian]{babel}   
 \usepackage[utf8]{inputenc}
-\usepackage{amssymb,amsfonts,amsmath,enumerate,titlesec,indentfirst,graphicx}
+\usepackage{amssymb,amsfonts,amsmath,enumerate,titlesec,indentfirst,graphicx,float}
 \usepackage[left=30mm, top=20mm, right=20mm, bottom=20mm, nohead, footskip=10mm]{geometry} % настройки полей документа
 \usepackage{amsthm}
+\usepackage{cmll}
+\usepackage{booktabs}
 
 \graphicspath{{pictures/}}
 \DeclareGraphicsExtensions{.png,.jpg}
@@ -24,7 +26,10 @@
 \parindent=1.25cm %отступ абзаца
 
 \begin{document}
+
     \input{титульный лист.tex}
+    
+    \addtocounter{page}{1}
 
     \renewcommand*\contentsname{Оглавление}
     \tableofcontents

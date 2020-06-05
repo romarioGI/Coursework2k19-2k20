@@ -1,20 +1,24 @@
 \babel@toc {russian}{}
-\contentsline {section}{Введение}{2}%
-\contentsline {section}{\numberline {1}Алгоритм Тарского}{3}%
-\contentsline {subsection}{\numberline {1.1}Элементарная алгебра}{3}%
-\contentsline {subsection}{\numberline {1.2}Язык элементарной алгебры}{3}%
-\contentsline {subsection}{\numberline {1.3}Поле действительных чисел}{3}%
-\contentsline {subsection}{\numberline {1.4}Элиминация кванторов}{3}%
-\contentsline {subsection}{\numberline {1.5}«Алгоритм» Тарского}{4}%
-\contentsline {subsection}{\numberline {1.6}Алгоритм Тарского}{4}%
-\contentsline {section}{\numberline {2}Программная реализация}{6}%
-\contentsline {subsection}{\numberline {2.1}Представление формул. Библиотека LogicLanguageLib}{6}%
-\contentsline {subsection}{\numberline {2.2}Система ввода. Класс Parser}{6}%
-\contentsline {subsection}{\numberline {2.3}Реализация базового случая. Библиотека SimpleTarskiAlgorithmLib}{6}%
-\contentsline {subsection}{\numberline {2.4}Библиотека SimpleTarskiAlgorithmRunner}{7}%
-\contentsline {subsection}{\numberline {2.5}Юнит-тестирование}{7}%
-\contentsline {subsection}{\numberline {2.6}Результаты работы}{7}%
-\contentsline {subsection}{\numberline {2.7}Общий случай}{7}%
-\contentsline {section}{Заключение}{8}%
-\contentsline {section}{{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyrl \cyri \cyrt \cyre \cyrr \cyra \cyrt \cyru \cyrr \cyrery }}{9}%
-\contentsline {section}{Приложение А}{10}%
+\contentsline {section}{Введение}{3}%
+\contentsline {section}{\numberline {1}Алгоритм Тарского}{4}%
+\contentsline {subsection}{\numberline {1.1}Элементарная алгебра}{4}%
+\contentsline {subsection}{\numberline {1.2}Язык элементарной алгебры}{4}%
+\contentsline {subsection}{\numberline {1.3}Элиминация кванторов}{5}%
+\contentsline {subsection}{\numberline {1.4}Алгоритм Тарского}{6}%
+\contentsline {subsubsection}{\numberline {1.4.1}Таблица Тарского}{7}%
+\contentsline {subsubsection}{\numberline {1.4.2}Насыщенная система}{8}%
+\contentsline {subsubsection}{\numberline {1.4.3}Метод построения таблицы Тарского}{8}%
+\contentsline {subsubsection}{\numberline {1.4.4}Алгоритм для формулы вида $(Qx)\Phi (x)$}{10}%
+\contentsline {subsubsection}{\numberline {1.4.5}Алгоритм для формулы вида $(Qx)\Phi (x, a_1, ... , a_l)$}{10}%
+\contentsline {subsubsection}{\numberline {1.4.6}Пример работы алгоритма}{10}%
+\contentsline {subsection}{\numberline {1.5}Теоремы Тарского}{11}%
+\contentsline {section}{\numberline {2}Программная реализация}{12}%
+\contentsline {subsection}{\numberline {2.1}Представление формул}{12}%
+\contentsline {subsection}{\numberline {2.2}Система ввода}{12}%
+\contentsline {subsection}{\numberline {2.3}Реализация базового случая}{13}%
+\contentsline {subsection}{\numberline {2.4}Юнит-тестирование}{13}%
+\contentsline {subsection}{\numberline {2.5}Результаты работы}{13}%
+\contentsline {subsection}{\numberline {2.6}Общий случай}{13}%
+\contentsline {section}{Заключение}{14}%
+\contentsline {section}{{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyrl \cyri \cyrt \cyre \cyrr \cyra \cyrt \cyru \cyrr \cyrery }}{15}%
+\contentsline {section}{Приложение А}{16}%

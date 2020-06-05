@@ -55,6 +55,8 @@ INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graph
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-cfg\graphics.cfg
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-def\pdftex.def
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.sty
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.sty
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\generic\iftex\ifpdf.sty
@@ -69,6 +71,12 @@ INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geome
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geometry.cfg
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amscls\amsthm.sty
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amscls\amsthm.sty
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\cmll\cmll.sty
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\cmll\cmll.sty
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\ifthen.sty
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty
 INPUT c:\Users\Gibadulin Roman\Desktop\текст курсовой\main.aux
 INPUT c:\Users\Gibadulin Roman\Desktop\текст курсовой\main.aux
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\cyrillic\t2acmr.fd
@@ -123,6 +131,11 @@ INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\amsfo
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm7.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\cmll\ucmllr.fd
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\cmll\ucmllr.fd
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\cmll\cmllr12.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\cmll\cmllr8.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\cmll\cmllr6.tfm
 OUTPUT c:\Users\Gibadulin Roman\Desktop\текст курсовой\main.pdf
 INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
 INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1728.tfm
@@ -138,6 +151,14 @@ INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\lati
 INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\labi1200.tfm
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omscmr.fd
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\omscmr.fd
+INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm0800.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam5.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\tfm\public\cmll\cmllr5.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm0600.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\lati0800.tfm
+INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\lati0600.tfm
 INPUT c:\Users\Gibadulin Roman\Desktop\текст курсовой\реализация.tex
 INPUT c:\Users\Gibadulin Roman\Desktop\текст курсовой\реализация.tex
 INPUT c:\Users\Gibadulin Roman\Desktop\текст курсовой\заключение.tex
@@ -161,12 +182,24 @@ INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2
 INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk
 INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1440.pk
 INPUT C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1440.pk
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\cmll\cmllr12.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\cmll\cmllr12.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr6.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr6.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr8.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy8.pfb
+INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msam10.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msam10.pfb
 INPUT C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\fonts\type1\public\amsfonts\symbols\msbm10.pfb
