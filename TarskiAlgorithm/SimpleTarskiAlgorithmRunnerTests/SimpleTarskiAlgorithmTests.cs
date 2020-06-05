@@ -128,5 +128,23 @@ namespace SimpleTarskiAlgorithmRunnerTests
 
             Assert.IsTrue(expected.Equals(actual) || expected1.Equals(actual));
         }
+		
+		[TestMethod]
+        public void ZeroEqualZero()
+		{
+			ObjectVariableTerm x = new ObjectVariable('x');
+			
+			IndividualConstantTerm<int> zero =(IndividualConstant<int>) 0;
+			
+			var pr = new PredicateFormula(Predicates.Equal, zero, zero);
+			
+			var f = new QuantifierFormula(UniversalQuantifier.GetInstance(), x, pr);
+			
+			var actual = SimpleTarskiAlgorithm.QuantifiersElimination(f);
+			
+			var expected = new PredicateFormula(True.GetInstance());
+
+            Assert.AreEqual(expected, actual);
+		}
     }
 }

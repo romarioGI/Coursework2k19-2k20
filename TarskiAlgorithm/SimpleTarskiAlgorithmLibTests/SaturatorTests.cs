@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleTarskiAlgorithmLib;
@@ -16,7 +17,7 @@ namespace SimpleTarskiAlgorithmLibTests
             var polynomials = new List<Polynomial> {new Polynomial(new List<RationalNumber> {0}, XName)};
             var saturatedSystem = SimpleSaturator.Saturate(polynomials).ToList();
 
-            Assert.IsTrue(saturatedSystem.Count == 0);
+            CollectionAssert.AreEquivalent(polynomials, saturatedSystem);
         }
 
         [TestMethod]
@@ -25,9 +26,9 @@ namespace SimpleTarskiAlgorithmLibTests
             var polynomials = new List<Polynomial> {new Polynomial(new List<RationalNumber> {5}, XName)};
             var saturatedSystem = SimpleSaturator.Saturate(polynomials).ToList();
 
-            var expected = new List<Polynomial> {new Polynomial(new List<RationalNumber> {5}, XName)};
+            var expected = new List<Polynomial> { new Polynomial(new List<RationalNumber> { 0 }, XName), new Polynomial(new List<RationalNumber> {5}, XName)};
 
-            CollectionAssert.AreEqual(expected, saturatedSystem);
+            CollectionAssert.AreEquivalent(expected, saturatedSystem);
         }
 
         [TestMethod]
@@ -50,6 +51,13 @@ namespace SimpleTarskiAlgorithmLibTests
                 new Polynomial(new List<RationalNumber> {1, 1, 0, 1}, XName)
             };
 
+            foreach (var p in expected)
+            {
+                if(saturatedSystem.Contains(p))
+                    continue;
+                throw new Exception();
+            }
+
             CollectionAssert.AreEquivalent(expected, saturatedSystem);
         }
 
@@ -61,6 +69,7 @@ namespace SimpleTarskiAlgorithmLibTests
 
             var expected = new List<Polynomial>
             {
+                new Polynomial(new List<RationalNumber> {0}, XName),
                 new Polynomial(new List<RationalNumber> {2}, XName),
                 new Polynomial(new List<RationalNumber> {0, 2}, XName),
                 new Polynomial(new List<RationalNumber> {0, 0, 1}, XName),
@@ -77,6 +86,7 @@ namespace SimpleTarskiAlgorithmLibTests
 
             var expected = new List<Polynomial>
             {
+                new Polynomial(new List<RationalNumber> {0}, XName),
                 new Polynomial(new List<RationalNumber> {new RationalNumber(16, 27)}, XName),
                 new Polynomial(new List<RationalNumber> {4}, XName),
                 new Polynomial(new List<RationalNumber> {new RationalNumber(-4, 3)}, XName),

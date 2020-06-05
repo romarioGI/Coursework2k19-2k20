@@ -12,17 +12,15 @@ namespace SimpleTarskiAlgorithmLib
         {
             var result = new HashSet<Polynomial>();
 
+            var system = polynomials.ToList();
+
+            if (system.All(p => p.IsZero))
+                return system.Distinct();
+
             var queue = new Queue<Polynomial>();
 
-            var system = polynomials
-                .Where(p => !p.IsZero)
-                .Distinct();
-
-            foreach (var p in system)
+            foreach (var p in system.Where(p => !p.IsZero).Distinct())
                 queue.Enqueue(p);
-
-            if (queue.Count == 0)
-                return new List<Polynomial>();
 
             var multiplication = queue
                 .Aggregate((res, nxt) => res * nxt);
@@ -31,12 +29,15 @@ namespace SimpleTarskiAlgorithmLib
             while (queue.Count != 0)
             {
                 var cur = queue.Dequeue();
-                if (cur.IsZero || result.Contains(cur))
+                if (result.Contains(cur))
                     continue;
-
-                queue.Enqueue(cur.GetDerivative());
-                foreach (var r in GetRemainders(result, cur))
-                    queue.Enqueue(r);
+				
+				if(cur.Degree > 0)
+				{
+					queue.Enqueue(cur.GetDerivative());
+					foreach (var r in GetRemainders(result, cur))
+						queue.Enqueue(r);
+				}
 
                 result.Add(cur);
             }
@@ -49,6 +50,9 @@ namespace SimpleTarskiAlgorithmLib
         {
             foreach (var p in system)
             {
+                if(p.Degree < 1)
+                    continue;
+
                 if (p.Degree <= polynomial.Degree)
                     yield return polynomial % p;
 

@@ -98,13 +98,6 @@ namespace SimpleTarskiAlgorithmLib
         {
             get
             {
-                if (polynomial.IsZero)
-                {
-                    for (var i = 0; i < Width; i++)
-                        yield return Sign.Zero;
-                    yield break;
-                }
-
                 var polyNum = _polynomialCollection[polynomial];
 
                 yield return _firstColumn[polyNum];
@@ -128,7 +121,8 @@ namespace SimpleTarskiAlgorithmLib
             switch (polynomial.Degree)
             {
                 case -1:
-                    return;
+                    AddZeroPolynomial(polynomial);
+                    break;
                 case 0:
                     AddZeroDegreePolynomial(polynomial);
                     break;
@@ -136,6 +130,16 @@ namespace SimpleTarskiAlgorithmLib
                     AddMoreZeroDegreePolynomial(polynomial);
                     break;
             }
+        }
+
+        private void AddZeroPolynomial(Polynomial polynomial)
+        {
+            _polynomialCollection.Add(polynomial);
+
+            _firstColumn.Push(Sign.Zero);
+            foreach (var column in _columns)
+                column.Push(Sign.Zero);
+            _lastColumn.Push(Sign.Zero);
         }
 
         private void AddZeroDegreePolynomial(Polynomial polynomial)
@@ -209,9 +213,6 @@ namespace SimpleTarskiAlgorithmLib
 
         private static bool CheckColumns(Column left, Column right)
         {
-            if (left.Last == Sign.Zero && right.Last == Sign.Zero)
-                throw new Exception("two zeros next to each other");
-
             return !(left.Last == Sign.LessZero && right.Last == Sign.MoreZero ||
                      left.Last == Sign.MoreZero && right.Last == Sign.LessZero);
         }
@@ -235,6 +236,7 @@ namespace SimpleTarskiAlgorithmLib
                     {
                         Sign.LessZero => Sign.LessZero,
                         Sign.MoreZero => Sign.MoreZero,
+                        Sign.Zero => Sign.Zero,
                         _ => throw new ArgumentException()
                     },
                     Sign.MoreZero => right[i] switch
