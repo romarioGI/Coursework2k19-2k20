@@ -10,15 +10,23 @@
 \contentsline {subsubsection}{\numberline {1.4.3}Метод построения таблицы Тарского}{8}%
 \contentsline {subsubsection}{\numberline {1.4.4}Алгоритм для формулы вида $(Qx)\Phi (x)$}{10}%
 \contentsline {subsubsection}{\numberline {1.4.5}Алгоритм для формулы вида $(Qx)\Phi (x, a_1, ... , a_l)$}{10}%
-\contentsline {subsubsection}{\numberline {1.4.6}Пример работы алгоритма}{10}%
-\contentsline {subsection}{\numberline {1.5}Теоремы Тарского}{11}%
-\contentsline {section}{\numberline {2}Программная реализация}{12}%
-\contentsline {subsection}{\numberline {2.1}Представление формул}{12}%
-\contentsline {subsection}{\numberline {2.2}Система ввода}{12}%
-\contentsline {subsection}{\numberline {2.3}Реализация базового случая}{13}%
-\contentsline {subsection}{\numberline {2.4}Юнит-тестирование}{13}%
-\contentsline {subsection}{\numberline {2.5}Результаты работы}{13}%
-\contentsline {subsection}{\numberline {2.6}Общий случай}{13}%
-\contentsline {section}{Заключение}{14}%
-\contentsline {section}{{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyrl \cyri \cyrt \cyre \cyrr \cyra \cyrt \cyru \cyrr \cyrery }}{15}%
-\contentsline {section}{Приложение А}{16}%
+\contentsline {subsubsection}{\numberline {1.4.6}Пример работы алгоритма}{11}%
+\contentsline {subsection}{\numberline {1.5}Теорема Тарского}{12}%
+\contentsline {section}{\numberline {2}Программная реализация}{13}%
+\contentsline {subsection}{\numberline {2.1}Представление формул}{13}%
+\contentsline {subsubsection}{\numberline {2.1.1}Класс Symbol}{14}%
+\contentsline {subsubsection}{\numberline {2.1.2}Класс Quantifier}{15}%
+\contentsline {subsubsection}{\numberline {2.1.3}Класс ObjectVariable}{15}%
+\contentsline {subsubsection}{\numberline {2.1.4}Класс TechnicalSymbol}{16}%
+\contentsline {subsubsection}{\numberline {2.1.5}Класс PropositionalConnective}{16}%
+\contentsline {subsubsection}{\numberline {2.1.6}Класс Function}{17}%
+\contentsline {subsubsection}{\numberline {2.1.7}Класс Predicate}{17}%
+\contentsline {subsubsection}{\numberline {2.1.8}Класс IndividualConstant}{18}%
+\contentsline {subsubsection}{\numberline {2.1.9}Класс Term}{18}%
+\contentsline {subsubsection}{\numberline {2.1.10}Класс Formula}{19}%
+\contentsline {subsection}{\numberline {2.2}Система ввода}{20}%
+\contentsline {subsection}{\numberline {2.3}Реализация алгоритма Тарского}{21}%
+\contentsline {subsection}{\numberline {2.4}Демонстрация работы}{22}%
+\contentsline {section}{Заключение}{24}%
+\contentsline {section}{{\cyrillictext \CYRS \cyrp \cyri \cyrs \cyro \cyrk \ \cyrl \cyri \cyrt \cyre \cyrr \cyra \cyrt \cyru \cyrr \cyrery }}{25}%
+\contentsline {section}{Приложение А}{26}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.15)  5 JUN 2020 03:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2019.11.15)  8 JUN 2020 01:43
 entering extended mode
 **"c:/Users/Gibadulin Roman/Desktop/текст курсовой/main.tex"
 ("c:/Users/Gibadulin Roman/Desktop/текст курсовой/main.tex"
@@ -424,44 +424,101 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count108
 \@lastruleclass=\count109
 \@thisrulewidth=\dimen140
+) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\adjustbox.sty"
+Package: adjustbox 2019/01/04 v1.2 Adjusting TeX boxes (trim, clip, ...)
+ ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xkeyval\xkeyval.sty"
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+ ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkeyval.tex" ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/generic/xkeyval\xkvutils.tex"
+\XKV@toks=\toks34
+\XKV@tempa@toks=\toks35
 )
-\c@theorem=\count110
-\c@definition=\count111
-\c@proposal=\count112
+\XKV@depth=\count110
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+)) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\adjcalc.sty"
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back-ends (calc, etex, pgfmath)
+) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\trimclip.sty"
+Package: trimclip 2018/04/08 v1.1 Trim and clip general TeX material
+ ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/collectbox\collectbox.sty"
+Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
+\collectedbox=\box32
+)
+\tc@llx=\dimen141
+\tc@lly=\dimen142
+\tc@urx=\dimen143
+\tc@ury=\dimen144
+Package trimclip Info: Using driver 'tc-pdftex.def'.
+ ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/adjustbox\tc-pdftex.def"
+File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
+))
+\adjbox@Width=\dimen145
+\adjbox@Height=\dimen146
+\adjbox@Depth=\dimen147
+\adjbox@Totalheight=\dimen148
+\adjbox@pwidth=\dimen149
+\adjbox@pheight=\dimen150
+\adjbox@pdepth=\dimen151
+\adjbox@ptotalheight=\dimen152
+ ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ifoddpage\ifoddpage.sty"
+Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
+\c@checkoddpage=\count111
+) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/varwidth\varwidth.sty"
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box33
+\sift@deathcycles=\count112
+\@vwid@loff=\dimen153
+\@vwid@roff=\dimen154
+)) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/wrapfig\wrapfig.sty"
+\wrapoverhang=\dimen155
+\WF@size=\dimen156
+\c@WF@wrappedlines=\count113
+\WF@box=\box34
+\WF@everypar=\toks36
+Package: wrapfig 2003/01/31  v 3.6
+) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ccaption\ccaption.sty"
+Package: ccaption 2011/08/07 v3.2c Extended captioning and new floats
+\@contcwidth=\skip51
+\@contindw=\skip52
+\abovelegendskip=\skip53
+\belowlegendskip=\skip54
+\c@newflo@tctr=\count114
+)
+\c@theorem=\count115
+\c@definition=\count116
+\c@proposal=\count117
  ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\main.aux"
-LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 4.
+LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 5.
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/cyrillic\t2acmr.fd"
 File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 ))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 32.
+LaTeX Font Info:    ... okay on input line 32.
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count113
-\scratchdimen=\dimen141
-\scratchbox=\box32
-\nofMPsegments=\count114
-\nofMParguments=\count115
-\everyMPshowfont=\toks34
-\MPscratchCnt=\count116
-\MPscratchDim=\dimen142
-\MPnumerator=\count117
-\makeMPintoPDFobject=\count118
-\everyMPtoPDFconversion=\toks35
+\scratchcounter=\count118
+\scratchdimen=\dimen157
+\scratchbox=\box35
+\nofMPsegments=\count119
+\nofMParguments=\count120
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count121
+\MPscratchDim=\dimen158
+\MPnumerator=\count122
+\makeMPintoPDFobject=\count123
+\everyMPtoPDFconversion=\toks38
 ) ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\infwarerr.sty"
@@ -527,7 +584,7 @@ Package grfext Info: Graphics extension search list:
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\титульный лист.tex"
-\ML=\skip51
+\ML=\skip55
 LaTeX Font Info:    Trying to load font information for U+msa on input line 26.
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -545,20 +602,138 @@ LaTeX Font Info:    Trying to load font information for U+cmllr on input line 26
 
  ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\введение.tex" [2
 
-]) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\описание алгоритма.tex" [3
-
-] [4
-
 ]
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 77.
+LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 10.
  ("C:\Users\Gibadulin Roman\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 77.
- [5] [6] [7] [8] [9] [10]) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\реализация.tex" [11] [12
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 10.
+) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\описание алгоритма.tex" [3
 
-]) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\заключение.tex" [13]) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\список литературы.tex" [14
+] [4
+
+] [5] [6] [7] [8] [9] [10] [11]) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\реализация.tex" [12]
+<pictures/Symbol.png, id=57, 122.70844pt x 185.94469pt>
+File: pictures/Symbol.png Graphic file (type png)
+<use pictures/Symbol.png>
+Package pdftex.def Info: pictures/Symbol.png  used on input line 39.
+(pdftex.def)             Requested size: 86.04329pt x 130.38736pt.
+ [13
+
+]
+<pictures/Symbol-inh.png, id=63, 285.31593pt x 189.70876pt>
+File: pictures/Symbol-inh.png Graphic file (type png)
+<use pictures/Symbol-inh.png>
+Package pdftex.def Info: pictures/Symbol-inh.png  used on input line 53.
+(pdftex.def)             Requested size: 273.14923pt x 181.62044pt.
+<pictures/Logical.png, id=64, 610.53094pt x 172.39406pt>
+File: pictures/Logical.png Graphic file (type png)
+<use pictures/Logical.png>
+Package pdftex.def Info: pictures/Logical.png  used on input line 61.
+(pdftex.def)             Requested size: 455.24411pt x 128.55078pt.
+<pictures/NonLogical.png, id=65, 463.7325pt x 172.39406pt>
+File: pictures/NonLogical.png Graphic file (type png)
+<use pictures/NonLogical.png>
+Package pdftex.def Info: pictures/NonLogical.png  used on input line 67.
+(pdftex.def)             Requested size: 364.19667pt x 135.39276pt.
+<pictures/Quantifier.png, id=66, 122.70844pt x 103.13531pt>
+File: pictures/Quantifier.png Graphic file (type png)
+<use pictures/Quantifier.png>
+Package pdftex.def Info: pictures/Quantifier.png  used on input line 75.
+(pdftex.def)             Requested size: 81.94212pt x 68.87367pt.
+ [14 <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Symbol.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Symbol-inh.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Logical.png>]
+<pictures/Quantifier-inh.png, id=73, 303.38344pt x 172.39406pt>
+File: pictures/Quantifier-inh.png Graphic file (type png)
+<use pictures/Quantifier-inh.png>
+Package pdftex.def Info: pictures/Quantifier-inh.png  used on input line 83.
+(pdftex.def)             Requested size: 182.09486pt x 103.47404pt.
+<pictures/ObjectVariable.png, id=74, 146.79843pt x 255.20343pt>
+File: pictures/ObjectVariable.png Graphic file (type png)
+<use pictures/ObjectVariable.png>
+Package pdftex.def Info: pictures/ObjectVariable.png  used on input line 93.
+(pdftex.def)             Requested size: 98.33429pt x 170.95036pt.
+ [15 <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/NonLogical.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Quantifier.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Quantifier-inh.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/ObjectVariable.png>]
+<pictures/TechnicalSymbol.png, id=82, 447.92343pt x 172.39406pt>
+File: pictures/TechnicalSymbol.png Graphic file (type png)
+<use pictures/TechnicalSymbol.png>
+Package pdftex.def Info: pictures/TechnicalSymbol.png  used on input line 108.
+(pdftex.def)             Requested size: 273.14923pt x 105.13127pt.
+<pictures/PropositionalConnective.png, id=83, 610.53094pt x 280.79906pt>
+File: pictures/PropositionalConnective.png Graphic file (type png)
+<use pictures/PropositionalConnective.png>
+Package pdftex.def Info: pictures/PropositionalConnective.png  used on input line 120.
+(pdftex.def)             Requested size: 455.24411pt x 209.38622pt.
+<pictures/Function.png, id=84, 125.71968pt x 255.20343pt>
+File: pictures/Function.png Graphic file (type png)
+<use pictures/Function.png>
+Package pdftex.def Info: pictures/Function.png  used on input line 131.
+(pdftex.def)             Requested size: 81.94212pt x 166.33586pt.
+ [16 <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/TechnicalSymbol.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/PropositionalConnective.png>]
+<pictures/Function-inh.png, id=90, 755.07094pt x 243.91125pt>
+File: pictures/Function-inh.png Graphic file (type png)
+<use pictures/Function-inh.png>
+Package pdftex.def Info: pictures/Function-inh.png  used on input line 150.
+(pdftex.def)             Requested size: 455.24411pt x 147.05873pt.
+ [17 <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Function.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Function-inh.png>]
+<pictures/Predicate.png, id=96, 628.59843pt x 243.91125pt>
+File: pictures/Predicate.png Graphic file (type png)
+<use pictures/Predicate.png>
+Package pdftex.def Info: pictures/Predicate.png  used on input line 164.
+(pdftex.def)             Requested size: 455.24411pt x 176.64317pt.
+<pictures/Const.png, id=97, 231.11343pt x 264.99pt>
+File: pictures/Const.png Graphic file (type png)
+<use pictures/Const.png>
+Package pdftex.def Info: pictures/Const.png  used on input line 174.
+(pdftex.def)             Requested size: 136.57462pt x 156.59343pt.
+<pictures/Term.png, id=98, 375.65344pt x 307.90031pt>
+File: pictures/Term.png Graphic file (type png)
+<use pictures/Term.png>
+Package pdftex.def Info: pictures/Term.png  used on input line 186.
+(pdftex.def)             Requested size: 227.62206pt x 186.5692pt.
+ [18 <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Predicate.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Const.png>]
+<pictures/Formula.png, id=104, 375.65344pt x 307.90031pt>
+File: pictures/Formula.png Graphic file (type png)
+<use pictures/Formula.png>
+Package pdftex.def Info: pictures/Formula.png  used on input line 198.
+(pdftex.def)             Requested size: 227.62206pt x 186.5692pt.
+
+Overfull \hbox (1.23581pt too wide) in paragraph at lines 203--204
+[]\T2A/cmr/m/n/12 ����� PredicateFormula ���-��-��-�� ���-��-�� ��-�� $\OML/cmm/m/it/12 p []$\T2A/cmr/m/n/12 , ��� $\OML/cmm/m/it/12 p$ \T2A/cmr/m/n/12 -- $\OML/cmm/m/it/12 n$\T2A/cmr/m/n/12 -�������
+ []
+
+[19 <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Term.png> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/Formula.png>] [20] [21]
+<pictures/пример1.PNG, id=117, 216.05719pt x 74.52844pt>
+File: pictures/пример1.PNG Graphic file (type png)
+<use pictures/пример1.PNG>
+Package pdftex.def Info: pictures/пример1.PNG  used on input line 319.
+(pdftex.def)             Requested size: 157.29181pt x 54.25974pt.
+<pictures/пример2.PNG, id=118, 322.20375pt x 68.50594pt>
+File: pictures/пример2.PNG Graphic file (type png)
+<use pictures/пример2.PNG>
+Package pdftex.def Info: pictures/пример2.PNG  used on input line 323.
+(pdftex.def)             Requested size: 292.94844pt x 62.28822pt.
+
+Overfull \hbox (2.15201pt too wide) in paragraph at lines 318--326
+[]$[]$  $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 318--326
+
+ []
+
+<pictures/пример3.PNG, id=119, 439.6425pt x 59.47218pt>
+File: pictures/пример3.PNG Graphic file (type png)
+<use pictures/пример3.PNG>
+Package pdftex.def Info: pictures/пример3.PNG  used on input line 328.
+(pdftex.def)             Requested size: 360.5567pt x 48.77567pt.
+[22]) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\заключение.tex" [23 <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/пример1.PNG> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/пример2.PNG> <c:/Users/Gibadulin Roman/Desktop/текст курсовой/pictures/пример3.PNG>])
+Overfull \hbox (1.91513pt too wide) in paragraph at lines 8--48
+\T2A/cmr/m/n/12 ���-��� ����� ���-���-��-���-��-�� (���-����-��� ��-��-��-��-��� ���-���-���-��� ���-�����),
+ []
+
+("c:/Users\Gibadulin Roman\Desktop\текст курсовой\список литературы.tex" [24
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
@@ -570,23 +745,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 []\T2A/cmr/m/n/12 �������� ���-���-��. ���-��� 2 // ���-��-��-��. URL:
  []
 
-) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\приложения.tex" [15
+) ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\приложения.tex" [25
 
-]) [16
+])
+Overfull \hbox (28.62755pt too wide) in paragraph at lines 4--52
+[]\T2A/cmr/m/n/12 ������ �� ��-��-��-��-��� �� GitHub --- https://github.com/romarioGI/Coursework2k19-
+ []
+
+[26
 
 ] ("c:/Users\Gibadulin Roman\Desktop\текст курсовой\main.aux") ) 
 Here is how much of TeX's memory you used:
- 5107 strings out of 492450
- 70610 string characters out of 3115332
- 159408 words of memory out of 3000000
- 9319 multiletter control sequences out of 15000+200000
- 19094 words of font info for 51 fonts, out of 3000000 for 9000
+ 6489 strings out of 492450
+ 94294 string characters out of 3115332
+ 191229 words of memory out of 3000000
+ 10636 multiletter control sequences out of 15000+200000
+ 20738 words of font info for 53 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 51i,20n,32p,1782b,200s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 51i,20n,39p,1796b,419s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labi1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\Gibadulin Roman\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/cmll/cmllr12.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Gibadulin Roman/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "c:/Users\Gibadulin Roman\Desktop\текст курсовой\main.pdf" (16 pages, 276297 bytes).
+Output written on "c:/Users\Gibadulin Roman\Desktop\текст курсовой\main.pdf" (26 pages, 511516 bytes).
 PDF statistics:
- 492 PDF objects out of 1000 (max. 8388607)
+ 619 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 91 words of extra memory for PDF output out of 10000 (max. 10000000)
 

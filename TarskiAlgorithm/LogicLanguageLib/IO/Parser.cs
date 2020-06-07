@@ -15,12 +15,14 @@ namespace LogicLanguageLib.IO
             return Calc(rpn);
         }
 
+        //TODO убрать "фичу" что можно не дописывать закрывающие скобки
         private static IEnumerable<Symbol> ToRpn(IEnumerable<Symbol> symbols)
         {
             Symbol previous = null;
             var stack = new Stack<Symbol>();
             foreach (var symbol in symbols)
             {
+                //TODO
                 CheckOrder(previous, symbol);
 
                 if (symbol.Priority < 0)
@@ -53,7 +55,20 @@ namespace LogicLanguageLib.IO
 
         private static void CheckOrder(Symbol left, Symbol right)
         {
-            return;
+            var err = left switch
+            {
+                Comma _ => (right is Comma),
+                ArithmeticBinaryFunction _ => (right is ArithmeticBinaryFunction),
+                ArithmeticPredicate _ => (right is ArithmeticPredicate),
+                ObjectVariable _ => (right is ObjectVariable),
+                IndividualConstant<BigInteger> _ => (right is IndividualConstant<BigInteger>),
+                Quantifier _ => (right is Quantifier),
+                BinaryPropositionalConnective _ => (right is BinaryPropositionalConnective),
+                _ => false
+            };
+
+            if (err)
+                throw new ArgumentException($"symbols {left} and {right} cannot be placed side by side");
         }
 
         private static Formula Calc(IEnumerable<Symbol> rpn)

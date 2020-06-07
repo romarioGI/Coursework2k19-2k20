@@ -6,6 +6,10 @@
 \usepackage{amsthm}
 \usepackage{cmll}
 \usepackage{booktabs}
+\usepackage[export]{adjustbox} % для позиционирования рисунков
+\usepackage{wrapfig} % обтекание картинок текстом
+\usepackage{ccaption} % подписи к рисункам
+\captiondelim{. }
 
 \graphicspath{{pictures/}}
 \DeclareGraphicsExtensions{.png,.jpg}
@@ -28,7 +32,7 @@
 \begin{document}
 
     \input{титульный лист.tex}
-    
+
     \addtocounter{page}{1}
 
     \renewcommand*\contentsname{Оглавление}
@@ -45,5 +49,4 @@
     \input{список литературы.tex}
     
     \input{приложения.tex}
-
 \end{document}
